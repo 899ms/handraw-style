@@ -16,6 +16,14 @@
 
 这个风格库把“凭感觉选图”变成“记住一个编号”。你不需要背诵画风名称，也不需要自己拼提示词。
 
+## 安装
+
+安装时必须选择仓库根目录 `.`，不要只安装 `handdraw-style-prompter/` 子目录；根目录同时包含画廊、拼图和编号参考图。
+
+```text
+$skill-installer install --repo yang0/handraw-style --path . --name handdraw-style-prompter --ref master
+```
+
 ## 这个 Skill 怎么用
 
 1. 打开[编号画廊](handdraw-style-prompter/gallery/index.html)，浏览风格图片。
@@ -91,3 +99,7 @@ Skill 默认只负责把想法变成提示词；你明确要求“生图”时�
 ![G 233–248](images/G_233-248.png)
 
 ![G 249–261](images/G_249-261.png)
+
+## 作者
+
+X：[@yang02010](https://x.com/yang02010)
