@@ -13,8 +13,8 @@ SOURCE = ROOT / "styles_200_reorganized.md"
 STYLE_JSON = SKILL / "references" / "styles.json"
 GALLERY = SKILL / "gallery" / "index.html"
 ROW = re.compile(r"^\|\s*(\d{3})\s*·\s*([^|]+)\|\s*([^|]+)\|\s*(.*)\|\s*$")
-HEADING = re.compile(r"^##\s+([A-G])\s+(.+)$")
-IMAGE = re.compile(r"^([A-G])_(\d{3})(?:-(\d{3}))?\.png$")
+HEADING = re.compile(r"^##\s+([A-H])\s+(.+)$")
+IMAGE = re.compile(r"^([A-H])_(\d{3})(?:-(\d{3}))?\.png$")
 
 
 def parse_styles() -> list[dict[str, str]]:

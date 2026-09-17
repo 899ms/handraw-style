@@ -8,10 +8,6 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-ROOT_SCRIPTS = ROOT / "scripts"
-if str(ROOT_SCRIPTS) not in sys.path:
-    sys.path.insert(0, str(ROOT_SCRIPTS))
-
 from resolve_reference import resolve
 from contact_sheet_registry import CAPACITY, STATE_FILE, parse_sheet, sheet_path
 from style_asset_paths import bucket_name, grid_path, single_path
@@ -60,6 +56,9 @@ def main() -> None:
         fail("unknown model must use reference image")
     if resolve("gpt-image-2", "001")["use_reference_image"] is not False:
         fail("gpt-image-2 style 001 should use name activation")
+    manual_name = resolve("gpt-image-2", "262")
+    if manual_name["activation_source"] != "name+style" or manual_name["use_reference_image"] or manual_name["prompt_traits"]:
+        fail("text-defined name-only style must use name activation without an image or traits")
     if resolve("gpt-image-2", "155")["activation_source"] != "name+style+traits" or resolve("gpt-image-2", "155")["use_reference_image"] is not False:
         fail("gpt-image-2 style with positive traits should use name+traits activation")
     synthetic = {"default": model_capabilities["default"], "models": {
@@ -83,6 +82,10 @@ def main() -> None:
         fail("style 217 four-panel grid is missing")
     if any(item["traits"] for item in styles[200:216]):
         fail("201–216 core visual traits must remain blank")
+    if any(item["group"] != "G 附件新增 / 中国当代插画补充" for item in styles[200:216]):
+        fail("201–216 must remain in group G")
+    if any(item["group"] != "H 其他" for item in styles[216:]):
+        fail("217+ styles must belong to group H")
     individual = ROOT / "images" / "individual"
     expected_individual = [single_path(number) for number in range(1, total_styles + 1)]
     if not all(path.exists() for path in expected_individual):
@@ -90,9 +93,14 @@ def main() -> None:
     if list(individual.glob("[0-9][0-9][0-9].png")) or list(individual.glob("[0-9][0-9][0-9]_grid.jpg")):
         fail("flat individual assets must be migrated into numbered buckets")
     tweet_sheets = []
-    for path in (ROOT / "images").glob("G_*.png"):
+    for path in (ROOT / "images").glob("[GH]_*.png"):
         parsed = parse_sheet(path)
         if parsed:
+            start, end = parsed
+            if path.name.startswith("G_") and (start, end) != (201, 216):
+                fail("G contact sheets may only cover 201–216")
+            if path.name.startswith("H_") and start < 217:
+                fail("H contact sheets must start at 217 or later")
             tweet_sheets.append((*parsed, path))
     tweet_sheets.sort()
     expected_tweet_numbers = list(range(201, total_styles + 1))
@@ -115,19 +123,25 @@ def main() -> None:
     for _, _, path in tweet_sheets:
         if path.name not in gallery:
             fail(f"gallery is missing contact sheet {path.name}")
+    if 'data-number="217" data-group="H"' not in gallery or 'data-number="262" data-group="H"' not in gallery:
+        fail("gallery does not classify 217+ style cards as H")
+    if 'data-label="H · #217–#232"' not in gallery:
+        fail("gallery does not classify the first H contact sheet as H")
     if "A_001-016.png" not in gallery or "F_187-200.png" not in gallery or "#018" not in gallery:
         fail("gallery does not cover the expected sheets and style 018")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for _, _, path in tweet_sheets:
         if f"images/{path.name}" not in readme:
             fail(f"README does not reference contact sheet {path.name}")
+    if "### G · 附件新增 / 中国当代插画补充（201–216）" not in readme or f"### H · 其他（217–{max_num}）" not in readme:
+        fail("README does not separate G and H contact-sheet groups")
     if f"风格索引（{total_styles}）" not in gallery or f"输入 001–{max_num}" not in gallery:
         fail("gallery count or range is stale")
     skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-    for token in ["Explicit image-generation mode", "name_activation=strong", "model_capabilities.json", "referenced_image_paths", "Use the attached image only as a style reference", "The user's written theme is the sole source for the image content", "images\\individual\\{bucket}\\{number}.png", "217_grid.jpg"]:
+    for token in ["Explicit image-generation mode", "name_activation=strong", "model_capabilities.json", "referenced_image_paths", "Use the attached image only as a style reference", "The user's written theme is the sole source for the image content", "images/individual/{bucket}/{number}.png", "217_grid.jpg"]:
         if token not in skill_text:
             fail(f"image-reference contract is missing {token}")
-    for token in ["Session initialization", "mcp__codex_app__open_in_codex", "file:///E:/handraw-style/handdraw-style-prompter/gallery/index.html", "Do not repeat the browser call", "fallback link"]:
+    for token in ["Session initialization", "mcp__codex_app__open_in_codex", "installed package root", "Do not repeat the browser call", "fallback link"]:
         if token not in skill_text:
             fail(f"session initialization contract is missing {token}")
     for token in ['id="preview"', 'class="sheet"', 'dialog.showModal()', 'event.target===dialog']:

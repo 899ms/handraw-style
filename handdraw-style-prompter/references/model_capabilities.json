@@ -425,6 +425,14 @@
         "261": {
           "name_activation": "none",
           "traits_activation": "none"
+        },
+        "262": {
+          "name_activation": "strong",
+          "traits_activation": "none"
+        },
+        "263": {
+          "name_activation": "strong",
+          "traits_activation": "none"
         }
       }
     }

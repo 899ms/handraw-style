@@ -1,6 +1,6 @@
 ---
 name: handdraw-style-prompter
-description: Turn a 001–261 hand-drawn style number and image theme into bilingual prompts, or generate an image with a model-capability-aware decision about whether the matching numbered image is needed as a style reference.
+description: Turn a 001–263 hand-drawn style number and image theme into bilingual prompts, or generate an image with a model-capability-aware decision about whether the matching numbered image is needed as a style reference.
 ---
 
 # Hand-drawn Style Prompter
@@ -13,12 +13,12 @@ When the user explicitly requests image generation, first resolve the current im
 
 - `name_activation=strong`: first choice. Send only the indexed author name plus generated style name and theme; do not add core traits or pass a reference image.
 - If name activation is not strong but `traits_activation=strong` and the style has core traits, second choice. Add only positive, concrete visual traits to the author-name + style-name prompt and do not pass a reference image.
-- If neither author-name + style-name nor author-name + style-name + traits is strong, last choice. Pass the configured reference asset through the image-generation tool's `referenced_image_paths` parameter. Assets live in numbered 200-style buckets: for example, #217 uses `E:\handraw-style\images\individual\201-400\217_grid.jpg`.
+- If neither author-name + style-name nor author-name + style-name + traits is strong, last choice. Pass the configured reference asset through the image-generation tool's `referenced_image_paths` parameter. Assets live under the installed package root in numbered 200-style buckets: for example, #217 uses `images/individual/201-400/217_grid.jpg`.
 - If the model identifier or its capability entry is unavailable, treat it as `unknown` and pass the image as the safe fallback.
 - Use `python scripts/resolve_reference.py --model <model> --style <number>` when a deterministic decision check is useful. The script prints JSON and never guesses an unknown model's capability.
 - The resolver reports `activation_source` as `name+style`, `name+style+traits`, or `reference-image`, plus the filtered `prompt_traits` when traits are used.
 
-- Resolve the style number to its configured reference asset. The normal fallback is `E:\handraw-style\images\individual\{bucket}\{number}.png` (for example, `048` maps to `E:\handraw-style\images\individual\001-200\048.png`); a matching `{number}_grid.jpg` in the same bucket takes priority.
+- Resolve the style number to its configured reference asset relative to the installed package root. The normal fallback is `images/individual/{bucket}/{number}.png` (for example, `048` maps to `images/individual/001-200/048.png`); a matching `{number}_grid.jpg` in the same bucket takes priority.
 - When an image is passed, inject the following reference-isolation block into the actual image-generation prompt. It is required for every reference-image generation and is not added to ordinary prompt-only output:
 
   Chinese: `所附图片仅用于参考画风。只提取参考图的风格特征，例如线条、笔触、媒介、材质、色彩倾向和整体视觉语言；不要使用、复制或延续参考图中的任何主体、人物、动物、服装、道具、动作、姿态、场景、背景、构图、布局、文字或故事。最终画面内容完全以用户提供的主题为准。`
@@ -34,16 +34,16 @@ When the user explicitly requests image generation, first resolve the current im
 
 On the first turn in the current Codex task/thread where this Skill is invoked, initialize the visual index before handling the user's request:
 
-1. If this task has not already displayed the gallery, call `mcp__codex_app__open_in_codex` with `target: { type: "browser", url: "file:///E:/handraw-style/handdraw-style-prompter/gallery/index.html" }` so the rendered gallery opens in the in-app browser.
+1. If this task has not already displayed the gallery, resolve the installed package root, then call `mcp__codex_app__open_in_codex` with its rendered browser URL: `<installed package root>/handdraw-style-prompter/gallery/index.html`.
 2. Continue with the user's request after the browser call; opening the gallery must not block prompt generation or an explicitly requested image-generation follow-up.
 3. Do not repeat the browser call on later turns in the same task/thread. Use the conversation context (not a persistent state file) to determine whether initialization already happened.
-4. If the browser call is unavailable or fails, provide this fallback link: [打开手绘风格编号画廊](file:///E:/handraw-style/handdraw-style-prompter/gallery/index.html), then continue normally.
+4. If the browser call is unavailable or fails, provide the equivalent local `file:///` fallback link resolved from the installed package root, then continue normally.
 
 This initialization applies only when this Skill is invoked for the first time in a task/thread; unrelated conversations must not open the gallery.
 
 ## Inputs
 
-Require a style number (`001`–`261`) and a theme. Accept optional aspect ratio, subject constraints, and text requirements. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
+Require a style number (`001`–`263`) and a theme. Accept optional aspect ratio, subject constraints, and text requirements. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
 
 Users can browse `gallery/index.html` for the numbered contact sheets. The authoritative style content is `../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after the Markdown changes.
 
@@ -62,10 +62,10 @@ Describe only concrete visible content implied by the theme—subjects, actions,
 
 ## Utilities
 
-- Rebuild the derived index and gallery: `python scripts/build_library.py`
-- Split contact sheets into numbered single images: `python scripts/split_contact_sheets.py`
-- Validate all source/index/gallery invariants: `python scripts/validate_library.py`
-- Produce a deterministic CLI prompt draft: `python scripts/prompt_style.py --style 18 --theme "秋天的第一杯奶茶"`
-- Resolve image-reference policy: `python scripts/resolve_reference.py --model <model> --style 18`
+- From the installed package root, rebuild the derived index and gallery: `python handdraw-style-prompter/scripts/build_library.py`
+- Split contact sheets into numbered single images: `python handdraw-style-prompter/scripts/split_contact_sheets.py`
+- Validate all source/index/gallery invariants: `python handdraw-style-prompter/scripts/validate_library.py`
+- Produce a deterministic CLI prompt draft: `python handdraw-style-prompter/scripts/prompt_style.py --style 18 --theme "秋天的第一杯奶茶"`
+- Resolve image-reference policy: `python handdraw-style-prompter/scripts/resolve_reference.py --model <model> --style 18`
 
 The CLI is a convenience check. For normal conversational use, write natural bilingual prompts rather than echoing its template mechanically.
