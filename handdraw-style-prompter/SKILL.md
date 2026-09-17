@@ -1,6 +1,6 @@
 ---
 name: handdraw-style-prompter
-description: Turn a 001–263 hand-drawn style number and image theme into bilingual prompts, or generate an image with a model-capability-aware decision about whether the matching numbered image is needed as a style reference.
+description: Turn a 001–267 hand-drawn style number and image theme into bilingual prompts, or generate an image with a model-capability-aware decision about whether the matching numbered image is needed as a style reference.
 ---
 
 # Hand-drawn Style Prompter
@@ -43,7 +43,7 @@ This initialization applies only when this Skill is invoked for the first time i
 
 ## Inputs
 
-Require a style number (`001`–`263`) and a theme. Accept optional aspect ratio, subject constraints, and text requirements. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
+Require a style number (`001`–`267`) and a theme. Accept optional aspect ratio, subject constraints, and text requirements. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
 
 Users can browse `gallery/index.html` for the numbered contact sheets. The authoritative style content is `../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after the Markdown changes.
 

@@ -1839,5 +1839,33 @@
     "reference": "Patapon Remastered",
     "generation_name": "Patapon Remastered",
     "traits": ""
+  },
+  {
+    "number": "264",
+    "group": "H 其他",
+    "reference": "Don’t Starve",
+    "generation_name": "Don't Starve Animation Style",
+    "traits": ""
+  },
+  {
+    "number": "265",
+    "group": "H 其他",
+    "reference": "Cartoon Saloon",
+    "generation_name": "Cartoon Saloon Animation Style",
+    "traits": ""
+  },
+  {
+    "number": "266",
+    "group": "H 其他",
+    "reference": "森系儿童插画",
+    "generation_name": "Forest Children Storybook Illustration",
+    "traits": "新自然系童话绘本插画；孩子与自然环境共处；人物小巧可爱、造型圆润简洁；自然植物占据画面主体；嫩绿、草绿、深绿与少量暖色点缀；柔和自然光、树影斑驳、逆光透叶；雨露与水面高光；环境丰富但不过度写实；植物轮廓概括而有节奏；儿童绘本与动画背景结合；温暖、安静、清透、富有生命力；现代平面装饰型森林童话插画；高度二维化；圆润几何植物；大块纯色色形；弱透视、弱光影；简洁童真、安静治愈、装饰海报感"
+  },
+  {
+    "number": "267",
+    "group": "H 其他",
+    "reference": "小林漫画",
+    "generation_name": "Kobayashi Manga Minimal Ink Style",
+    "traits": "白底中国式极简手绘漫画；黑色毛笔/软头笔快速勾画；线条松散粗粝、粗细变化明显、略带断笔与手绘抖动；人物高度概括、比例略夸张、造型笨拙有趣；场景只保留最必要的物件与动作；大面积留白；黑色线稿为主体；脸颊、衣服或小道具加入少量红黄绿局部平涂；中国写意人物画与老式讽刺漫画的味道；图上文下；图文紧密连成整体；插图自然收住；文字紧贴插图下方；一气呵成的中国手绘题画小品"
   }
 ]

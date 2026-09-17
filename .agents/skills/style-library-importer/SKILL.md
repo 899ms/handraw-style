@@ -10,7 +10,7 @@ Use this Skill when the user wants to add a visual style to the local hand-drawn
 ## Interpret the input
 
 - **Name only:** keep the supplied name as the style label, do not invent or store visual traits, and register `name_activation=strong`, `traits_activation=none` for `gpt-image-2`.
-- **Name plus traits:** preserve the name, retain only positive concrete visual traits, and register `name_activation=weak`, `traits_activation=strong`.
+- **Name plus traits:** preserve the name, retain only positive concrete visual traits, remove negative clauses such as `避免`、`不要`、`不准`、`禁止` or `无写实纹理`, and register `name_activation=weak`, `traits_activation=strong`.
 - **Traits only:** invent a readable Chinese style label and a concise English generation name, retain only positive concrete visual traits, and register `name_activation=weak`, `traits_activation=strong`.
 - **Image only:** do not change the library. Explain that image-only imports are handled by `tweet-style-importer`.
 

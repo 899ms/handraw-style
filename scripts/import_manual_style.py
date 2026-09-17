@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 from style_library_import import (
@@ -30,7 +31,18 @@ def parse_args() -> argparse.Namespace:
 def positive_traits(value: str) -> str:
     """Keep only concrete positive traits for both metadata and prompting."""
     parts = [part.strip() for part in value.replace("。", "；").split("；")]
-    return "；".join(part for part in parts if part and not any(word in part for word in ("避免", "不要", "不准")))
+    cleaned = []
+    for part in parts:
+        if not part:
+            continue
+        for marker in ("避免", "不要", "不准", "禁止"):
+            if marker in part:
+                part = part.split(marker, 1)[0]
+        part = re.sub(r"无(?:写实纹理|精细材质|真实纹理)[、，]?", "", part)
+        part = re.sub(r"[、，]\s*[、，]", "、", part).strip("、， ")
+        if part:
+            cleaned.append(part)
+    return "；".join(cleaned)
 
 
 def registration(args: argparse.Namespace, number: str) -> dict[str, str | bool]:
