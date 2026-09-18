@@ -29,9 +29,9 @@ def get_next_style_number() -> str:
 
 
 def create_4grid_image(image_paths: list[Path], output_path: Path) -> None:
-    """Write a 1024px 2×2 reference grid, repeating the last source if needed."""
-    if not image_paths:
-        raise ValueError("At least one source image is required.")
+    """Write a 1024px 2×2 reference grid from two to four source images."""
+    if len(image_paths) < 2:
+        raise ValueError("A reference grid requires at least two source images.")
     selected = list(image_paths[:4])
     selected.extend([selected[-1]] * (4 - len(selected)))
     canvas = Image.new("RGB", (1024, 1024), (255, 255, 255))
@@ -39,7 +39,7 @@ def create_4grid_image(image_paths: list[Path], output_path: Path) -> None:
         with Image.open(path) as image:
             canvas.paste(image.convert("RGB").resize((512, 512), Image.Resampling.LANCZOS), position)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    canvas.save(output_path, format="JPEG", quality=95)
+    canvas.save(output_path, format="WEBP", quality=90, method=6)
 
 
 def create_numbered_tile(source_path: Path, number: str, output_path: Path, badge_label: str | None) -> None:
@@ -59,10 +59,10 @@ def create_numbered_tile(source_path: Path, number: str, output_path: Path, badg
                                fill=(255, 255, 255), outline=(200, 195, 185), width=1)
         draw.text((x, y - bbox[1]), badge_label, font=font, fill=(20, 20, 20))
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    image.save(output_path, format="PNG", optimize=True)
+    image.save(output_path, format="WEBP", quality=90, method=6)
 
 
-def create_style_assets(number: str, source_images: list[Path], badge_label: str | None) -> dict[str, Path]:
+def create_style_assets(number: str, source_images: list[Path], badge_label: str | None) -> dict[str, Path | None]:
     """Create per-style assets and append the resulting tile to the active sheet."""
     if not source_images:
         raise ValueError("At least one source image is required.")
@@ -70,9 +70,17 @@ def create_style_assets(number: str, source_images: list[Path], badge_label: str
     destination_dir.mkdir(parents=True, exist_ok=True)
     grid = grid_path(number)
     tile = single_path(number)
-    create_4grid_image(source_images, grid)
+    if len(source_images) >= 2:
+        create_4grid_image(source_images, grid)
+    elif grid.exists():
+        grid.unlink()
     create_numbered_tile(source_images[0], number, tile, badge_label)
-    return {"directory": destination_dir, "grid": grid, "tile": tile, "sheet": append_style(int(number))}
+    return {
+        "directory": destination_dir,
+        "grid": grid if len(source_images) >= 2 else None,
+        "tile": tile,
+        "sheet": append_style(int(number)),
+    }
 
 
 def update_markdown_source(number: str, source_name: str, generation_name: str, traits: str) -> None:
@@ -85,8 +93,8 @@ def update_markdown_source(number: str, source_name: str, generation_name: str, 
 
 def _sheet_lines(prefix: str) -> str:
     lines: list[str] = []
-    for path in sorted((ROOT / "images").glob(f"{prefix}_*.png")):
-        match = re.match(rf"^{prefix}_(\d{{3}})(?:-(\d{{3}}))?\.png$", path.name)
+    for path in sorted((ROOT / "images").glob(f"{prefix}_*.webp")):
+        match = re.match(rf"^{prefix}_(\d{{3}})(?:-(\d{{3}}))?\.webp$", path.name)
         if match:
             start, end = match.group(1), match.group(2) or match.group(1)
             label = f"{prefix} {start}–{end}" if start != end else f"{prefix} {start}"
@@ -102,7 +110,7 @@ def update_readme_and_skill(number: str) -> None:
     content = re.sub(r"### G · 附件新增 / 中国当代插画补充（201–\d+）", "### G · 附件新增 / 中国当代插画补充（201–216）", content)
     content = re.sub(r"### H · 其他（217–\d+）", f"### H · 其他（217–{number}）", content)
     for prefix, title in (("G", "### G · 附件新增 / 中国当代插画补充"), ("H", "### H · 其他")):
-        pattern = re.compile(rf"({re.escape(title)}[^\n]*\n\n)(?:!\[{prefix} [^\]]+\]\(images/{prefix}_[^)]+\.png\)\n*\s*)+", re.MULTILINE)
+        pattern = re.compile(rf"({re.escape(title)}[^\n]*\n\n)(?:!\[{prefix} [^\]]+\]\(images/{prefix}_[^)]+\.webp\)\n*\s*)+", re.MULTILINE)
         content = pattern.sub(r"\1" + _sheet_lines(prefix) + "\n\n", content)
     readme_path.write_text(content.strip() + "\n", encoding="utf-8")
 
@@ -118,11 +126,11 @@ def update_manifest(number: str) -> None:
     path = ROOT / "MANIFEST.md"
     content = path.read_text(encoding="utf-8")
     content = re.sub(r"当前 \d+ 风格表", f"当前 {int(number)} 风格表", content)
-    boards = [f"- `{entry.name}`" for entry in sorted((ROOT / "images").glob("[A-H]_*.png"))]
+    boards = [f"- `{entry.name}`" for entry in sorted((ROOT / "images").glob("[A-H]_*.webp"))]
     content = re.sub(r"(## 已收录图片\n\n).*?(\n\n## 单张图片)", r"\1" + "\n".join(boards) + r"\2", content, flags=re.DOTALL)
     bucket = bucket_name(number)
-    content = re.sub(r"images/individual/201-400/201\.png`–`images/individual/\d{3}-\d{3}/\d{3}\.png`：201–\d+ 的编号单图",
-                     f"images/individual/201-400/201.png`–`images/individual/{bucket}/{number}.png`：201–{number} 的编号单图", content)
+    content = re.sub(r"images/individual/201-400/201\.webp`–`images/individual/\d{3}-\d{3}/\d{3}\.webp`：201–\d+ 的编号单图",
+                     f"images/individual/201-400/201.webp`–`images/individual/{bucket}/{number}.webp`：201–{number} 的编号单图", content)
     content = re.sub(r"H：217–\d+，完整（其他）", f"H：217–{number}，完整（其他）", content)
     content = re.sub(r"单图总数：\d+ 张", f"单图总数：{int(number)} 张", content)
     content = re.sub(r"风格编号覆盖：001–\d+", f"风格编号覆盖：001–{number}", content)

@@ -27,8 +27,8 @@ def asset_dir(number: str | int) -> Path:
 
 
 def single_path(number: str | int) -> Path:
-    return asset_dir(number) / f"{number_value(number):03}.png"
+    return asset_dir(number) / f"{number_value(number):03}.webp"
 
 
 def grid_path(number: str | int) -> Path:
-    return asset_dir(number) / f"{number_value(number):03}_grid.jpg"
+    return asset_dir(number) / f"{number_value(number):03}_grid.webp"

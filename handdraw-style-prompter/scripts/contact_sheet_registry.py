@@ -16,7 +16,7 @@ IMAGES = ROOT / "images"
 STATE_FILE = ROOT / "handdraw-style-prompter" / "references" / "contact_sheet_state.json"
 CAPACITY = 16
 SHEET_SIZE = 1254
-SHEET = re.compile(r"^[GH]_(\d{3})(?:-(\d{3}))?\.png$")
+SHEET = re.compile(r"^[GH]_(\d{3})(?:-(\d{3}))?\.webp$")
 
 
 def sheet_group(start: int) -> str:
@@ -25,7 +25,7 @@ def sheet_group(start: int) -> str:
 
 def sheet_path(start: int, end: int) -> Path:
     suffix = f"{start:03}" if start == end else f"{start:03}-{end:03}"
-    return IMAGES / f"{sheet_group(start)}_{suffix}.png"
+    return IMAGES / f"{sheet_group(start)}_{suffix}.webp"
 
 
 def read_state() -> dict | None:

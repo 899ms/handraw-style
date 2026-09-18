@@ -14,7 +14,7 @@ STYLE_JSON = SKILL / "references" / "styles.json"
 GALLERY = SKILL / "gallery" / "index.html"
 ROW = re.compile(r"^\|\s*(\d{3})\s*·\s*([^|]+)\|\s*([^|]+)\|\s*(.*)\|\s*$")
 HEADING = re.compile(r"^##\s+([A-H])\s+(.+)$")
-IMAGE = re.compile(r"^([A-H])_(\d{3})(?:-(\d{3}))?\.png$")
+IMAGE = re.compile(r"^([A-H])_(\d{3})(?:-(\d{3}))?\.webp$")
 
 
 def parse_styles() -> list[dict[str, str]]:
@@ -35,7 +35,7 @@ def parse_styles() -> list[dict[str, str]]:
 
 def contact_sheets() -> list[dict[str, str]]:
     sheets = []
-    for path in sorted((ROOT / "images").glob("*.png")):
+    for path in sorted((ROOT / "images").glob("*.webp")):
         match = IMAGE.match(path.name)
         if match:
             group = match.group(1)

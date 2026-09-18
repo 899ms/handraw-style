@@ -14,10 +14,10 @@ from style_asset_paths import INDIVIDUAL_ROOT, ROOT, grid_path, single_path
 STYLES = ROOT / "handdraw-style-prompter" / "references" / "styles.json"
 LEGACY_ARCHIVE = ROOT / "downloads" / "legacy" / "217"
 KNOWN_DUPLICATES = {
-    ROOT / "images" / "sref_2365155667_512.png": single_path(217),
-    ROOT / "images" / "sref_2365155667_grid.jpg": grid_path(217),
+    ROOT / "images" / "sref_2365155667_512.webp": single_path(217),
+    ROOT / "images" / "sref_2365155667_grid.webp": grid_path(217),
 }
-LEGACY_ORIGINAL = INDIVIDUAL_ROOT / "sref_2365155667.png"
+LEGACY_ORIGINAL = INDIVIDUAL_ROOT / "sref_2365155667.webp"
 
 
 def digest(path: Path) -> str:
@@ -48,8 +48,8 @@ def main() -> None:
     styles = json.loads(STYLES.read_text(encoding="utf-8"))
     for number in range(1, len(styles) + 1):
         formatted = f"{number:03}"
-        move_asset(INDIVIDUAL_ROOT / f"{formatted}.png", single_path(number), args.dry_run)
-        move_asset(INDIVIDUAL_ROOT / f"{formatted}_grid.jpg", grid_path(number), args.dry_run)
+        move_asset(INDIVIDUAL_ROOT / f"{formatted}.webp", single_path(number), args.dry_run)
+        move_asset(INDIVIDUAL_ROOT / f"{formatted}_grid.webp", grid_path(number), args.dry_run)
 
     for duplicate, canonical in KNOWN_DUPLICATES.items():
         if not duplicate.exists():

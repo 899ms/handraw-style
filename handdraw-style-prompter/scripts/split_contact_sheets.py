@@ -11,7 +11,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 from style_asset_paths import single_path
 
-SHEET = re.compile(r"^[A-H]_(\d{3})(?:-(\d{3}))?\.png$")
+SHEET = re.compile(r"^[A-H]_(\d{3})(?:-(\d{3}))?\.webp$")
 
 
 def split_sheet(path: Path) -> int:
@@ -37,7 +37,7 @@ def split_sheet(path: Path) -> int:
 
 
 def main() -> None:
-    total = sum(split_sheet(path) for path in sorted((ROOT / "images").glob("[A-H]_*.png")))
+    total = sum(split_sheet(path) for path in sorted((ROOT / "images").glob("[A-H]_*.webp")))
     expected = len(json.loads((ROOT / "handdraw-style-prompter" / "references" / "styles.json").read_text(encoding="utf-8")))
     if total != expected:
         raise SystemExit(f"Expected {expected} numbered tiles, wrote {total}.")

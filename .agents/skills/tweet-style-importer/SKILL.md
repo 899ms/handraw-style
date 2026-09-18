@@ -19,9 +19,9 @@ description: Automatically scrape any X/Twitter tweet and its images, assign the
 [2. 计算下一位顺延编号 (如 #217)]
        ↓
 [3. 生成双轨图像资源]
-   ├── 生图参考图：1024×1024 四宫格 (201-400/217_grid.jpg)
-   ├── 风格单图：512×512 附带左上角编号角标 (201-400/217.png)
-   └── 画廊展板：1254×1254 16 宫格画板（#201–216 使用 G；#217 起使用 H，并依次续填，例如 H_217.png 会更新为 H_217-218.png）
+   ├── 生图参考图：多图时为 1024×1024 四宫格；仅一张原图时直接使用编号单图
+   ├── 风格单图：512×512 附带左上角编号角标 (201-400/217.webp)
+   └── 画廊展板：1254×1254 16 宫格画板（#201–216 使用 G；#217 起使用 H，并依次续填，例如 H_217.webp 会更新为 H_217-218.webp）
        ↓
 [4. 风格库元数据入库 (styles_200_reorganized.md)]
        ↓
@@ -57,17 +57,17 @@ python scripts/import_tweet_style.py "https://x.com/username/status/..." --name 
 - 成功入库后写入 `import.json`，记录状态 ID、原始链接、风格编号与导入时间；重复输入时会返回已入库编号。没有 `import.json` 的历史下载仅提示“已抓取但未完成登记”，同样不会重复抓取。
 
 ### 2. 图像规格标准
-- **生图出图参考图 (`images/individual/{bucket}/{number}_grid.jpg`)**：
-  - 规格：`1024 × 1024 px` JPG
-  - 布局：2×2 四宫格，汇聚 4 种角色视角与质感，为生图模型提供更丰富的风格特征，避免单一构图过拟合。
-- **带编号单图 (`images/individual/{bucket}/{number}.png`)**：
+- **生图出图参考图**：
+  - 有 2–4 张不同原图时，创建 `images/individual/{bucket}/{number}_grid.webp`：`1024 × 1024 px` JPG 的 2×2 四宫格。
+  - 仅有 1 张原图时，不创建 `_grid.webp`，直接使用 `images/individual/{bucket}/{number}.webp`，不得复制成四格相同的图片。
+- **带编号单图 (`images/individual/{bucket}/{number}.webp`)**：
   - 规格：`512 × 512 px` PNG
   - 细节：左上角使用白色圆角底框与加粗深色字体绘制 `编号 @推文作者ID`（如 `217 @example`）；作者 ID 使用推文作者的 Handle，不改变文件名。
-- `{bucket}` 每 200 个编号递增：`001-200`、`201-400`、`401-600`。同一编号的单图和四宫格必须位于同一个目录。
-- **画廊展板（#217 起为 `images/H_{number}.png`）**：
+- `{bucket}` 每 200 个编号递增：`001-200`、`201-400`、`401-600`。存在四宫格时，它与同编号单图位于同一个目录。
+- **画廊展板（#217 起为 `images/H_{number}.webp`）**：
   - 规格：`1254 × 1254 px` PNG
   - 布局：标准 4×4（16 宫格）画板，按左到右、上到下续填；未满时不新建展板。
-  - 命名：文件名反映已实际填入的编号范围，例如 `H_217-218.png`；填满 16 格后，下一个编号才创建新展板。
+  - 命名：文件名反映已实际填入的编号范围，例如 `H_217-218.webp`；填满 16 格后，下一个编号才创建新展板。
   - 状态：`references/contact_sheet_state.json` 记录活动展板、已填数量和下一格；单图的作者 ID 角标会随图进入对应格。
 
 ### 3. 风格库与模型策略入库
@@ -77,7 +77,7 @@ python scripts/import_tweet_style.py "https://x.com/username/status/..." --name 
 - **模型能力策略 (`references/model_capabilities.json`)**：
   - 为该编号追加强制传图配置：
     `"{number}": { "name_activation": "none", "traits_activation": "none" }`
-  - 确保调用 `resolve_reference.py` 时无论任何模型，均判定为 `use_reference_image = True` 并返回四宫格参考图路径。
+  - 确保调用 `resolve_reference.py` 时无论任何模型，均判定为 `use_reference_image = True`，并优先返回多图四宫格；单图导入则返回编号单图路径。
 
 ### 4. 画廊与验证
 - 调用 `python handdraw-style-prompter/scripts/build_library.py` 重建画廊与 JSON 索引。

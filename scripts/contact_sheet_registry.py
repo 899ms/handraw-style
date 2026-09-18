@@ -16,7 +16,7 @@ IMAGES = ROOT / "images"
 STATE_FILE = ROOT / "handdraw-style-prompter" / "references" / "contact_sheet_state.json"
 CAPACITY = 16
 SHEET_SIZE = 1254
-SHEET = re.compile(r"^[GH]_(\d{3})(?:-(\d{3}))?\.png$")
+SHEET = re.compile(r"^[GH]_(\d{3})(?:-(\d{3}))?\.webp$")
 
 
 def sheet_group(start: int) -> str:
@@ -26,7 +26,7 @@ def sheet_group(start: int) -> str:
 
 def sheet_path(start: int, end: int) -> Path:
     suffix = f"{start:03}" if start == end else f"{start:03}-{end:03}"
-    return IMAGES / f"{sheet_group(start)}_{suffix}.png"
+    return IMAGES / f"{sheet_group(start)}_{suffix}.webp"
 
 
 def read_state() -> dict | None:
@@ -55,7 +55,7 @@ def parse_sheet(path: Path) -> tuple[int, int] | None:
 
 def recover_state(next_number: int) -> dict:
     """Recover the last incomplete H sheet when the state file is missing."""
-    sheets = [(end, start, path) for path in IMAGES.glob("H_*.png")
+    sheets = [(end, start, path) for path in IMAGES.glob("H_*.webp")
               if (parsed := parse_sheet(path)) for start, end in [parsed]]
     if not sheets:
         return {"version": 1, "capacity": CAPACITY, "active_start": next_number,
@@ -104,8 +104,8 @@ def render_sheet(start: int, end: int, destination: Path) -> None:
         draw.line([(position, 0), (position, SHEET_SIZE)], fill=(230, 226, 220), width=1)
         draw.line([(0, position), (SHEET_SIZE, position)], fill=(230, 226, 220), width=1)
 
-    temporary = destination.with_name(f".{destination.stem}.tmp.png")
-    canvas.save(temporary, format="PNG", optimize=True)
+    temporary = destination.with_name(f".{destination.stem}.tmp.webp")
+    canvas.save(temporary, format="WEBP", quality=90, method=6)
     os.replace(temporary, destination)
 
 
@@ -131,7 +131,7 @@ def repair_active_sheet(start: int, end: int) -> Path:
              "filled": end - start + 1,
              "next_cell": end - start + 2 if end - start + 1 < CAPACITY else 1}
     write_state(state)
-    for path in IMAGES.glob("H_*.png"):
+    for path in IMAGES.glob("H_*.webp"):
         parsed = parse_sheet(path)
         if parsed and path != destination and parsed[0] >= start and parsed[1] <= end:
             path.unlink()

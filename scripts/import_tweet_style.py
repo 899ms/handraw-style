@@ -19,7 +19,10 @@ import json
 import os
 import re
 import urllib.request
+from io import BytesIO
 from pathlib import Path
+
+from PIL import Image
 
 from style_library_import import (
     create_style_assets,
@@ -105,8 +108,11 @@ def download_file(url: str, target: Path) -> int:
         try:
             with urllib.request.urlopen(req, timeout=30) as resp:
                 content = resp.read()
-                target.write_bytes(content)
-            return len(content)
+            with Image.open(BytesIO(content)) as image:
+                if image.mode not in {"RGB", "RGBA"}:
+                    image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+                image.save(target, format="WEBP", quality=90, method=6)
+            return target.stat().st_size
         except Exception as e:
             if attempt == 3:
                 raise e
@@ -152,7 +158,7 @@ def main():
     downloads_dir.mkdir(parents=True, exist_ok=True)
     (downloads_dir / "tweet.json").write_text(json.dumps(tweet, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    existing_images = sorted(downloads_dir.glob("image_*.jpg"))
+    existing_images = sorted(downloads_dir.glob("image_*.webp"))
     img_urls = extract_images(tweet)
     if not img_urls and not existing_images:
         raise RuntimeError("No images found in the tweet!")
@@ -164,7 +170,7 @@ def main():
     else:
         print(f"Downloading {len(img_urls)} high-resolution images...")
         for idx, u in enumerate(img_urls, 1):
-            target = downloads_dir / f"image_{idx}.jpg"
+            target = downloads_dir / f"image_{idx}.webp"
             download_file(u, target)
             raw_images.append(target)
             print(f"  [{idx}/{len(img_urls)}] Saved {target.name}")
@@ -188,7 +194,10 @@ def main():
 
     print("=== [3/6] Generating Reference & Contact Sheet Assets ===")
     assets = create_style_assets(number, raw_images, f"{number} @{author_handle.lstrip('@')}")
-    print(f"Created 4-grid generation reference: {assets['grid'].name}")
+    if assets["grid"]:
+        print(f"Created 4-grid generation reference: {assets['grid'].name}")
+    else:
+        print("One source image supplied; using the numbered single image as the generation reference.")
     print(f"Created numbered single tile: {assets['tile'].name}")
     print(f"Updated 16-grid contact sheet: {assets['sheet'].name}")
 

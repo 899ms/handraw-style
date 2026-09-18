@@ -4,7 +4,10 @@ import re
 import json
 import urllib.request
 import urllib.parse
+from io import BytesIO
 from pathlib import Path
+
+from PIL import Image
 
 def fetch_tweet_data(tweet_url_or_id):
     # Extract tweet ID
@@ -43,8 +46,11 @@ def download_file(url, target_path):
     })
     with urllib.request.urlopen(req, timeout=30) as resp:
         content = resp.read()
-        target_path.write_bytes(content)
-    return len(content)
+    with Image.open(BytesIO(content)) as image:
+        if image.mode not in {"RGB", "RGBA"}:
+            image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+        image.save(target_path, format="WEBP", quality=90, method=6)
+    return target_path.stat().st_size
 
 def main():
     if len(sys.argv) < 2:
@@ -93,10 +99,7 @@ def main():
 
     downloaded_images = []
     for idx, img_url in enumerate(image_urls, start=1):
-        ext = ".jpg"
-        if ".png" in img_url:
-            ext = ".png"
-        img_filename = f"image_{idx}{ext}"
+        img_filename = f"image_{idx}.webp"
         img_dest = out_dir / img_filename
         print(f"Downloading [{idx}/{len(image_urls)}] -> {img_filename} ...")
         size = download_file(img_url, img_dest)
