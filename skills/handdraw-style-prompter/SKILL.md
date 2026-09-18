@@ -1,6 +1,6 @@
 ---
 name: handdraw-style-prompter
-description: Turn a 001–268 hand-drawn style number and image theme into bilingual prompts, using model capability data to decide when core traits and a numbered reference image are required.
+description: Turn a 001–270 hand-drawn style number and image theme into bilingual prompts, using model capability data to decide when core traits and a numbered reference image are required.
 ---
 
 # Hand-drawn Style Prompter
@@ -35,19 +35,19 @@ Use the same capability decision for prompt-only and explicit image-generation r
 
 On the first turn in the current Codex task/thread where this Skill is invoked, perform both initialization actions before handling the user's request. This applies to **任何首次请求**, including opening the gallery, browsing the index, requesting prompts, or requesting image generation:
 
-1. If this task has not already displayed the gallery, call `mcp__codex_app__open_in_codex` in a browser tab with `target.type="browser"` and URL `file:///E:/handraw-style/handdraw-style-prompter/gallery/index.html`. Never open `gallery/index.html` as `target.type="file"`, in an editor, or as a file preview.
+1. If this task has not already displayed the gallery, call `mcp__codex_app__open_in_codex` in a browser tab with `target.type="browser"` and URL `file:///E:/handraw-style/skills/handdraw-style-prompter/gallery/index.html`. Never open `gallery/index.html` as `target.type="file"`, in an editor, or as a file preview.
 2. Include the exact standalone status line `当前处于纯图模式，可切换为图文模式。` in the same final reply, even when the request produces no prompt.
 3. Continue with the user's request after the browser call; opening the gallery must not block prompt generation or an explicitly requested image-generation follow-up. If the same first reply would also add the pure-image mode note, show this status line only once.
 4. Do not repeat the browser call or this first-session status notice on later turns in the same task/thread. Use the conversation context (not a persistent state file) to determine whether initialization already happened.
-5. If the browser call is unavailable or fails, provide the same local `file:///E:/handraw-style/handdraw-style-prompter/gallery/index.html` fallback link, then continue normally.
+5. If the browser call is unavailable or fails, provide the same local `file:///E:/handraw-style/skills/handdraw-style-prompter/gallery/index.html` fallback link, then continue normally.
 
 This initialization applies only when this Skill is invoked for the first time in a task/thread; unrelated conversations must not open the gallery.
 
 ## Inputs
 
-Require a style number (`001`–`268`) and a theme. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
+Require a style number (`001`–`270`) and a theme. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
 
-Users can browse `gallery/index.html` for the numbered contact sheets. The authoritative style content is `../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after the Markdown changes.
+Users can browse `gallery/index.html` for the numbered contact sheets. The authoritative style content is `../../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after the Markdown changes.
 
 ## Prompt modes
 
@@ -73,10 +73,10 @@ In `pure-image` mode, describe only concrete visible content implied by the them
 
 ## Utilities
 
-- From the installed package root, rebuild the derived index and gallery: `python handdraw-style-prompter/scripts/build_library.py`
-- Split contact sheets into numbered single images: `python handdraw-style-prompter/scripts/split_contact_sheets.py`
-- Validate all source/index/gallery invariants: `python handdraw-style-prompter/scripts/validate_library.py`
-- Produce a deterministic CLI prompt draft: `python handdraw-style-prompter/scripts/prompt_style.py --style 18 --theme "秋天的第一杯奶茶"`
-- Resolve image-reference policy: `python handdraw-style-prompter/scripts/resolve_reference.py --model <model> --style 18`
+- From the installed package root, rebuild the derived index and gallery: `python skills/handdraw-style-prompter/scripts/build_library.py`
+- Split contact sheets into numbered single images: `python skills/handdraw-style-prompter/scripts/split_contact_sheets.py`
+- Validate all source/index/gallery invariants: `python skills/handdraw-style-prompter/scripts/validate_library.py`
+- Produce a deterministic CLI prompt draft: `python skills/handdraw-style-prompter/scripts/prompt_style.py --style 18 --theme "秋天的第一杯奶茶"`
+- Resolve image-reference policy: `python skills/handdraw-style-prompter/scripts/resolve_reference.py --model <model> --style 18`
 
 The CLI is a convenience check. For normal conversational use, write natural bilingual prompts rather than echoing its template mechanically.

@@ -449,6 +449,18 @@
         "267": {
           "name_activation": "weak",
           "traits_activation": "strong"
+        },
+        "268": {
+          "name_activation": "weak",
+          "traits_activation": "strong"
+        },
+        "269": {
+          "name_activation": "strong",
+          "traits_activation": "none"
+        },
+        "270": {
+          "name_activation": "weak",
+          "traits_activation": "strong"
         }
       }
     }

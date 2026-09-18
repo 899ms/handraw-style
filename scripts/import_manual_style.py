@@ -86,7 +86,7 @@ def main() -> None:
     print(json.dumps({
         **record,
         "single_path": str(assets["tile"]),
-        "grid_path": str(assets["grid"]),
+        "grid_path": str(assets["grid"]) if assets["grid"] else None,
         "sheet_path": str(assets["sheet"]),
     }, ensure_ascii=False))
 

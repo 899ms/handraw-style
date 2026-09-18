@@ -7,7 +7,7 @@ import json
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 SKILL = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "styles_200_reorganized.md"
 STYLE_JSON = SKILL / "references" / "styles.json"
@@ -42,7 +42,7 @@ def contact_sheets() -> list[dict[str, str]]:
             start = match.group(2)
             end = match.group(3) or start
             sheets.append({"group": group, "start": start, "end": end,
-                           "path": f"../../images/{path.name}"})
+                           "path": f"../../../images/{path.name}"})
     return sheets
 
 

@@ -33,6 +33,6 @@ python scripts/import_manual_style.py --source-name "中文风格名" --generati
 - Omit `--traits` for name-only input.
 - For traits-only input, pass the names you created with `--source-name` and `--generation-name`.
 - Use `--dry-run` before importing when checking the selected activation policy would be useful.
-- The importer assigns the next number, creates a 512px numbered tile and a 1024px 2×2 reference grid, continues the active H contact sheet, updates the source table and capability metadata, rebuilds the gallery, and runs full validation.
+- The importer assigns the next number, creates a 512px numbered tile, and continues the active H contact sheet. A single supplied or generated representative image does not create a reference grid; the numbered single image is used if a reference is required. A 1024px 2×2 reference grid is created only when two to four source images are supplied. The importer then updates the source table and capability metadata, rebuilds the gallery, and runs full validation.
 
 Manual styles use a number-only gallery badge. Do not add a fictitious author handle. Report the number, activation path, whether an image was generated or supplied, the active H sheet, and the validation result.

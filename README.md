@@ -2,7 +2,7 @@
 
 不会描述画风，也能快速做出有辨识度的图片。
 
-这里整理了 **001–268 种手绘风格**。先选一个编号，再告诉 Skill 你想表现的主题，就能得到带有风格名称的中文和英文提示词，直接交给支持生图的 AI 使用。
+这里整理了 **001–270 种手绘风格**。先选一个编号，再告诉 Skill 你想表现的主题，就能得到带有风格名称的中文和英文提示词，直接交给支持生图的 AI 使用。
 
 ## 它适合谁
 
@@ -18,7 +18,7 @@
 
 ## 安装
 
-安装时必须选择仓库根目录 `.`，不要只安装 `handdraw-style-prompter/` 子目录；根目录同时包含画廊、拼图和编号参考图。
+安装时必须选择仓库根目录 `.`，不要只安装 `skills/handdraw-style-prompter/` 子目录；根目录同时包含画廊、拼图和编号参考图。
 
 ```text
 $skill-installer install --repo yang0/handraw-style --path . --name handdraw-style-prompter --ref master
@@ -26,7 +26,7 @@ $skill-installer install --repo yang0/handraw-style --path . --name handdraw-sty
 
 ## 这个 Skill 怎么用
 
-1. 打开[编号画廊](handdraw-style-prompter/gallery/index.html)，浏览风格图片。
+1. 打开[编号画廊](skills/handdraw-style-prompter/gallery/index.html)，浏览风格图片。
 2. 记下喜欢的编号，例如 `041`。
 3. 输入“编号 + 主题”，例如：`041号风格，主题：秋天的第一杯奶茶`。
 4. 得到带风格名称的中文和英文提示词。
@@ -109,7 +109,7 @@ Skill 默认只负责把想法变成提示词；你明确要求“生图”时�
 
 ![G 201–216](images/G_201-216.webp)
 
-### H · 其他（217–268）
+### H · 其他（217–270）
 
 ![H 217–232](images/H_217-232.webp)
 
@@ -117,7 +117,7 @@ Skill 默认只负责把想法变成提示词；你明确要求“生图”时�
 
 ![H 249–264](images/H_249-264.webp)
 
-![H 265–268](images/H_265-268.webp)
+![H 265–270](images/H_265-270.webp)
 
 ## 作者
 

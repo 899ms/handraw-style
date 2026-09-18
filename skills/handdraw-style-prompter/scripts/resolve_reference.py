@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 from style_asset_paths import grid_path, single_path
@@ -26,8 +27,17 @@ def load_style(number: str) -> dict:
 def positive_traits(traits: str) -> str:
     if not traits:
         return ""
-    parts = [part.strip() for part in traits.replace("。", "；").split("；")]
-    kept = [part for part in parts if part and not any(word in part for word in ("避免", "不要", "不准"))]
+    parts = re.split(r"[；;。\n]+", traits)
+    kept = []
+    for part in parts:
+        part = part.strip(" ，,、：:。；;\t")
+        if not part:
+            continue
+        if any(word in part for word in ("避免", "不要", "不准", "禁止")):
+            continue
+        if re.search(r"无(?:写实纹理|精细材质|真实纹理)", part):
+            continue
+        kept.append(part)
     return "；".join(kept)
 
 
@@ -64,9 +74,13 @@ def resolve(model: str, style: str, policy: dict | None = None) -> dict:
         use_reference_image = False
         prompt_traits = traits
     else:
-        activation_source = "reference-image"
         use_reference_image = True
-        prompt_traits = ""
+        prompt_traits = traits
+        activation_source = (
+            "name+style+traits+reference-image"
+            if prompt_traits
+            else "name+style+reference-image"
+        )
     return {
         "model": model,
         "style": number,

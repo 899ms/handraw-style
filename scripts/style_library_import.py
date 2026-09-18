@@ -14,7 +14,7 @@ from contact_sheet_registry import append_style
 from style_asset_paths import ROOT, asset_dir, bucket_name, grid_path, single_path
 
 
-SKILL_DIR = ROOT / "handdraw-style-prompter"
+SKILL_DIR = ROOT / "skills" / "handdraw-style-prompter"
 SOURCE_MD = ROOT / "styles_200_reorganized.md"
 MODEL_CAP = SKILL_DIR / "references" / "model_capabilities.json"
 BUILD_SCRIPT = SKILL_DIR / "scripts" / "build_library.py"

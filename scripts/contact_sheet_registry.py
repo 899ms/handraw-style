@@ -13,7 +13,7 @@ from style_asset_paths import ROOT, single_path
 
 
 IMAGES = ROOT / "images"
-STATE_FILE = ROOT / "handdraw-style-prompter" / "references" / "contact_sheet_state.json"
+STATE_FILE = ROOT / "skills" / "handdraw-style-prompter" / "references" / "contact_sheet_state.json"
 CAPACITY = 16
 SHEET_SIZE = 1254
 SHEET = re.compile(r"^[GH]_(\d{3})(?:-(\d{3}))?\.webp$")

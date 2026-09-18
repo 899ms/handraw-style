@@ -11,7 +11,7 @@ from pathlib import Path
 from style_asset_paths import INDIVIDUAL_ROOT, ROOT, grid_path, single_path
 
 
-STYLES = ROOT / "handdraw-style-prompter" / "references" / "styles.json"
+STYLES = ROOT / "skills" / "handdraw-style-prompter" / "references" / "styles.json"
 LEGACY_ARCHIVE = ROOT / "downloads" / "legacy" / "217"
 KNOWN_DUPLICATES = {
     ROOT / "images" / "sref_2365155667_512.webp": single_path(217),
