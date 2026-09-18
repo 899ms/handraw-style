@@ -1888,5 +1888,12 @@
     "reference": "中国农民画",
     "generation_name": "Chinese Farmers Painting",
     "traits": "错透视、鲜艳平涂、密集场景。"
+  },
+  {
+    "number": "271",
+    "group": "H 其他",
+    "reference": "八九十年代中国课本插图风",
+    "generation_name": "1980s-1990s Chinese Textbook Illustration",
+    "traits": ""
   }
 ]
