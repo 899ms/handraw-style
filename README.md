@@ -25,11 +25,11 @@
 
 ## 安装
 
-安装时必须选择仓库根目录 `.`，不要只安装 `skills/handdraw-style-prompter/` 子目录；根目录同时包含画廊、拼图和编号参考图。
+直接把本仓库地址发给 Codex，让 Codex 自动完成安装：
 
-```text
-$skill-installer install --repo yang0/handraw-style --path . --name handdraw-style-prompter --ref master
-```
+> **“帮我安装这个 Skill：https://github.com/yang0/handraw-style”**
+
+Codex 会自动拉取仓库并配置好全部风格与排版资源。
 
 ## 这个 Skill 怎么用
 

@@ -82,6 +82,7 @@ def build_layouts_md() -> None:
         "comic-storyboard": "comic-storyboards",
     }
 
+    cols = 3
     for cat_id, cat_title, cat_desc in LAYOUT_CATEGORIES:
         cat_layouts = [l for l in layouts if l["category"] == cat_id]
         anchor = anchor_map.get(cat_id, cat_id)
@@ -90,18 +91,27 @@ def build_layouts_md() -> None:
         lines.append("")
         lines.append(cat_desc)
         lines.append("")
-        lines.append("| 编号与名称 | 图型效果预览 | 排版提示词说明 |")
-        lines.append("| :--- | :---: | :--- |")
-        for l in cat_layouts:
-            rel_img = str(l["image"]).replace("../../../", "")
-            prompt_file = SKILL / "references" / l["prompt_file"]
-            prompt_zh = ""
-            if prompt_file.exists():
-                content = prompt_file.read_text(encoding="utf-8")
-                zh_part = content.split("<!-- en -->")[0].replace("<!-- zh -->", "").strip()
-                prompt_zh = zh_part.replace("\n", "<br>")
-            name = l["name"]
-            lines.append(f"| **{l['id']}**<br>{name} | <img src='{rel_img}' width='200' alt='{l['id']} {name}'> | {prompt_zh} |")
+        lines.append("| 图型效果预览 | 图型效果预览 | 图型效果预览 |")
+        lines.append("| :---: | :---: | :---: |")
+        for i in range(0, len(cat_layouts), cols):
+            chunk = cat_layouts[i:i + cols]
+            row_cells = []
+            for l in chunk:
+                rel_img = str(l["image"]).replace("../../../", "")
+                prompt_file = SKILL / "references" / l["prompt_file"]
+                prompt_zh = ""
+                if prompt_file.exists():
+                    content = prompt_file.read_text(encoding="utf-8")
+                    zh_part = content.split("<!-- en -->")[0].replace("<!-- zh -->", "").strip()
+                    prompt_zh = zh_part.replace("|", "&#124;").replace("\n", "<br>")
+                name = l["name"]
+                cell = f"<img src='{rel_img}' width='260' alt='{l['id']} {name}'><br>**{l['id']}** · {name}"
+                if prompt_zh:
+                    cell += f"<br><details><summary>排版提示词</summary>{prompt_zh}</details>"
+                row_cells.append(cell)
+            while len(row_cells) < cols:
+                row_cells.append("")
+            lines.append(f"| {' | '.join(row_cells)} |")
         lines.append("")
         lines.append("---")
         lines.append("")
