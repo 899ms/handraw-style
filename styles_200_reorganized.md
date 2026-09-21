@@ -504,7 +504,7 @@
 | 246 · OscarAI | Vintage 70s European Comic Animation Cel | 70年代欧洲传统手绘手作动画风、质朴粗糙的手绘石墙背景、夸张滑稽的红发大胡子卫兵与尖帽侍从、古典讽刺动画与阿斯特里克斯式的幽默神态。 |
 | 247 · OscarAI | Modern Cinematic 2D Character Animation | 现代电影级2D动画角色插画风、灵动深邃的大眼睛与微卷盘发墨镜、细腻柔和的室内环境光影与利落干净的动画清线造型。 |
 | 248 · 歸藏(guizang.ai) | Guochao Fantasy Architectural Illustration | 唯美国风奇幻建筑插画风、粉紫祥云与巨大明月、青瓦朱墙重檐宫殿楼阁与山石古松、扁平清丽的东方意境与梦幻国潮配色。 |
-| 249 · Sgt Sref | Retro Pointillist Pixel Grassland Fantasy | 复古点彩微像素奇幻插画风、密性质感草地针织颗粒纹理、至尊金戒与金色钱币散落、绿斗篷隐者背影、莫比斯式的极简神秘寓言感。 |
+| 249 · OscarAI | Tactile Papercraft & Fabric 3D Cartoon | 手工纸艺与布纹质感3D卡通风、微型手工收藏品玩偶感、定格动画与潮玩艺术玩具设计、夸张生动五官与趣味身体比例、纯净白底、真实微距立体柔光光影。 |
 | 250 · Shinyi | Stylized Cinematic Action-Comedy Character | 风格化大块面剪影动画插画风、夸张强壮的胡子大叔与市井风情、干练几何块面平涂与微颗粒光影、充满动势与幽默张力的街头角色原画。 |
 | 251 · 城野ぱすてる | Glossy Mecha Cyber Flower Doll | 高光亮面机甲机娘潮玩风、鲜艳大红与金边机甲涂装、机械巨镰与彼岸花发饰造型、极致精细的机械关节与陶瓷般高光质感。 |
 | 252 · なっくす | Soft Crayon & Sumi-e Cat Storybook | 温润蜡笔与水墨和风绘本风、质朴手绘炭笔蜡笔颗粒肌理、巨型猫咪的翡翠绿眼与细腻毛流、微型人偶与红色印章、充满童趣温暖的日式日常绘本。 |
