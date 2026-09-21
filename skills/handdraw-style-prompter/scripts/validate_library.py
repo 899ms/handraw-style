@@ -319,13 +319,13 @@ def main() -> None:
         python + [str(SKILL / "scripts" / "prompt_style.py"), "--layout", "IG-007", "--theme", "秋天的第一杯奶茶"],
         capture_output=True, text=True, encoding="utf-8", check=True,
     )
-    if "图型：IG-007 · 粗体标题标签小图卡。" not in layout_zh.stdout or "自动使用图文模式" not in layout_zh.stdout:
-        fail("Chinese layout-only prompt is missing its layout contract")
+    if "图型：IG-007 · 粗体标题标签小图卡。" not in layout_zh.stdout or "自动使用图文模式" not in layout_zh.stdout or GRAPHIC_TEXT_SUFFIX not in layout_zh.stdout:
+        fail("Chinese layout-only prompt is missing its layout contract or stacked graphic-text suffix")
     layout_en = subprocess.run(
         python + [str(SKILL / "scripts" / "prompt_style.py"), "--layout", "IG-007", "--style", "18", "--theme", "Autumn's first milk tea"],
         capture_output=True, text=True, encoding="utf-8", check=True,
     )
-    for term in ["Layout: IG-007 · 粗体标题标签小图卡.", "Theme: Autumn's first milk tea.", "Style name: #018 · Minimal Deadpan Dialogue Cartoon."]:
+    for term in ["Layout: IG-007 · 粗体标题标签小图卡.", "Theme: Autumn's first milk tea.", "Style name: #018 · Minimal Deadpan Dialogue Cartoon.", GRAPHIC_TEXT_SUFFIX]:
         if term not in layout_en.stdout:
             fail(f"English layout-and-style prompt is missing {term}")
     invalid_layout = subprocess.run(

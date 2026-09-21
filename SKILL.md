@@ -72,7 +72,7 @@ Users can browse `skills/handdraw-style-prompter/gallery/index.html` for numbere
 ## Layout workflows
 
 - A layout ID selects composition and text structure, not illustration style. Use its prompt file verbatim in the selected output language, then append the user's theme as the only source of subject matter and copy.
-- When a layout ID is selected, automatically use graphic-text mode even if the user did not name a mode. Do not add the fixed generic graphic-text suffix: the selected layout prompt is the concrete layout instruction.
+- When a layout ID is selected, automatically use graphic-text mode even if the user did not name a mode. The layout prompt and the fixed graphic-text suffix are additive (stacked): append the fixed generic graphic-text suffix verbatim at the end of the prompt to combine concrete layout rules with graphic-text semantic guidance.
 - If the user also supplies a style number, combine the selected style's author/style label, permitted positive traits, and reference-image policy with the layout prompt. A style reference image may influence only rendering style; it must not override the selected layout, text structure, or theme.
 - Return a single complete layout-combination prompt in the language of the user's theme. Chinese characters select Chinese; otherwise use English. Treat mixed input as Chinese. Existing style-only requests retain their normal bilingual output.
 - The layout gallery is browse-only: it has no prompt input form. It shows a numbered thumbnail, opens a large preview on click, and copies the canonical Chinese layout prompt on request.

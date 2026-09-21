@@ -54,6 +54,8 @@ def main() -> None:
         selected = next((item for item in styles if item["number"] == number), None)
         if selected is None:
             raise SystemExit(f"Style must be a number from 001 to {max_num:03}.")
+    extra_zh = "；".join(filter(None, [f"画幅：{args.ratio}" if args.ratio else "", f"主体限制：{args.subject}" if args.subject else "", f"文字要求：{args.text}" if args.text else ""]))
+    extra_en = "; ".join(filter(None, [f"aspect ratio: {args.ratio}" if args.ratio else "", f"subject constraints: {args.subject}" if args.subject else "", f"text requirement: {args.text}" if args.text else ""]))
     if args.layout:
         try:
             layout = resolve_layout(args.layout)
@@ -88,6 +90,14 @@ def main() -> None:
                     parts.append(f"Core style traits: {traits}.")
                 if decision["use_reference_image"]:
                     parts.append(f"Reference image: upload local reference image {decision['reference_path']}. {REFERENCE_ISOLATION_EN}")
+        if language == "zh":
+            if extra_zh:
+                parts.append(f"；{extra_zh}")
+            parts.append(GRAPHIC_TEXT_SUFFIX)
+        else:
+            if extra_en:
+                parts.append(f"{extra_en}.")
+            parts.append(GRAPHIC_TEXT_SUFFIX)
         print(f"Selected layout: {layout['id']} · {layout['name']}")
         if selected and number:
             print(f"Selected style: #{number} · {selected['generation_name']}")
@@ -96,8 +106,6 @@ def main() -> None:
         print("\n已自动使用图文模式。" if language == "zh" else "\nThe selected layout automatically uses graphic-text mode.")
         return
     assert selected is not None and number is not None
-    extra_zh = "；".join(filter(None, [f"画幅：{args.ratio}" if args.ratio else "", f"主体限制：{args.subject}" if args.subject else "", f"文字要求：{args.text}" if args.text else ""]))
-    extra_en = "; ".join(filter(None, [f"aspect ratio: {args.ratio}" if args.ratio else "", f"subject constraints: {args.subject}" if args.subject else "", f"text requirement: {args.text}" if args.text else ""]))
     print(f"Selected style: #{number} · {selected['generation_name']}")
     print("\n中文提示词：")
     reference_zh = f"参考作者/风格名称：{selected['reference']}。"
