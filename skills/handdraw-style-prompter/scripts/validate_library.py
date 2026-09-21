@@ -299,9 +299,12 @@ def main() -> None:
             fail(f"layout prompt is incomplete for {layout['id']}")
     layout_gallery = (SKILL / "gallery" / "layouts.html").read_text(encoding="utf-8")
     layouts_md = (ROOT / "LAYOUTS.md").read_text(encoding="utf-8")
+    layouts_en_md = (ROOT / "LAYOUTS_en.md").read_text(encoding="utf-8")
     for layout in layouts:
         if f"**{layout['id']}**" not in layouts_md:
             fail(f"LAYOUTS.md is missing layout {layout['id']}")
+        if f"**{layout['id']}**" not in layouts_en_md:
+            fail(f"LAYOUTS_en.md is missing layout {layout['id']}")
     for layout in layouts:
         if layout_gallery.count(f'data-id="{layout["id"]}"') != 1:
             fail(f"layout gallery must contain exactly one card for {layout['id']}")

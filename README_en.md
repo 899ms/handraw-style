@@ -44,7 +44,7 @@ The assistant will automatically clone the repository and configure all styles, 
 
 ## How to Use This Skill
 
-1. Open the [Style Gallery (STYLES.md)](STYLES.md) or [Layout Gallery (LAYOUTS.md)](LAYOUTS.md) to browse visual sheets and pick your desired numbers;
+1. Open the [Style Visual Sheet (STYLES_en.md)](STYLES_en.md) or [Layout Visual Sheet (LAYOUTS_en.md)](LAYOUTS_en.md) to browse visual sheets and pick your desired numbers;
 2. Note your chosen ID, such as style `041`, or layout `SC-001`;
 3. Send your prompt command to the Skill, for example:
    - **Style only**: `Style: 041, Theme: First milk tea of autumn`
@@ -99,7 +99,7 @@ Here is a contact sheet preview of featured hand-drawn illustration styles (001�
 
 ![Featured Styles Preview (001–016)](images/A_001-016.webp)
 
-- 🖼️ **[👉 Browse All Style Sheets (001–274 Full Visual Contact Sheets)](STYLES.md)**
+- 🖼️ **[👉 Browse All Style Sheets (001–274 Full Visual Contact Sheets)](STYLES_en.md)**
 - 📄 **[View Detailed Style Metadata (274 Styles Table & Core Traits)](styles_200_reorganized.md)**
 - 💻 *(For offline interactive search and enlargement, open `skills/handdraw-style-prompter/gallery/index.html` in your local browser)*
 
@@ -115,7 +115,7 @@ Ideal for Xiaohongshu, Instagram, quote cards, and social media carousels. Inclu
 
 ![Social Cards Category Preview](images/layouts/preview-social-cards.webp)
 
-👉 **[View All Social Card Layouts (19 Visuals & Prompts)](LAYOUTS.md#social-cards)**
+👉 **[View All Social Card Layouts (19 Visuals & Prompts)](LAYOUTS_en.md#social-cards)**
 
 ---
 
@@ -125,7 +125,7 @@ Ideal for knowledge breakdowns, comparison checklists, step-by-step processes, a
 
 ![Infographics Category Preview](images/layouts/preview-infographics.webp)
 
-👉 **[View All Infographic Layouts (31 Visuals & Prompts)](LAYOUTS.md#infographics)**
+👉 **[View All Infographic Layouts (31 Visuals & Prompts)](LAYOUTS_en.md#infographics)**
 
 ---
 
@@ -135,11 +135,11 @@ Ideal for multi-panel narratives, webtoons, emotional storylines, and cinematic 
 
 ![Comic Storyboards Category Preview](images/layouts/preview-comic-storyboards.webp)
 
-👉 **[View All Comic Storyboard Layouts (68 Visuals & Prompts)](LAYOUTS.md#comic-storyboards)**
+👉 **[View All Comic Storyboard Layouts (68 Visuals & Prompts)](LAYOUTS_en.md#comic-storyboards)**
 
 ---
 
-- 💡 **[👉 Enter Full Layout Visual Sheet to Browse All 118 Layouts & Prompts ↗](LAYOUTS.md)**
+- 💡 **[👉 Enter Full Layout Visual Sheet to Browse All 118 Layouts & Prompts ↗](LAYOUTS_en.md)**
 - 💻 *(For offline interactive search and category filtering, open `skills/handdraw-style-prompter/gallery/layouts.html` in your local browser)*
 
 ---
