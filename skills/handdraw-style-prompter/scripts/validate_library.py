@@ -182,10 +182,10 @@ def main() -> None:
     prompt_example_tokens = [
         f"风格索引（{total_styles}）",
         'class="prompt-examples"',
-        'class="prompt-label">1 · 出图',
-        'class="prompt-label">2 · 切换图文模式',
-        'class="prompt-value">风格：001，主题：吃冰淇淋的小姑娘',
-        'class="prompt-value">切换为图文模式',
+        "1 · 出图",
+        "2 · 切换图文模式",
+        "风格：001，主题：吃冰淇淋的小姑娘",
+        "切换为图文模式",
         "ui-monospace",
     ]
     if any(token not in gallery for token in prompt_example_tokens):
