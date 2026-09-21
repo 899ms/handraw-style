@@ -61,63 +61,50 @@ Skill 默认只负责把想法变成提示词；你明确要求“生图”时�
 193号风格，主题：大唐夜宴
 ```
 
-## 风格图片
+## 风格精选预览
 
-### A · 国际社论漫画 / 幽默手绘（001–035）
+这里展示了手绘风格的精选预览拼图（001–016）：
 
-![A 001–016](images/A_001-016.webp)
+![风格精选预览（001–016）](images/A_001-016.webp)
 
-![A 017–032](images/A_017-032.webp)
+- 👉 **[查看完整风格列表（274 种风格 Markdown 详细表格与特征描述）](styles_200_reorganized.md)**
+- 🎨 **[打开手绘风格编号画廊（支持编号检索、放大预览与提示词复制）](skills/handdraw-style-prompter/gallery/index.html)**
 
-![A 033–035](images/A_033-035.webp)
+## 排版图型展示
 
-### B · 国际绘本 / 叙事型手绘（036–054）
+除了丰富的手绘风格，本库还收录了 **117 种排版图型**，涵盖社交卡片、数据长图与分镜故事，支持一键组合风格与排版出图。
 
-![B 036–048](images/B_036-048.webp)
+### 1. 社媒卡（Social Cards · 19 种）
 
-![B 049–054](images/B_049-054.webp)
+适合小红书、朋友圈、公众号配图及观点金句卡片，结构包含上下图文、文案主导、双格对照等。
 
-### C · 现代平面 / 艺术化人物体系（055–082）
+![社媒卡分类视口预览](images/layouts/preview-social-cards.webp)
 
-![C 055–070](images/C_055-070.webp)
+👉 **[查看更多社媒卡图型](skills/handdraw-style-prompter/gallery/layouts.html#social-card)**
 
-![C 071–082](images/C_071-082.webp)
+---
 
-### D · 日本作者 / 当代插画体系（083–123）
+### 2. 信息图（Infographics · 30 种）
 
-![D 083–098](images/D_083-098.webp)
+适合知识科普、对比清单、流程步骤及数据展示，结构包含金字塔层级、中心主图标注、多行多列对比等。
 
-![D 099–114](images/D_099-114.webp)
+![信息图分类视口预览](images/layouts/preview-infographics.webp)
 
-![D 115–123](images/D_115-123.webp)
+👉 **[查看更多信息图图型](skills/handdraw-style-prompter/gallery/layouts.html#infographic)**
 
-### E · 中国作者 / 当代插画体系（124–154）
+---
 
-![E 124–139](images/E_124-139.webp)
+### 3. 漫画分镜（Comic Storyboards · 68 种）
 
-![E 140–154](images/E_140-154.webp)
+适合多格叙事、条漫剧情、情绪递进及动态视觉，包含规则四格、起承转合、大格冲击、对角切割等专业分镜。
 
-### F · 通用网感 / 媒介 / 地域手绘（155–200）
+![漫画分镜分类视口预览](images/layouts/preview-comic-storyboards.webp)
 
-![F 155–170](images/F_155-170.webp)
+👉 **[查看更多漫画分镜图型](skills/handdraw-style-prompter/gallery/layouts.html#comic-storyboard)**
 
-![F 171–186](images/F_171-186.webp)
+---
 
-![F 187–200](images/F_187-200.webp)
-
-### G · 附件新增 / 中国当代插画补充（201–216）
-
-![G 201–216](images/G_201-216.webp)
-
-### H · 其他（217–274）
-
-![H 217–232](images/H_217-232.webp)
-
-![H 233–248](images/H_233-248.webp)
-
-![H 249–264](images/H_249-264.webp)
-
-![H 265–274](images/H_265-274.webp)
+💡 **[进入图型编号画廊，浏览全部 117 种排版并复制提示词 ↗](skills/handdraw-style-prompter/gallery/layouts.html)**
 
 ## 作者与社群交流
 

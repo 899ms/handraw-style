@@ -151,11 +151,26 @@ def main() -> None:
     if "A_001-016.webp" not in gallery or "F_187-200.webp" not in gallery or "#018" not in gallery:
         fail("gallery does not cover the expected sheets and style 018")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for _, _, path in tweet_sheets:
-        if f"images/{path.name}" not in readme:
-            fail(f"README does not reference contact sheet {path.name}")
-    if "### G · 附件新增 / 中国当代插画补充（201–216）" not in readme or f"### H · 其他（217–{max_num}）" not in readme:
-        fail("README does not separate G and H contact-sheet groups")
+    if "images/A_001-016.webp" not in readme:
+        fail("README does not reference representative style preview image")
+    if "styles_200_reorganized.md" not in readme:
+        fail("README does not link to styles_200_reorganized.md")
+    for category_preview in [
+        "images/layouts/preview-social-cards.webp",
+        "images/layouts/preview-infographics.webp",
+        "images/layouts/preview-comic-storyboards.webp",
+    ]:
+        if category_preview not in readme:
+            fail(f"README does not reference layout category preview {category_preview}")
+        if not (ROOT / category_preview).is_file():
+            fail(f"layout category preview image file is missing: {category_preview}")
+    for layout_link in [
+        "layouts.html#social-card",
+        "layouts.html#infographic",
+        "layouts.html#comic-storyboard",
+    ]:
+        if layout_link not in readme:
+            fail(f"README does not link to layout category {layout_link}")
     prompt_example_tokens = [
         f"风格索引（{total_styles}）",
         'class="prompt-examples"',

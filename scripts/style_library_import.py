@@ -107,6 +107,7 @@ def update_readme_and_skill(number: str) -> None:
     readme_path = ROOT / "README.md"
     content = readme_path.read_text(encoding="utf-8")
     content = re.sub(r"001–\d+ 种手绘风格", f"001–{number} 种手绘风格", content)
+    content = re.sub(r"（\d+ 种风格 Markdown 详细表格", f"（{number} 种风格 Markdown 详细表格", content)
     content = re.sub(r"### G · 附件新增 / 中国当代插画补充（201–\d+）", "### G · 附件新增 / 中国当代插画补充（201–216）", content)
     content = re.sub(r"### H · 其他（217–\d+）", f"### H · 其他（217–{number}）", content)
     for prefix, title in (("G", "### G · 附件新增 / 中国当代插画补充"), ("H", "### H · 其他")):
