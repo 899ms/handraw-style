@@ -130,7 +130,7 @@
 
 |---|---|---|
 
-| 055 · Jon Burgerman | Chaotic Color Doodle Crowd | 即兴彩色 Doodle、怪物人物、粗轮廓、高密度快乐混乱；人物轮廓优先于细节堆砌，脸型、头身比例与手脚形状要形成清楚而独立的视觉语言；表情与肢体动作要服从该风格的人格机制，避免回落为统一的标准Q版表情。 |
+| 055 · Jon Burgerman | Chaotic Color Doodle Crowd |  |
 
 | 056 · Hattie Stewart | Pop Magazine Doodle Overlay | 卡通嘴眼、杂志涂鸦覆盖、Pop 色彩、朋克恶搞；人物轮廓优先于细节堆砌，脸型、头身比例与手脚形状要形成清楚而独立的视觉语言；配色使用少量高纯度撞色和平涂，让人物剪影和服装保持强图形对比。 |
 
@@ -534,7 +534,7 @@
 
 | 269 · 社会主义现实主义宣传画 | Socialist Realist Propaganda Poster |  |
 
-| 270 · 中国农民画 | Chinese Farmers Painting | 错透视、鲜艳平涂、密集场景。 |
+| 270 · 中国农民画 | Chinese Farmers Painting | 错透视、鲜艳平涂、大量留白。 |
 
 | 271 · 八九十年代中国课本插图风 | 1980s-1990s Chinese Textbook Illustration |  |
 

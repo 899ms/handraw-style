@@ -6,6 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
+from layout_library import detect_language, resolve_layout
 from resolve_reference import resolve
 
 SKILL = Path(__file__).resolve().parents[1]
@@ -28,24 +29,73 @@ def main() -> None:
     styles = json.loads((SKILL / "references" / "styles.json").read_text(encoding="utf-8"))
     max_num = len(styles)
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--style", required=True, help=f"Style number from 001 to {max_num:03}")
+    parser.add_argument("--style", help=f"Optional style number from 001 to {max_num:03}")
+    parser.add_argument("--layout", help="Optional layout ID, for example SC-001 or IG-001.")
     parser.add_argument("--theme", required=True)
     parser.add_argument("--ratio")
     parser.add_argument("--subject")
     parser.add_argument("--text")
     parser.add_argument("--model", default="gpt-image-2", help="Model capability profile; defaults to gpt-image-2.")
     parser.add_argument("--mode", choices=("pure-image", "graphic-text"), default="pure-image")
+    parser.add_argument("--language", choices=("auto", "zh", "en"), default="auto")
     args = parser.parse_args()
-    try:
-        val = int(args.style)
-        if not 1 <= val <= max_num:
-            raise ValueError()
-        number = f"{val:03}"
-    except (ValueError, TypeError) as exc:
-        raise SystemExit(f"Style must be a number from 001 to {max_num:03}.") from exc
-    selected = next((item for item in styles if item["number"] == number), None)
-    if selected is None:
-        raise SystemExit(f"Style must be a number from 001 to {max_num:03}.")
+    if not args.style and not args.layout:
+        raise SystemExit("Provide --style, --layout, or both.")
+    selected = None
+    number = None
+    if args.style:
+        try:
+            val = int(args.style)
+            if not 1 <= val <= max_num:
+                raise ValueError()
+            number = f"{val:03}"
+        except (ValueError, TypeError) as exc:
+            raise SystemExit(f"Style must be a number from 001 to {max_num:03}.") from exc
+        selected = next((item for item in styles if item["number"] == number), None)
+        if selected is None:
+            raise SystemExit(f"Style must be a number from 001 to {max_num:03}.")
+    if args.layout:
+        try:
+            layout = resolve_layout(args.layout)
+        except ValueError as exc:
+            raise SystemExit(str(exc)) from exc
+        language = detect_language(args.theme) if args.language == "auto" else args.language
+        layout_prompt = layout["prompts"][language]
+        if language == "zh":
+            parts = [
+                f"图型：{layout['id']} · {layout['name']}。",
+                f"主题：{args.theme}。",
+                f"排版要求：{layout_prompt}",
+            ]
+        else:
+            parts = [
+                f"Layout: {layout['id']} · {layout['name']}.",
+                f"Theme: {args.theme}.",
+                f"Layout instructions: {layout_prompt}",
+            ]
+        if selected and number:
+            decision = resolve(args.model, number)
+            traits = decision["prompt_traits"]
+            if language == "zh":
+                parts.append(f"风格名称：#{number} · {selected['generation_name']}。参考作者/风格名称：{selected['reference']}。")
+                if traits:
+                    parts.append(f"核心风格特征：{traits}。")
+                if decision["use_reference_image"]:
+                    parts.append(f"参考图：请上传本地参考图 {decision['reference_path']}。{REFERENCE_ISOLATION_ZH}")
+            else:
+                parts.append(f"Style name: #{number} · {selected['generation_name']}. Reference author/style name: {selected['reference']}.")
+                if traits:
+                    parts.append(f"Core style traits: {traits}.")
+                if decision["use_reference_image"]:
+                    parts.append(f"Reference image: upload local reference image {decision['reference_path']}. {REFERENCE_ISOLATION_EN}")
+        print(f"Selected layout: {layout['id']} · {layout['name']}")
+        if selected and number:
+            print(f"Selected style: #{number} · {selected['generation_name']}")
+        print("\nPrompt:")
+        print("".join(parts) if language == "zh" else " ".join(parts))
+        print("\n已自动使用图文模式。" if language == "zh" else "\nThe selected layout automatically uses graphic-text mode.")
+        return
+    assert selected is not None and number is not None
     extra_zh = "；".join(filter(None, [f"画幅：{args.ratio}" if args.ratio else "", f"主体限制：{args.subject}" if args.subject else "", f"文字要求：{args.text}" if args.text else ""]))
     extra_en = "; ".join(filter(None, [f"aspect ratio: {args.ratio}" if args.ratio else "", f"subject constraints: {args.subject}" if args.subject else "", f"text requirement: {args.text}" if args.text else ""]))
     print(f"Selected style: #{number} · {selected['generation_name']}")

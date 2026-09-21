@@ -45,9 +45,17 @@ This initialization applies only when this Skill is invoked for the first time i
 
 ## Inputs
 
-Require a style number (`001`–`274`) and a theme. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If the number is absent or invalid, ask the user to choose a valid number; do not invent a style. Do not add an aspect ratio when none was supplied.
+For style-only work, require a style number (`001`–`274`) and a theme. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; the style number is optional. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If a supplied number or layout ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
 
-Users can browse `gallery/index.html` for the numbered contact sheets. The authoritative style content is `../../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after the Markdown changes.
+Users can browse `gallery/index.html` for numbered style contact sheets and `gallery/layouts.html` for layout thumbnails. The authoritative style content is `../../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after Markdown changes. Layout metadata is `references/layouts.json`; each entry's bilingual prompt file under `references/layouts/` is the authoritative layout content and the layout gallery is refreshed with `python scripts/build_layout_gallery.py`.
+
+## Layout workflows
+
+- A layout ID selects composition and text structure, not illustration style. Use its prompt file verbatim in the selected output language, then append the user's theme as the only source of subject matter and copy.
+- When a layout ID is selected, automatically use graphic-text mode even if the user did not name a mode. Do not add the fixed generic graphic-text suffix: the selected layout prompt is the concrete layout instruction.
+- If the user also supplies a style number, combine the selected style's author/style label, permitted positive traits, and reference-image policy with the layout prompt. A style reference image may influence only rendering style; it must not override the selected layout, text structure, or theme.
+- Return a single complete layout-combination prompt in the language of the user's theme. Chinese characters select Chinese; otherwise use English. Treat mixed input as Chinese. Existing style-only requests retain their normal bilingual output.
+- The layout gallery is browse-only: it has no prompt input form. It shows a numbered thumbnail, opens a large preview on click, and copies the canonical Chinese layout prompt on request.
 
 ## Prompt modes
 
@@ -69,14 +77,16 @@ For a valid request, return these four parts:
 
 Do not invent visual traits, extra style descriptions, generic quality/composition language, or default avoid-list wording. Include each entry's original reference author/style name from the index in both prompts as requested; this is an index label, not a claim about the person or an instruction to imitate them. Never use fame or life status as a proxy for model capability.
 
-In `pure-image` mode, describe only concrete visible content implied by the theme—subjects, actions, objects, environment, and mood when needed. In `graphic-text` mode, use the user's theme verbatim and leave all semantic expansion to the fixed suffix. In both modes, leave composition, layout, visual richness, quality, and rendering decisions to the image AI. Respect a user-specified text requirement but do not invent copy.
+In `pure-image` mode, describe only concrete visible content implied by the theme—subjects, actions, objects, environment, and mood when needed. In `graphic-text` mode, use the user's theme verbatim and leave all semantic expansion to the fixed suffix. In both modes, leave composition, layout, visual richness, quality, and rendering decisions to the image AI unless a layout ID was explicitly selected. Respect a user-specified text requirement but do not invent copy.
 
 ## Utilities
 
 - From the installed package root, rebuild the derived index and gallery: `python skills/handdraw-style-prompter/scripts/build_library.py`
+- Rebuild the layout gallery: `python skills/handdraw-style-prompter/scripts/build_layout_gallery.py`
 - Split contact sheets into numbered single images: `python skills/handdraw-style-prompter/scripts/split_contact_sheets.py`
 - Validate all source/index/gallery invariants: `python skills/handdraw-style-prompter/scripts/validate_library.py`
 - Produce a deterministic CLI prompt draft: `python skills/handdraw-style-prompter/scripts/prompt_style.py --style 18 --theme "秋天的第一杯奶茶"`
+- Produce a layout-combination draft: `python skills/handdraw-style-prompter/scripts/prompt_style.py --layout SC-001 --style 18 --theme "秋天的第一杯奶茶"`
 - Resolve image-reference policy: `python skills/handdraw-style-prompter/scripts/resolve_reference.py --model <model> --style 18`
 
 The CLI is a convenience check. For normal conversational use, write natural bilingual prompts rather than echoing its template mechanically.

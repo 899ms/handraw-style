@@ -26,7 +26,7 @@ $skill-installer install --repo yang0/handraw-style --path . --name handdraw-sty
 
 ## 这个 Skill 怎么用
 
-1. 打开[编号画廊](skills/handdraw-style-prompter/gallery/index.html)，浏览风格图片。
+1. 打开[风格编号画廊](skills/handdraw-style-prompter/gallery/index.html)，浏览风格图片；需要先选排版时可打开[图型编号画廊](skills/handdraw-style-prompter/gallery/layouts.html)。
 2. 记下喜欢的编号，例如 `041`。
 3. 输入“编号 + 主题”，例如：`041号风格，主题：秋天的第一杯奶茶`。
 4. 得到带风格名称的中文和英文提示词。
@@ -119,6 +119,10 @@ Skill 默认只负责把想法变成提示词；你明确要求“生图”时�
 
 ![H 265–274](images/H_265-274.webp)
 
-## 作者
+## 作者与社群交流
 
-X：[@yang02010](https://x.com/yang02010)
+- **微信交流群 / 作者微信**：添加请备注 **手绘**，拉你进创作者交流群
+
+  <img src="images/wechat_community.jpg" alt="微信二维码" width="240">
+
+- X：[@yang02010](https://x.com/yang02010)

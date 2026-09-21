@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 from resolve_reference import resolve
 from contact_sheet_registry import CAPACITY, STATE_FILE, parse_sheet, sheet_path
+from layout_library import load_layouts
 from style_asset_paths import bucket_name, grid_path, single_path
 
 SKILL = Path(__file__).resolve().parents[1]
@@ -23,6 +24,7 @@ def fail(message: str) -> None:
 def main() -> None:
     python = [sys.executable, "-X", "utf8"]
     subprocess.run(python + [str(SKILL / "scripts" / "build_library.py")], check=True)
+    subprocess.run(python + [str(SKILL / "scripts" / "build_layout_gallery.py")], check=True)
     styles = json.loads((SKILL / "references" / "styles.json").read_text(encoding="utf-8"))
     attribution = json.loads((SKILL / "references" / "attribution.json").read_text(encoding="utf-8"))
     model_capabilities = json.loads((SKILL / "references" / "model_capabilities.json").read_text(encoding="utf-8"))
@@ -154,8 +156,40 @@ def main() -> None:
             fail(f"README does not reference contact sheet {path.name}")
     if "### G · 附件新增 / 中国当代插画补充（201–216）" not in readme or f"### H · 其他（217–{max_num}）" not in readme:
         fail("README does not separate G and H contact-sheet groups")
-    if f"风格索引（{total_styles}）" not in gallery or f"输入 001–{max_num}" not in gallery:
+    prompt_example_tokens = [
+        f"风格索引（{total_styles}）",
+        'class="prompt-examples"',
+        'class="prompt-label">1 · 出图',
+        'class="prompt-label">2 · 切换图文模式',
+        'class="prompt-value">风格：001，主题：吃冰淇淋的小姑娘',
+        'class="prompt-value">切换为图文模式',
+        "ui-monospace",
+    ]
+    if any(token not in gallery for token in prompt_example_tokens):
         fail("gallery count or range is stale")
+    version_file = SKILL / "references" / "version.json"
+    if not version_file.exists():
+        fail("skills/handdraw-style-prompter/references/version.json is missing")
+    version_data = json.loads(version_file.read_text(encoding="utf-8"))
+    current_version = str(version_data.get("version", ""))
+    if not current_version:
+        fail("skills/handdraw-style-prompter/references/version.json must specify a version")
+    update_tokens = [
+        f'data-local-version="{current_version}"',
+        "https://raw.githubusercontent.com/yang0/handraw-style/master/skills/handdraw-style-prompter/references/version.json",
+        'id="update-status"',
+        "checkRepositoryUpdate",
+        "isNewerVersion",
+        "发现风格库更新",
+        "请更新skill https://github.com/yang0/handraw-style",
+        "复制更新指令",
+    ]
+    for token in update_tokens:
+        if token not in gallery:
+            fail(f"gallery update detection is missing {token}")
+    for token in ["本地与仓库均为", "本地版本较新", "未能检查仓库更新", 'id="search"', 'id="recent-styles"']:
+        if token in gallery:
+            fail(f"gallery must not show non-update status or search UI: {token}")
     skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
     for token in ["Style activation policy", "name_activation=strong", "model_capabilities.json", "referenced_image_paths", "Use the attached image only as a style reference", "The user's written theme is the sole source for the image content", "images/individual/{bucket}/{number}.webp", "217_grid.webp"]:
         if token not in skill_text:
@@ -228,7 +262,58 @@ def main() -> None:
         fail("blank traits were turned into prompt constraints")
     if "参考图：请上传本地参考图" not in blank_traits.stdout or "Reference image: upload local reference image" not in blank_traits.stdout:
         fail("blank-trait reference fallback must provide local reference paths")
-    print(f"PASS: {total_styles} styles, gallery coverage, prompt contract, and invalid-number guard.")
+    layouts = load_layouts()
+    if not {"SC-001", "SC-002", "SC-003", "SC-004", "SC-005", "SC-006", "SC-007", "SC-008", "SC-009", "SC-010", "SC-011", "SC-012", "SC-014", "SC-015", "SC-016", "SC-017", "SC-018", "SC-019", "SC-020", "IG-001", "IG-002", "IG-003", "IG-004", "IG-005", "IG-006", "IG-007", "IG-008", "IG-009"}.issubset({layout["id"] for layout in layouts}):
+        fail("layout index does not contain the expected layout IDs")
+    for layout in layouts:
+        image_path = ROOT / str(layout["image"]).replace("../../../", "")
+        if not image_path.is_file():
+            fail(f"layout image is missing for {layout['id']}")
+        if not layout["prompts"]["zh"] or not layout["prompts"]["en"]:
+            fail(f"layout prompt is incomplete for {layout['id']}")
+    layout_gallery = (SKILL / "gallery" / "layouts.html").read_text(encoding="utf-8")
+    for layout in layouts:
+        if layout_gallery.count(f'data-id="{layout["id"]}"') != 1:
+            fail(f"layout gallery must contain exactly one card for {layout['id']}")
+    for token in ["图型编号画廊", 'href="index.html"', 'href="layouts.html" aria-current="page"', "SC-001", "SC-002", "SC-004", "SC-005", "SC-006", "SC-007", "SC-008", "SC-009", "SC-010", "SC-011", "SC-012", "SC-014", "SC-015", "SC-016", "SC-017", "SC-018", "SC-019", "SC-020", "IG-001", "IG-002", "IG-003", "IG-004", "IG-005", "IG-006", "IG-007", "IG-008", "IG-009", f"信息图 <span>{sum(item['category'] == 'infographic' for item in layouts)}</span>", "复制排版提示词", "navigator.clipboard.writeText", "setCategory('social-card')", ".site-nav a{border:1px solid", "main{max-width:1440px;margin:auto;padding:18px 30px 30px}", ".gallery{--columns:4;--gap:18px", "@media(max-width:1100px){.gallery{--columns:3}}", ".masonry-column{display:flex;flex-direction:column", "ResizeObserver", "requestAnimationFrame", "heights.indexOf(Math.min(...heights))", ".layout-card img{display:block;width:100%;height:auto}", 'class="layout-info"', ".layout-id{color:#b74227", ".layout-name{overflow:hidden", "@media(max-width:720px){main{padding:16px 20px 20px}", ".gallery{--columns:2;--gap:12px}", "@media(max-width:420px){.gallery{--columns:1}}"]:
+        if token not in layout_gallery:
+            fail(f"layout gallery is missing {token}")
+    if "信息图 <span>0</span>" in layout_gallery or "id=\"empty\"" in layout_gallery:
+        fail("empty infographic category must not be rendered")
+    if "aspect-ratio:1;object-fit:cover" in layout_gallery:
+        fail("layout gallery must not crop layout thumbnails")
+    if "top:10px;left:10px" in layout_gallery:
+        fail("layout ID must appear in the card information area, not over the image")
+    if "column-width:220px" in layout_gallery or "display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))" in layout_gallery:
+        fail("layout gallery must use explicit responsive masonry columns")
+    if '.site-nav a{border:1px solid' not in gallery or 'main{max-width:1440px;margin:auto;padding:18px 30px 30px}' not in gallery:
+        fail("style gallery navigation or title spacing is stale")
+    layout_zh = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--layout", "IG-007", "--theme", "秋天的第一杯奶茶"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    if "图型：IG-007 · 粗体标题标签小图卡。" not in layout_zh.stdout or "自动使用图文模式" not in layout_zh.stdout:
+        fail("Chinese layout-only prompt is missing its layout contract")
+    layout_en = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--layout", "IG-007", "--style", "18", "--theme", "Autumn's first milk tea"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    for term in ["Layout: IG-007 · 粗体标题标签小图卡.", "Theme: Autumn's first milk tea.", "Style name: #018 · Minimal Deadpan Dialogue Cartoon."]:
+        if term not in layout_en.stdout:
+            fail(f"English layout-and-style prompt is missing {term}")
+    invalid_layout = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--layout", "SC-999", "--theme", "x"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    if invalid_layout.returncode == 0 or "Unknown layout ID" not in (invalid_layout.stderr + invalid_layout.stdout):
+        fail("unknown layout ID does not fail clearly")
+    missing_selection = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--theme", "x"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    if missing_selection.returncode == 0 or "Provide --style, --layout, or both" not in (missing_selection.stderr + missing_selection.stdout):
+        fail("missing style/layout selection does not fail clearly")
+    print(f"PASS: {total_styles} styles, {len(layouts)} layouts, gallery coverage, prompt contract, and invalid-ID guards.")
 
 
 if __name__ == "__main__":
