@@ -165,12 +165,20 @@ def main() -> None:
         if not (ROOT / category_preview).is_file():
             fail(f"layout category preview image file is missing: {category_preview}")
     for layout_link in [
-        "layouts.html#social-card",
-        "layouts.html#infographic",
-        "layouts.html#comic-storyboard",
+        "LAYOUTS.md#social-cards",
+        "LAYOUTS.md#infographics",
+        "LAYOUTS.md#comic-storyboards",
     ]:
         if layout_link not in readme:
             fail(f"README does not link to layout category {layout_link}")
+    if "STYLES.md" not in readme:
+        fail("README does not link to STYLES.md")
+    if "LAYOUTS.md" not in readme:
+        fail("README does not link to LAYOUTS.md")
+    styles_md = (ROOT / "STYLES.md").read_text(encoding="utf-8")
+    for _, _, path in tweet_sheets:
+        if f"images/{path.name}" not in styles_md:
+            fail(f"STYLES.md does not reference contact sheet {path.name}")
     prompt_example_tokens = [
         f"风格索引（{total_styles}）",
         'class="prompt-examples"',
@@ -287,6 +295,10 @@ def main() -> None:
         if not layout["prompts"]["zh"] or not layout["prompts"]["en"]:
             fail(f"layout prompt is incomplete for {layout['id']}")
     layout_gallery = (SKILL / "gallery" / "layouts.html").read_text(encoding="utf-8")
+    layouts_md = (ROOT / "LAYOUTS.md").read_text(encoding="utf-8")
+    for layout in layouts:
+        if f"**{layout['id']}**" not in layouts_md:
+            fail(f"LAYOUTS.md is missing layout {layout['id']}")
     for layout in layouts:
         if layout_gallery.count(f'data-id="{layout["id"]}"') != 1:
             fail(f"layout gallery must contain exactly one card for {layout['id']}")

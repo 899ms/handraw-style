@@ -133,6 +133,13 @@ def main() -> None:
     STYLE_JSON.write_text(json.dumps(styles, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     GALLERY.write_text(gallery_html(styles, sheets), encoding="utf-8")
     print(f"Built {len(styles)} styles and {len(sheets)} contact sheets.")
+    try:
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from build_markdown_galleries import build_styles_md
+        build_styles_md()
+    except Exception as exc:
+        print(f"Notice: build_styles_md skipped: {exc}")
 
 
 if __name__ == "__main__":

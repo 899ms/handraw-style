@@ -82,6 +82,14 @@ def main() -> None:
     GALLERY.parent.mkdir(parents=True, exist_ok=True)
     GALLERY.write_text(gallery_html(layouts), encoding="utf-8")
     print(f"Built {len(layouts)} layouts.")
+    try:
+        import sys
+        root = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(root / "scripts"))
+        from build_markdown_galleries import build_layouts_md
+        build_layouts_md()
+    except Exception as exc:
+        print(f"Notice: build_layouts_md skipped: {exc}")
 
 
 if __name__ == "__main__":
