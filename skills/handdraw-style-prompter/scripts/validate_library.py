@@ -220,9 +220,12 @@ def main() -> None:
     for token in ["preserve the user's theme exactly", "Do not expand, paraphrase, interpret", "show the resolved reference image to the user outside the prompts", "Do not inject it into a `graphic-text` copyable prompt"]:
         if token not in skill_text:
             fail(f"graphic-text prompt contract is missing {token}")
-    for token in ["Session initialization", "任何首次请求", "mcp__codex_app__open_in_codex", "target.type=\"browser\"", "file:///E:/handraw-style/skills/handdraw-style-prompter/gallery/index.html", "Never open `gallery/index.html` as `target.type=\"file\"`", "当前处于纯图模式，可切换为图文模式。", "Do not repeat the browser call or this first-session status notice", "fallback link"]:
+    root_skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    for token in ["Session initialization", "任何首次请求", "mcp__codex_app__open_in_codex", "target.type=\"browser\"", "dynamically resolve", "Never open `gallery/index.html` as `target.type=\"file\"`", "当前处于纯图模式，可切换为图文模式。", "Do not repeat the browser call or this first-session status notice", "fallback link"]:
         if token not in skill_text:
-            fail(f"session initialization contract is missing {token}")
+            fail(f"session initialization contract in nested SKILL.md is missing {token}")
+        if token not in root_skill_text:
+            fail(f"session initialization contract in root SKILL.md is missing {token}")
     for token in ['id="preview"', 'class="sheet"', 'dialog.showModal()', 'event.target===dialog']:
         if token not in gallery:
             fail(f"gallery preview interaction is missing {token}")
@@ -340,7 +343,35 @@ def main() -> None:
     )
     if missing_selection.returncode == 0 or "Provide --style, --layout, or both" not in (missing_selection.stderr + missing_selection.stdout):
         fail("missing style/layout selection does not fail clearly")
-    print(f"PASS: {total_styles} styles, {len(layouts)} layouts, gallery coverage, prompt contract, and invalid-ID guards.")
+
+    import yaml
+    for sf in [ROOT / "SKILL.md", SKILL / "SKILL.md", ROOT / "skills" / "article-illustration-planner" / "SKILL.md"]:
+        if sf.exists():
+            content = sf.read_text(encoding="utf-8")
+            if not content.startswith("---"):
+                fail(f"{sf.name} does not start with YAML frontmatter delimiter '---'")
+            parts = content.split("---", 2)
+            if len(parts) < 3:
+                fail(f"{sf.name} missing closing YAML frontmatter delimiter '---'")
+            try:
+                fm = yaml.safe_load(parts[1])
+                if not isinstance(fm, dict) or "name" not in fm or "description" not in fm:
+                    fail(f"{sf.name} frontmatter missing required name or description")
+            except Exception as e:
+                fail(f"YAML frontmatter error in {sf.name}: {e}")
+
+    import re
+    drive_leak_pattern = re.compile(r'(?<!https:)(?<!http:)\b[A-Za-z]:[\\/]|file:///[A-Za-z]:')
+    git_files = subprocess.run(["git", "ls-files"], cwd=str(ROOT), capture_output=True, text=True, encoding="utf-8", check=True).stdout.splitlines()
+    for rel_path in git_files:
+        file_path = ROOT / rel_path
+        if file_path.suffix in (".md", ".json", ".py", ".html", ".yaml", ".yml") and file_path.exists():
+            text = file_path.read_text(encoding="utf-8", errors="ignore")
+            for line_no, line in enumerate(text.splitlines(), 1):
+                if drive_leak_pattern.search(line):
+                    fail(f"Local drive path leaked in tracked file {rel_path}:{line_no}: {line.strip()[:100]}")
+
+    print(f"PASS: {total_styles} styles, {len(layouts)} layouts, gallery coverage, prompt contract, YAML frontmatter, path leak guard, and invalid-ID guards.")
 
 
 if __name__ == "__main__":

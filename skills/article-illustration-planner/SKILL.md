@@ -1,8 +1,8 @@
 ---
-
 name: article-illustration-planner
 description: Analyze an article, choose the most valuable illustration positions, design what each illustration should communicate, and generate image prompts using a selected style from the hand-drawn style library. Supports both preserving the original article and selectively replacing or simplifying text with visual expression.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
+
 
 # Article Illustration Planner
 

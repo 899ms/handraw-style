@@ -47,10 +47,14 @@ def create_numbered_tile(source_path: Path, number: str, output_path: Path, badg
     with Image.open(source_path) as source:
         image = source.convert("RGB").resize((512, 512), Image.Resampling.LANCZOS)
     if badge_label:
-        draw = ImageDraw.Draw(image)
-        try:
-            font = ImageFont.truetype("C:/Windows/Fonts/arialbd.ttf", 24)
-        except Exception:
+        font = None
+        for font_name in ("arialbd.ttf", "Arial Bold.ttf", "DejaVuSans-Bold.ttf", "arial.ttf"):
+            try:
+                font = ImageFont.truetype(font_name, 24)
+                break
+            except Exception:
+                continue
+        if font is None:
             font = ImageFont.load_default()
         bbox = font.getbbox(badge_label)
         width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]

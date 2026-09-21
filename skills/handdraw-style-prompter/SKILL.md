@@ -35,11 +35,11 @@ Use the same capability decision for prompt-only and explicit image-generation r
 
 On the first turn in the current Codex task/thread where this Skill is invoked, perform both initialization actions before handling the user's request. This applies to **任何首次请求**, including opening the gallery, browsing the index, requesting prompts, or requesting image generation:
 
-1. If this task has not already displayed the gallery, call `mcp__codex_app__open_in_codex` in a browser tab with `target.type="browser"` and URL `file:///E:/handraw-style/skills/handdraw-style-prompter/gallery/index.html`. Never open `gallery/index.html` as `target.type="file"`, in an editor, or as a file preview.
+1. If this task has not already displayed the gallery, dynamically resolve the absolute `file://` URI to `gallery/index.html` based on this Skill's directory in the current environment, and call `mcp__codex_app__open_in_codex` in a browser tab with `target.type="browser"` and that URL. Never open `gallery/index.html` as `target.type="file"`, in an editor, or as a file preview.
 2. Include the exact standalone status line `当前处于纯图模式，可切换为图文模式。` in the same final reply, even when the request produces no prompt.
 3. Continue with the user's request after the browser call; opening the gallery must not block prompt generation or an explicitly requested image-generation follow-up. If the same first reply would also add the pure-image mode note, show this status line only once.
 4. Do not repeat the browser call or this first-session status notice on later turns in the same task/thread. Use the conversation context (not a persistent state file) to determine whether initialization already happened.
-5. If the browser call is unavailable or fails, provide the same local `file:///E:/handraw-style/skills/handdraw-style-prompter/gallery/index.html` fallback link, then continue normally.
+5. If the browser call is unavailable or fails, provide the dynamically resolved local `file://` fallback link, then continue normally.
 
 This initialization applies only when this Skill is invoked for the first time in a task/thread; unrelated conversations must not open the gallery.
 

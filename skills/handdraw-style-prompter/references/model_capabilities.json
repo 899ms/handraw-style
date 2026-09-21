@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "description": "Model-specific ability to activate a numbered style from its name. Unknown models must use the image fallback.",
+  "description": "Model-specific ability to activate a numbered style from its name or positive traits. Explicitly calibrated models (e.g., gpt-image-2) use fine-grained keyword/traits activation; unknown and third-party models safely rely on reference image fallback to guarantee style fidelity.",
   "default": {
     "name_activation": "unknown",
     "use_reference_image": true,
-    "note": "No verified model capability is available. Pass the numbered image."
+    "note": "No explicit calibration available for this model. Safe fallback to reference image to ensure 100% faithful style reproduction."
   },
   "models": {
     "gpt-image-2": {
