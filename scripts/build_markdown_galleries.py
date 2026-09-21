@@ -38,7 +38,7 @@ LAYOUT_CATEGORIES = [
 def build_styles_md() -> None:
     # 1. Chinese STYLES.md
     zh_lines = [
-        '<p align="right">',
+        '<p align="center">',
         '  <strong>中文</strong> | <a href="STYLES_en.md">English</a>',
         '</p>',
         '',
@@ -69,7 +69,7 @@ def build_styles_md() -> None:
 
     # 2. English STYLES_en.md
     en_lines = [
-        '<p align="right">',
+        '<p align="center">',
         '  <a href="STYLES.md">中文</a> | <strong>English</strong>',
         '</p>',
         '',
@@ -110,7 +110,7 @@ def build_layouts_md() -> None:
 
     # 1. Chinese LAYOUTS.md
     zh_lines = [
-        '<p align="right">',
+        '<p align="center">',
         '  <strong>中文</strong> | <a href="LAYOUTS_en.md">English</a>',
         '</p>',
         '',
@@ -169,7 +169,7 @@ def build_layouts_md() -> None:
 
     # 2. English LAYOUTS_en.md
     en_lines = [
-        '<p align="right">',
+        '<p align="center">',
         '  <a href="LAYOUTS.md">中文</a> | <strong>English</strong>',
         '</p>',
         '',

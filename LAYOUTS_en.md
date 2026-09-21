@@ -1,4 +1,4 @@
-<p align="right">
+<p align="center">
   <a href="LAYOUTS.md">中文</a> | <strong>English</strong>
 </p>
 
