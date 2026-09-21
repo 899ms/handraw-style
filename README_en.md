@@ -28,7 +28,7 @@ Whether you are crafting social media post covers, educational infographics, arc
 - **Content Creators & Influencers**: Social media covers (Xiaohongshu, Instagram, X/Twitter), newsletter hero images, viral quote cards.
 - **Knowledge & Tech Bloggers**: Comparison lists, architecture pyramids, step-by-step processes, and high-engagement infographics.
 - **Comic & Story Creators**: 4-panel strips, emotional webtoons, storyboard drafts, children's storybook illustrations.
-- **Brand & Visual Designers**: Rapid concept sketching, creative campaign posters, character design prototypes.
+- **Visual & Brand Designers**: Rapid concept sketching, creative campaign posters, character design prototypes.
 
 ---
 
@@ -42,15 +42,15 @@ The assistant will automatically clone the repository and configure all styles, 
 
 ---
 
-## How to Use
+## How to Use This Skill
 
-1. Browse the [Style Visual Sheet (STYLES.md)](STYLES.md) or [Layout Visual Sheet (LAYOUTS.md)](LAYOUTS.md) to pick your desired numbers.
-2. Note your chosen ID, such as style `041`, or layout `SC-001`.
-3. Provide your command to the assistant:
+1. Open the [Style Gallery (STYLES.md)](STYLES.md) or [Layout Gallery (LAYOUTS.md)](LAYOUTS.md) to browse visual sheets and pick your desired numbers;
+2. Note your chosen ID, such as style `041`, or layout `SC-001`;
+3. Send your prompt command to the Skill, for example:
    - **Style only**: `Style: 041, Theme: First milk tea of autumn`
    - **Layout + Style**: `Layout: SC-001, Style: 041, Theme: First milk tea of autumn`
-4. Receive clean, copyable bilingual prompts (English and Chinese).
-5. Copy and paste into Midjourney, DALL-E 3, Flux, Stable Diffusion, or your favorite AI generation tool.
+4. Receive clean, copyable bilingual prompts with precise style definitions and layout geometry;
+5. Copy and paste into Midjourney, DALL-E 3, Stable Diffusion, Flux, or any image generator to create your artwork.
 
 ---
 
@@ -63,7 +63,7 @@ Any number and theme can seamlessly toggle between two modes without changing yo
 - **Graphic-Text Mode (图文模式)**: Preserves your copy text and guides the AI to design metaphors and integrate typography harmoniously into the visual composition. Ideal for quote posters, meme graphics, and social cards.  
   *Example*: `Graphic-text mode, Style: 267, Theme: There are many things you couldn't figure out back then. Don't worry, give it some time and you might just forget about them.`
 
-Switch modes anytime by typing *"switch to pure-image mode"* or *"switch to graphic-text mode"*. Defaults to pure-image mode.
+Switch modes anytime by typing *"switch to pure-image mode"* or *"switch to graphic-text mode"*. Defaults to pure-image mode when unstated.
 
 ### Graphic-Text Mode Demonstration
 
@@ -73,58 +73,82 @@ The illustration below shows text integrated harmoniously with the visual compos
 
 ---
 
-## Model Adaptation & Reference Image Fallback
+### Model Adaptation Mechanism
 
 By default, the Skill crafts copyable prompts. When you explicitly request image generation, it optimizes the output based on verified model capabilities:
 
-- **Explicitly Calibrated Models (e.g., `gpt-image-2`)**: Full activation hierarchy for all 274 styles: Style/Author Name → Positive Core Traits → Reference Image only when traits alone cannot reliably trigger the style.
-- **Third-Party & General Models (Midjourney, Flux, Stable Diffusion, Imagen, Gemini, etc.)**: Employs the rock-solid **Reference Image Fallback** strategy. Automatically attaches or points to the 1024x1024 4-grid style reference sheet, ensuring 100% faithful reproduction of linework, texture, and color palette without prompt hallucination.
-- **Open for Contributions**: The capability matrix is transparently defined in [`skills/handdraw-style-prompter/references/model_capabilities.json`](skills/handdraw-style-prompter/references/model_capabilities.json). Pull requests for other model benchmarks are welcome!
+- **Explicitly Calibrated Models (e.g., `gpt-image-2`)**: Full activation hierarchy for all 274 styles: Style/Author Name → Positive Core Traits → Reference Image only when traits alone cannot reliably trigger the style, avoiding unnecessary image passing that might over-constrain the composition.
+- **Third-Party & General Models (Midjourney, Flux, Stable Diffusion, Imagen, Gemini, etc.)**: Employs the rock-solid **Reference Image Fallback** strategy. The Skill provides a 1024x1024 4-grid standard reference image or file path, ensuring 100% faithful reproduction of linework, texture, and color palette without prompt drift.
+- **Open for Community Benchmarks**: Capability definitions reside in `skills/handdraw-style-prompter/references/model_capabilities.json`. Pull requests for other model evaluations are warmly welcomed!
 
 ---
 
-## Examples
+## Three Quick Examples
 
-### Example 1: Style Only (Pure-Image Mode)
-> **User Input**: `Style: 018, Theme: Late-night coder talking to a rubber duck`
->
-> **English Prompt**:
-> ```text
-> Style name: #018 · Minimal Deadpan Dialogue Cartoon. Theme: Late-night coder talking to a rubber duck. Reference author/style name: Poorly Drawn Lines / Reza Farazmand.
-> ```
-> **Chinese Prompt**:
-> ```text
-> 风格名称：#018 · Minimal Deadpan Dialogue Cartoon。主题：深夜程序员与一只小黄鸭对话。参考作者/风格名称：Poorly Drawn Lines / Reza Farazmand。
-> ```
-
-### Example 2: Layout + Style (Graphic-Text Mode)
-> **User Input**: `Layout: SC-001, Style: 248, Theme: Remote work vs Office work`
->
-> **English Prompt**:
-> ```text
-> Xiaohongshu social-media card. Use a text-above-image layout: place the theme copy and concise supporting text in the upper section, with a complete primary or scene illustration below. Keep a clear top-to-bottom reading order, let the text and image relate naturally, and keep the overall composition simple. Theme: Remote work vs Office work. Style name: #248 · Tactile Soft 3D Claymation & Storybook Character. Reference author/style name: OscarAI. 【如果主题直白包含画面元素那就按主题出图，文案由你来升华，但是不要直接描述画面。 如果主题比较概念化，那么文案和主题尽量保持一致，如果文案较长由你提炼，由你先设计画面隐喻（人类和非人类都行）再出图   。    文字参与构图，图文一体】
-> ```
-
-### Example 3: Infographic Knowledge Card
-> **User Input**: `Layout: IG-007, Theme: 3 stages of building a habit`
->
-> **English Prompt**:
-> ```text
-> Layout: IG-007 · Bold Headline Tag Cards. Theme: 3 stages of building a habit. 【如果主题直白包含画面元素那就按主题出图，文案由你来升华，但是不要直接描述画面。 如果主题比较概念化，那么文案和主题尽量保持一致，如果文案较长由你提炼，由你先设计画面隐喻（人类和非人类都行）再出图   。    文字参与构图，图文一体】
-> ```
+```text
+Style: 041, Theme: First milk tea of autumn
+Style: 210, Theme: Little boy lighting firecrackers in the snow
+Style: 193, Theme: Tang Dynasty Night Banquet
+```
 
 ---
 
-## Offline Visual Galleries
+## Featured Styles Preview
 
-You can browse the interactive local galleries directly in your browser:
-- **Style Gallery**: [`skills/handdraw-style-prompter/gallery/index.html`](skills/handdraw-style-prompter/gallery/index.html) — 20 contact sheets and 274 style cards with live language switching.
-- **Layout Gallery**: [`skills/handdraw-style-prompter/gallery/layouts.html`](skills/handdraw-style-prompter/gallery/layouts.html) — 118 visual compositions with category filtering and one-click bilingual prompt copying.
+Here is a contact sheet preview of featured hand-drawn illustration styles (001–016):
+
+![Featured Styles Preview (001–016)](images/A_001-016.webp)
+
+- 🖼️ **[👉 Browse All Style Sheets (001–274 Full Visual Contact Sheets)](STYLES.md)**
+- 📄 **[View Detailed Style Metadata (274 Styles Table & Core Traits)](styles_200_reorganized.md)**
+- 💻 *(For offline interactive search and enlargement, open `skills/handdraw-style-prompter/gallery/index.html` in your local browser)*
 
 ---
 
-## Community & Author
+## Layout Compositions Showcase
 
-- GitHub: [yang0/handraw-style](https://github.com/yang0/handraw-style)
-- X (Twitter): [@yang02010](https://x.com/yang02010)
-- WeChat Community: Available via the top-right button in the local visual galleries.
+In addition to 274 illustration styles, this library includes **118 composition layout patterns**, covering social cards, data infographics, and multi-panel storyboards. Combine any style with any layout with a single command.
+
+### 1. Social Cards (19 Layouts)
+
+Ideal for Xiaohongshu, Instagram, quote cards, and social media carousels. Includes top-bottom split, text-driven cards, two-column contrasts, and sticky notes.
+
+![Social Cards Category Preview](images/layouts/preview-social-cards.webp)
+
+👉 **[View All Social Card Layouts (19 Visuals & Prompts)](LAYOUTS.md#social-cards)**
+
+---
+
+### 2. Infographics (31 Layouts)
+
+Ideal for knowledge breakdowns, comparison checklists, step-by-step processes, and structured data visuals. Includes hierarchy pyramids, central icons, matrices, and multi-column comparison tables.
+
+![Infographics Category Preview](images/layouts/preview-infographics.webp)
+
+👉 **[View All Infographic Layouts (31 Visuals & Prompts)](LAYOUTS.md#infographics)**
+
+---
+
+### 3. Comic Storyboards (68 Layouts)
+
+Ideal for multi-panel narratives, webtoons, emotional storylines, and cinematic pacing. Includes standard 4-panel grids, dramatic wide-angle focus, diagonal cuts, and manga storyboards.
+
+![Comic Storyboards Category Preview](images/layouts/preview-comic-storyboards.webp)
+
+👉 **[View All Comic Storyboard Layouts (68 Visuals & Prompts)](LAYOUTS.md#comic-storyboards)**
+
+---
+
+- 💡 **[👉 Enter Full Layout Visual Sheet to Browse All 118 Layouts & Prompts ↗](LAYOUTS.md)**
+- 💻 *(For offline interactive search and category filtering, open `skills/handdraw-style-prompter/gallery/layouts.html` in your local browser)*
+
+---
+
+## Author & Community
+
+- **WeChat Community / Author WeChat**: Add WeChat with note **handdraw** to join the creators community:
+
+  <img src="images/wechat_community.jpg" alt="WeChat Community QR Code" width="240">
+
+- **X (Twitter)**: [@yang02010](https://x.com/yang02010)
+- **GitHub**: [yang0/handraw-style](https://github.com/yang0/handraw-style)
