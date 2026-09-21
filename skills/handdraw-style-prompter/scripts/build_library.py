@@ -81,13 +81,13 @@ def gallery_html(styles: list[dict[str, str]], sheets: list[dict[str, str]]) -> 
             label = f'{s["group"]} · #{s["start"]}'
             aria = f'放大查看 {s["group"]} #{s["start"]}'
             alt = f'Style {s["start"]}'
-            caption = f'{s["group"]} · #{s["start"]} · 点击放大'
+            caption = f'{s["group"]} · #{s["start"]} · <span class="zoom-text" data-i18n="clickEnlarge">点击放大</span>'
             badge = f'#{s["start"]}'
         else:
             label = f'{s["group"]} · #{s["start"]}–#{s["end"]}'
             aria = f'放大查看 {s["group"]} #{s["start"]} 到 #{s["end"]}'
             alt = f'Styles {s["start"]} to {s["end"]}'
-            caption = f'{s["group"]} · #{s["start"]}–#{s["end"]} · 点击放大'
+            caption = f'{s["group"]} · #{s["start"]}–#{s["end"]} · <span class="zoom-text" data-i18n="clickEnlarge">点击放大</span>'
             badge = f'#{s["start"]}–#{s["end"]}'
         
         sheet_card_list.append(
@@ -123,6 +123,7 @@ const I18N = {{
     ex2Code: "切换为图文模式",
     sheetsTitle: "风格拼图",
     stylesTitle: "风格索引（" + cards.length + "）",
+    clickEnlarge: "点击放大",
     closeBtn: "关闭 ×",
     dialogTip: "图片出于展示目的做了压缩，AI出的图字迹是很清晰的",
     wechatTitle: "💬 交流群 / 作者微信",
@@ -148,6 +149,7 @@ const I18N = {{
     ex2Code: "Switch to graphic-text mode",
     sheetsTitle: "Contact Sheets",
     stylesTitle: "Style Index (" + cards.length + ")",
+    clickEnlarge: "Click to enlarge",
     closeBtn: "Close ×",
     dialogTip: "Images are compressed for display; AI outputs are sharp and clear.",
     wechatTitle: "💬 Community / WeChat",

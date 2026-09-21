@@ -32,6 +32,8 @@ def gallery_html(layouts: list[dict[str, object]]) -> str:
         f'data-prompt-zh="{html.escape(str(layout["prompts"]["zh"]), quote=True)}" '
         f'data-prompt-en="{html.escape(str(layout["prompts"]["en"]), quote=True)}" '
         f'data-name="{html.escape(str(layout["name"]), quote=True)}" '
+        f'data-name-zh="{html.escape(str(layout["name"]), quote=True)}" '
+        f'data-name-en="{html.escape(str(layout.get("name_en", layout["name"])), quote=True)}" '
         f'aria-label="查看 {layout["id"]} {html.escape(str(layout["name"]), quote=True)}">'
         f'<img src="{html.escape(str(layout["image"]), quote=True)}" alt="{layout["id"]} {html.escape(str(layout["name"]), quote=True)}">'
         f'<span class="layout-info"><span class="layout-id">{layout["id"]}</span><span class="layout-name">{html.escape(str(layout["name"]))}</span></span></button>'
@@ -106,6 +108,12 @@ function applyLang(lang) {{
       btn.firstChild.textContent = label + ' ';
     }}
   }});
+  document.querySelectorAll('.layout-card').forEach(card => {{
+    const name = lang === 'en' ? (card.dataset.nameEn || card.dataset.name) : card.dataset.nameZh;
+    const nameSpan = card.querySelector('.layout-name');
+    if (nameSpan) nameSpan.textContent = name;
+    card.setAttribute('aria-label', (lang === 'en' ? 'View ' : '查看 ') + card.dataset.id + ' ' + name);
+  }});
   if (langBtn) langBtn.textContent = I18N[lang].langBtn;
   updateActivePrompt();
 }}
@@ -142,13 +150,14 @@ if(document.fonts)document.fonts.ready.then(scheduleLayout);
 function updateActivePrompt(){{
     if(!activeCard) return;
     activePrompt=(currentLang==='en'?activeCard.dataset.promptEn:activeCard.dataset.promptZh)||activeCard.dataset.prompt||'';
+    const name = currentLang === 'en' ? (activeCard.dataset.nameEn || activeCard.dataset.name) : activeCard.dataset.nameZh;
+    label.textContent=`${{activeCard.querySelector('.layout-id').textContent}} · ${{name}}`;
+    if (preview) preview.alt=`${{activeCard.dataset.id||''}} ${{name}}`;
 }}
 function openPreview(card){{
     activeCard=card;
-    updateActivePrompt();
     preview.src=card.dataset.image;
-    preview.alt=`${{card.dataset.id||''}} ${{card.dataset.name}}`;
-    label.textContent=`${{card.querySelector('.layout-id').textContent}} · ${{card.dataset.name}}`;
+    updateActivePrompt();
     copyButton.textContent=I18N[currentLang].copyBtn;
     dialog.showModal();
 }}

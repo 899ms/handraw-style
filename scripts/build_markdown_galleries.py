@@ -211,7 +211,8 @@ def build_layouts_md() -> None:
                     else:
                         en_part = ""
                     prompt_en = en_part.replace("|", "&#124;").replace("\n", "<br>")
-                cell = f"<img src='{rel_img}' width='260' alt='{l['id']}'><br>**{l['id']}**"
+                name_en = l.get("name_en") or l.get("name", "")
+                cell = f"<img src='{rel_img}' width='260' alt='{l['id']} {name_en}'><br>**{l['id']}** · {name_en}"
                 if prompt_en:
                     cell += f"<br><details><summary>View Layout Prompt</summary><br>{prompt_en}</details>"
                 row_cells.append(cell)

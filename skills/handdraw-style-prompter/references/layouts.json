@@ -11,7 +11,8 @@
       "下方主图",
       "上下结构",
       "简洁构图"
-    ]
+    ],
+    "name_en": "Text-Above-Image Social Card"
   },
   {
     "id": "SC-002",
@@ -25,7 +26,8 @@
       "图文留白",
       "纯色背景",
       "极简"
-    ]
+    ],
+    "name_en": "Text-Dominant Bottom-Graphic Card"
   },
   {
     "id": "SC-003",
@@ -39,7 +41,8 @@
       "带框",
       "纯色背景",
       "留白"
-    ]
+    ],
+    "name_en": "Two-Panel Stacked Card"
   },
   {
     "id": "SC-004",
@@ -53,7 +56,8 @@
       "带框",
       "纯色背景",
       "留白"
-    ]
+    ],
+    "name_en": "Two-Panel Split Section Card"
   },
   {
     "id": "SC-005",
@@ -68,7 +72,8 @@
       "无独立标题",
       "大面积留白",
       "简洁构图"
-    ]
+    ],
+    "name_en": "Thought-Bubble Character Card"
   },
   {
     "id": "SC-006",
@@ -83,7 +88,8 @@
       "下层副标题",
       "纯色背景",
       "大面积留白"
-    ]
+    ],
+    "name_en": "Three-Tier Headline Graphic Card"
   },
   {
     "id": "SC-007",
@@ -98,7 +104,8 @@
       "关键词重点化",
       "右下下划线",
       "适配emoji"
-    ]
+    ],
+    "name_en": "Quote Keyword Typography Card"
   },
   {
     "id": "SC-008",
@@ -113,7 +120,8 @@
       "角色概括",
       "纯色背景",
       "大面积留白"
-    ]
+    ],
+    "name_en": "Image-Above-Text Whitespace Card"
   },
   {
     "id": "SC-009",
@@ -127,7 +135,8 @@
       "右下辅助图",
       "简洁构图",
       "文字型社媒卡"
-    ]
+    ],
+    "name_en": "Centered Text Corner Graphic Card"
   },
   {
     "id": "SC-010",
@@ -142,7 +151,8 @@
       "简短列表",
       "简单配图",
       "图文融合"
-    ]
+    ],
+    "name_en": "Two-Panel List & Graphic Card"
   },
   {
     "id": "SC-011",
@@ -157,7 +167,8 @@
       "多场景配图",
       "简单标注",
       "大面积留白"
-    ]
+    ],
+    "name_en": "Central Hero Multi-Scene Card"
   },
   {
     "id": "SC-012",
@@ -172,7 +183,8 @@
       "中心对称",
       "图标环绕",
       "简洁构图"
-    ]
+    ],
+    "name_en": "Center Title Top-Bottom Icon Card"
   },
   {
     "id": "SC-014",
@@ -187,7 +199,8 @@
       "不规则分布",
       "主视觉优先",
       "底部总结"
-    ]
+    ],
+    "name_en": "Whitespace-Driven Hero Information Card"
   },
   {
     "id": "SC-015",
@@ -202,7 +215,8 @@
       "补充说明",
       "对照递进",
       "手机端阅读"
-    ]
+    ],
+    "name_en": "Two-Tier Progressive Short-Phrase Card"
   },
   {
     "id": "SC-016",
@@ -217,7 +231,8 @@
       "小型视觉点缀",
       "四角弱信息",
       "极简社媒卡"
-    ]
+    ],
+    "name_en": "Minimalist Big-Type Accent Card"
   },
   {
     "id": "SC-017",
@@ -232,7 +247,8 @@
       "文字参与构图",
       "大面积留白",
       "角色概括"
-    ]
+    ],
+    "name_en": "Freely Annotated Whitespace Card"
   },
   {
     "id": "SC-018",
@@ -247,7 +263,8 @@
       "自由分布",
       "极短标签",
       "大面积留白"
-    ]
+    ],
+    "name_en": "Center Hero Surrounding Info Card"
   },
   {
     "id": "SC-019",
@@ -262,7 +279,8 @@
       "细线指向",
       "三级结构",
       "手机端阅读"
-    ]
+    ],
+    "name_en": "Central Character Leader-Line Card"
   },
   {
     "id": "SC-020",
@@ -277,7 +295,8 @@
       "非对称布局",
       "4-6个小单元",
       "底部总结"
-    ]
+    ],
+    "name_en": "Asymmetric Hero & Group Cluster Card"
   },
   {
     "id": "IG-001",
@@ -291,7 +310,8 @@
       "分层结构",
       "标签图标",
       "多层信息图"
-    ]
+    ],
+    "name_en": "Pyramid Hierarchy Icon Infographic"
   },
   {
     "id": "IG-002",
@@ -305,7 +325,8 @@
       "环绕注释",
       "部位说明",
       "标注图"
-    ]
+    ],
+    "name_en": "Central Hero Callout Infographic"
   },
   {
     "id": "IG-003",
@@ -320,7 +341,8 @@
       "右侧图片",
       "逐行比较",
       "信息图"
-    ]
+    ],
+    "name_en": "Multi-Row Side-by-Side Comparison"
   },
   {
     "id": "IG-004",
@@ -335,7 +357,8 @@
       "左右分栏",
       "逐项比较",
       "信息图"
-    ]
+    ],
+    "name_en": "Two-Column Multi-Row Comparison"
   },
   {
     "id": "IG-005",
@@ -350,7 +373,8 @@
       "下方图鉴单元",
       "分类浏览",
       "强层级结构"
-    ]
+    ],
+    "name_en": "Hero Visual Catalog Infographic"
   },
   {
     "id": "IG-006",
@@ -365,7 +389,8 @@
       "右侧带字图标",
       "整齐排列",
       "信息图"
-    ]
+    ],
+    "name_en": "Multi-Tier Headline Icon Comparison"
   },
   {
     "id": "IG-007",
@@ -379,7 +404,8 @@
       "底部短句",
       "纯色背景",
       "留白"
-    ]
+    ],
+    "name_en": "Bold Headline Tag Cards"
   },
   {
     "id": "IG-008",
@@ -394,7 +420,8 @@
       "纵向流程",
       "S形路径",
       "一步一图一句"
-    ]
+    ],
+    "name_en": "Multi-Path Process Step Flow"
   },
   {
     "id": "IG-009",
@@ -410,7 +437,8 @@
       "节点小图",
       "时间短句",
       "大面积留白"
-    ]
+    ],
+    "name_en": "Timeline Milestone Infographic"
   },
   {
     "id": "IG-010",
@@ -425,7 +453,8 @@
       "上升箭头",
       "层级结构",
       "大面积留白"
-    ]
+    ],
+    "name_en": "Stage Progression Infographic"
   },
   {
     "id": "IG-011",
@@ -441,7 +470,8 @@
       "上下对比",
       "箭头",
       "少量说明"
-    ]
+    ],
+    "name_en": "Before & After Comparison Infographic"
   },
   {
     "id": "IG-012",
@@ -456,7 +486,8 @@
       "表层深层",
       "层级关系",
       "层层递进"
-    ]
+    ],
+    "name_en": "Layered Hierarchy Infographic"
   },
   {
     "id": "IG-013",
@@ -472,7 +503,8 @@
       "淘汰",
       "聚焦",
       "层级递进"
-    ]
+    ],
+    "name_en": "Conversion Funnel Infographic"
   },
   {
     "id": "IG-014",
@@ -487,7 +519,8 @@
       "四象限",
       "横纵坐标",
       "象限对比"
-    ]
+    ],
+    "name_en": "Four-Quadrant Matrix Infographic"
   },
   {
     "id": "IG-015",
@@ -502,7 +535,8 @@
       "纵轴",
       "对象分布",
       "位置关系"
-    ]
+    ],
+    "name_en": "Coordinate Scatter Plot Infographic"
   },
   {
     "id": "IG-016",
@@ -517,7 +551,8 @@
       "层级分支",
       "父子关系",
       "末端节点"
-    ]
+    ],
+    "name_en": "Categorical Tree Hierarchy Infographic"
   },
   {
     "id": "IG-017",
@@ -532,7 +567,8 @@
       "多条分支",
       "层级关系",
       "辐射展开"
-    ]
+    ],
+    "name_en": "Mind Map Radial Infographic"
   },
   {
     "id": "IG-018",
@@ -547,7 +583,8 @@
       "复杂网络",
       "节点群",
       "网状结构"
-    ]
+    ],
+    "name_en": "Relationship Network Infographic"
   },
   {
     "id": "IG-019",
@@ -562,7 +599,8 @@
       "反馈迭代",
       "闭环流程",
       "持续循环"
-    ]
+    ],
+    "name_en": "Closed-Loop Cycle Infographic"
   },
   {
     "id": "IG-020",
@@ -577,7 +615,8 @@
       "阶段路标",
       "蜿蜒路线",
       "游戏地图式"
-    ]
+    ],
+    "name_en": "Narrative Route Map Infographic"
   },
   {
     "id": "IG-021",
@@ -592,7 +631,8 @@
       "区域关系",
       "图例简洁",
       "空间分布"
-    ]
+    ],
+    "name_en": "Geographic Map with Annotations"
   },
   {
     "id": "IG-022",
@@ -607,7 +647,8 @@
       "数据冲击",
       "极短说明",
       "极简数字"
-    ]
+    ],
+    "name_en": "Big Number Stat Highlight Infographic"
   },
   {
     "id": "IG-023",
@@ -622,7 +663,8 @@
       "纵向排行",
       "核心数据",
       "领跑视觉"
-    ]
+    ],
+    "name_en": "Leaderboard Ranking Infographic"
   },
   {
     "id": "IG-024",
@@ -637,7 +679,8 @@
       "百分比",
       "份额占比",
       "整体部分"
-    ]
+    ],
+    "name_en": "Part-to-Whole Composition Infographic"
   },
   {
     "id": "IG-025",
@@ -652,7 +695,8 @@
       "真实尺度",
       "视觉比较",
       "递进关系"
-    ]
+    ],
+    "name_en": "Scale Comparison Infographic"
   },
   {
     "id": "IG-026",
@@ -667,7 +711,8 @@
       "引导线说明",
       "组成关系",
       "剖析结构"
-    ]
+    ],
+    "name_en": "Exploded Assembly View Infographic"
   },
   {
     "id": "IG-027",
@@ -682,7 +727,8 @@
       "楼层结构",
       "功能分区",
       "透视切口"
-    ]
+    ],
+    "name_en": "Cutaway Sectional View Infographic"
   },
   {
     "id": "IG-028",
@@ -697,7 +743,8 @@
       "信息节点",
       "场景串联",
       "沉浸叙事"
-    ]
+    ],
+    "name_en": "Continuous Scene Panoramic Infographic"
   },
   {
     "id": "IG-029",
@@ -712,7 +759,8 @@
       "形态差异",
       "特征标注",
       "角色概括"
-    ]
+    ],
+    "name_en": "Character Ensemble Label Infographic"
   },
   {
     "id": "IG-030",
@@ -727,7 +775,8 @@
       "知识图谱",
       "短文字",
       "弱中心关系"
-    ]
+    ],
+    "name_en": "Core Hero Knowledge Map Infographic"
   },
   {
     "id": "IG-031",
@@ -743,7 +792,8 @@
       "博物馆导览",
       "图文混排",
       "理性设计"
-    ]
+    ],
+    "name_en": "Encyclopedic Specimen Information Card"
   },
   {
     "id": "SB-001",
@@ -757,7 +807,8 @@
       "等分面板",
       "稳定节奏",
       "日常对白"
-    ]
+    ],
+    "name_en": "Regular Grid"
   },
   {
     "id": "SB-002",
@@ -771,7 +822,8 @@
       "起承转合",
       "四等格",
       "搞笑短剧"
-    ]
+    ],
+    "name_en": "Four-Panel Kishōtenketsu"
   },
   {
     "id": "SB-003",
@@ -785,7 +837,8 @@
       "一大配多小",
       "视觉重点",
       "节奏对比"
-    ]
+    ],
+    "name_en": "Hero Panel + Inset Panels"
   },
   {
     "id": "SB-004",
@@ -799,7 +852,8 @@
       "横跨页面",
       "建立场景",
       "开场分镜"
-    ]
+    ],
+    "name_en": "Top Splash Panel Opening"
   },
   {
     "id": "SB-005",
@@ -813,7 +867,8 @@
       "高潮收尾",
       "情绪落点",
       "反转揭示"
-    ]
+    ],
+    "name_en": "Bottom Climax Panel Ending"
   },
   {
     "id": "SB-006",
@@ -827,7 +882,8 @@
       "视觉中心",
       "核心爆发",
       "动作高潮"
-    ]
+    ],
+    "name_en": "Center Focal Panel"
   },
   {
     "id": "SB-007",
@@ -841,7 +897,8 @@
       "斜线构图",
       "速度感",
       "冲突对峙"
-    ]
+    ],
+    "name_en": "Diagonal Dynamic Split"
   },
   {
     "id": "SB-008",
@@ -855,7 +912,8 @@
       "视线流动",
       "经典阅读路径",
       "清晰叙事"
-    ]
+    ],
+    "name_en": "Z-Pattern Reading Flow"
   },
   {
     "id": "SB-009",
@@ -869,7 +927,8 @@
       "柔和曲线",
       "轻快浪漫",
       "旅途叙事"
-    ]
+    ],
+    "name_en": "S-Curve Narrative Flow"
   },
   {
     "id": "SB-010",
@@ -883,7 +942,8 @@
       "环形收拢",
       "层层逼近",
       "核心聚焦"
-    ]
+    ],
+    "name_en": "Spiral Inward Flow"
   },
   {
     "id": "SB-011",
@@ -897,7 +957,8 @@
       "向心聚拢",
       "爆发时刻",
       "强焦点"
-    ]
+    ],
+    "name_en": "Radial Converging Panels"
   },
   {
     "id": "SB-012",
@@ -911,7 +972,8 @@
       "玻璃破碎",
       "混乱战斗",
       "心理冲击"
-    ]
+    ],
+    "name_en": "Shattered Glass Panels"
   },
   {
     "id": "SB-013",
@@ -925,7 +987,8 @@
       "越界动态",
       "空间突破",
       "力量感"
-    ]
+    ],
+    "name_en": "Border Break"
   },
   {
     "id": "SB-014",
@@ -939,7 +1002,8 @@
       "连续动作",
       "跨格延伸",
       "流动感"
-    ]
+    ],
+    "name_en": "Multi-Panel Spanning Character"
   },
   {
     "id": "SB-015",
@@ -953,7 +1017,8 @@
       "共享空间",
       "全景延续",
       "时空位移"
-    ]
+    ],
+    "name_en": "Continuous Background Across Panels"
   },
   {
     "id": "SB-016",
@@ -967,7 +1032,8 @@
       "完整空间",
       "多位置连续",
       "纯镜头感"
-    ]
+    ],
+    "name_en": "Single Continuous Take"
   },
   {
     "id": "SB-017",
@@ -981,7 +1047,8 @@
       "连续画格",
       "时间推进",
       "电影质感"
-    ]
+    ],
+    "name_en": "Cinematic Filmstrip"
   },
   {
     "id": "SB-018",
@@ -995,7 +1062,8 @@
       "横向宽幅",
       "宏大场景",
       "动作场面"
-    ]
+    ],
+    "name_en": "Widescreen Horizontal Panels"
   },
   {
     "id": "SB-019",
@@ -1009,7 +1077,8 @@
       "细长垂直",
       "高空坠落",
       "纵向运动"
-    ]
+    ],
+    "name_en": "Vertical Skyscraper Panels"
   },
   {
     "id": "SB-020",
@@ -1023,7 +1092,8 @@
       "极速插入",
       "局部特写",
       "节奏切换"
-    ]
+    ],
+    "name_en": "Ultra-Slim Reaction Insets"
   },
   {
     "id": "SB-021",
@@ -1037,7 +1107,8 @@
       "对峙神态",
       "心理悬念",
       "情绪升级"
-    ]
+    ],
+    "name_en": "Eye Close-Up Sequence"
   },
   {
     "id": "SB-022",
@@ -1051,7 +1122,8 @@
       "关键细节",
       "局部操作",
       "推进动作"
-    ]
+    ],
+    "name_en": "Hand Action Sequence"
   },
   {
     "id": "SB-023",
@@ -1065,7 +1137,8 @@
       "远景到特写",
       "层层逼近",
       "紧张感累积"
-    ]
+    ],
+    "name_en": "Long Shot to Extreme Close-Up"
   },
   {
     "id": "SB-024",
@@ -1079,7 +1152,8 @@
       "特写拉远",
       "揭晓真相",
       "环境反差"
-    ]
+    ],
+    "name_en": "Extreme Close-Up to Wide Reveal"
   },
   {
     "id": "SB-025",
@@ -1093,7 +1167,8 @@
       "交替对视",
       "台词博弈",
       "对话节奏"
-    ]
+    ],
+    "name_en": "Shot-Reverse-Shot"
   },
   {
     "id": "SB-026",
@@ -1107,7 +1182,8 @@
       "快速切换",
       "三级递进",
       "紧凑节拍"
-    ]
+    ],
+    "name_en": "Triple Rapid Close-Ups"
   },
   {
     "id": "SB-027",
@@ -1121,7 +1197,8 @@
       "起势过程",
       "击中反馈",
       "慢动作解析"
-    ]
+    ],
+    "name_en": "Action Breakdown"
   },
   {
     "id": "SB-028",
@@ -1135,7 +1212,8 @@
       "多重影像",
       "高速轨迹",
       "动能表现"
-    ]
+    ],
+    "name_en": "Motion Trail Strobe Sequence"
   },
   {
     "id": "SB-029",
@@ -1149,7 +1227,8 @@
       "微小变化",
       "冷面幽默",
       "尴尬停滞"
-    ]
+    ],
+    "name_en": "Static Panel Repetition"
   },
   {
     "id": "SB-030",
@@ -1163,7 +1242,8 @@
       "急停空白",
       "反高潮",
       "戏剧反差"
-    ]
+    ],
+    "name_en": "Sudden Pacing Halt"
   },
   {
     "id": "SB-031",
@@ -1177,7 +1257,8 @@
       "余韵留白",
       "空旷微小",
       "反差幽默"
-    ]
+    ],
+    "name_en": "Post-Climax Negative Space"
   },
   {
     "id": "SB-032",
@@ -1191,7 +1272,8 @@
       "构图对照",
       "内容反转",
       "前后对比"
-    ]
+    ],
+    "name_en": "Vertical Mirroring"
   },
   {
     "id": "SB-033",
@@ -1205,7 +1287,8 @@
       "两极分化",
       "视觉对抗",
       "阵营博弈"
-    ]
+    ],
+    "name_en": "Split-Side Confrontation"
   },
   {
     "id": "SB-034",
@@ -1219,7 +1302,8 @@
       "双线推进",
       "时空汇聚",
       "多线叙事"
-    ]
+    ],
+    "name_en": "Dual Parallel Storylines"
   },
   {
     "id": "SB-035",
@@ -1233,7 +1317,8 @@
       "两地交替",
       "悬念紧迫",
       "误会冲突"
-    ]
+    ],
+    "name_en": "Cross-Cutting Parallel Action"
   },
   {
     "id": "SB-036",
@@ -1247,7 +1332,8 @@
       "记忆画格",
       "画中画",
       "回忆片段"
-    ]
+    ],
+    "name_en": "Inset Memory Flashback"
   },
   {
     "id": "SB-037",
@@ -1261,7 +1347,8 @@
       "脑洞格",
       "现实幻想",
       "内心喜剧"
-    ]
+    ],
+    "name_en": "Inset Fantasy Bubble"
   },
   {
     "id": "SB-038",
@@ -1275,7 +1362,8 @@
       "多视角监视",
       "悬疑探案",
       "客观观察"
-    ]
+    ],
+    "name_en": "Multi-CCTV Security Grid"
   },
   {
     "id": "SB-039",
@@ -1289,7 +1377,8 @@
       "社交气泡",
       "虚拟现实",
       "现代生活"
-    ]
+    ],
+    "name_en": "Smartphone Chat Overlay"
   },
   {
     "id": "SB-040",
@@ -1303,7 +1392,8 @@
       "线索板",
       "图文便签",
       "破案调查"
-    ]
+    ],
+    "name_en": "Detective Case File Collage"
   },
   {
     "id": "SB-041",
@@ -1317,7 +1407,8 @@
       "大标题排版",
       "时尚版面",
       "图文混排"
-    ]
+    ],
+    "name_en": "Editorial Magazine Layout"
   },
   {
     "id": "SB-042",
@@ -1331,7 +1422,8 @@
       "图表箭头",
       "科普漫画",
       "数据可视化"
-    ]
+    ],
+    "name_en": "Infographic Comic Hybrid"
   },
   {
     "id": "SB-043",
@@ -1345,7 +1437,8 @@
       "路径引导",
       "空间位移",
       "旅行冒险"
-    ]
+    ],
+    "name_en": "Map & Trail Journey"
   },
   {
     "id": "SB-044",
@@ -1359,7 +1452,8 @@
       "早中晚顺序",
       "时光流转",
       "阶段演进"
-    ]
+    ],
+    "name_en": "Chronological Timeline Progression"
   },
   {
     "id": "SB-045",
@@ -1373,7 +1467,8 @@
       "表盘刻度",
       "倒计时",
       "日周循环"
-    ]
+    ],
+    "name_en": "Clock Face Radial Layout"
   },
   {
     "id": "SB-046",
@@ -1387,7 +1482,8 @@
       "核心道具",
       "环绕事件",
       "物象聚焦"
-    ]
+    ],
+    "name_en": "Central Anchor Prop"
   },
   {
     "id": "SB-047",
@@ -1401,7 +1497,8 @@
       "主角居中",
       "环视多角",
       "众星捧月"
-    ]
+    ],
+    "name_en": "Central Anchor Protagonist"
   },
   {
     "id": "SB-048",
@@ -1415,7 +1512,8 @@
       "闭环循环",
       "首尾相接",
       "时间莫比乌斯"
-    ]
+    ],
+    "name_en": "Circular Loop Narrative"
   },
   {
     "id": "SB-049",
@@ -1429,7 +1527,8 @@
       "纵深俯冲",
       "失重加速",
       "垂直贯穿"
-    ]
+    ],
+    "name_en": "Downward Plunge Flow"
   },
   {
     "id": "SB-050",
@@ -1443,7 +1542,8 @@
       "台阶排版",
       "层级爬升",
       "逐级强化"
-    ]
+    ],
+    "name_en": "Stepped Staircase Progression"
   },
   {
     "id": "SB-051",
@@ -1457,7 +1557,8 @@
       "曲线律动",
       "梦境起伏",
       "音乐流动"
-    ]
+    ],
+    "name_en": "Undulating Wave Flow"
   },
   {
     "id": "SB-052",
@@ -1471,7 +1572,8 @@
       "散点排布",
       "留白飘逸",
       "视线导引"
-    ]
+    ],
+    "name_en": "Free-Floating Unframed Panels"
   },
   {
     "id": "SB-053",
@@ -1485,7 +1587,8 @@
       "自然破框",
       "呼吸留白",
       "有机排版"
-    ]
+    ],
+    "name_en": "Frameless Organic Narrative"
   },
   {
     "id": "SB-054",
@@ -1499,7 +1602,8 @@
       "大面积留白",
       "极简留白",
       "诗意克制"
-    ]
+    ],
+    "name_en": "Generous Negative Space"
   },
   {
     "id": "SB-055",
@@ -1513,7 +1617,8 @@
       "全版画格",
       "视觉爆点",
       "高潮定格"
-    ]
+    ],
+    "name_en": "Full-Bleed Splash Page"
   },
   {
     "id": "SB-056",
@@ -1527,7 +1632,8 @@
       "中央对称",
       "双页模拟",
       "史诗宽幅"
-    ]
+    ],
+    "name_en": "Simulated Double-Page Spread"
   },
   {
     "id": "SB-057",
@@ -1541,7 +1647,8 @@
       "主视觉封面",
       "画中嵌入",
       "故事附着"
-    ]
+    ],
+    "name_en": "Poster-Style Narrative"
   },
   {
     "id": "SB-058",
@@ -1555,7 +1662,8 @@
       "杂志头条",
       "刊头标题",
       "完整情节"
-    ]
+    ],
+    "name_en": "Magazine Cover Narrative"
   },
   {
     "id": "SB-059",
@@ -1569,7 +1677,8 @@
       "固定机位",
       "角色进出",
       "戏剧空间"
-    ]
+    ],
+    "name_en": "Fixed Proscenium Stage"
   },
   {
     "id": "SB-060",
@@ -1583,7 +1692,8 @@
       "长卷漫步",
       "连续画卷",
       "步移景异"
-    ]
+    ],
+    "name_en": "Horizontal Continuous Scroll"
   },
   {
     "id": "SB-061",
@@ -1597,7 +1707,8 @@
       "立轴画幅",
       "垂直流转",
       "古风长卷"
-    ]
+    ],
+    "name_en": "Vertical Hanging Scroll"
   },
   {
     "id": "SB-062",
@@ -1611,7 +1722,8 @@
       "倒影双重视角",
       "双重人格",
       "心理对照"
-    ]
+    ],
+    "name_en": "Mirror Reflection Dualism"
   },
   {
     "id": "SB-063",
@@ -1625,7 +1737,8 @@
       "现实画框",
       "门窗借景",
       "空间切割"
-    ]
+    ],
+    "name_en": "Architectural Window Framing"
   },
   {
     "id": "SB-064",
@@ -1639,7 +1752,8 @@
       "前景遮挡",
       "自然隔断",
       "纵深分层"
-    ]
+    ],
+    "name_en": "Foreground Silhouette Framing"
   },
   {
     "id": "SB-065",
@@ -1653,7 +1767,8 @@
       "字形骨架",
       "拟声构架",
       "图文共构"
-    ]
+    ],
+    "name_en": "Typographic Scaffold Layout"
   },
   {
     "id": "SB-066",
@@ -1667,7 +1782,8 @@
       "巨大声效",
       "动势贯通",
       "冲击力"
-    ]
+    ],
+    "name_en": "Onomatopoeia Trail"
   },
   {
     "id": "SB-067",
@@ -1681,7 +1797,8 @@
       "纯色分隔",
       "情绪色彩",
       "平面设计感"
-    ]
+    ],
+    "name_en": "Color Block Panel Partitions"
   },
   {
     "id": "SB-068",
@@ -1695,6 +1812,7 @@
       "非矩形面板",
       "圆形三角",
       "视觉律动"
-    ]
+    ],
+    "name_en": "Non-Rectangular Geometric Mosaic"
   }
 ]
