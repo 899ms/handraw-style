@@ -504,16 +504,16 @@
 | 246 · OscarAI | Vintage 70s European Comic Animation Cel | 70年代欧洲传统手绘手作动画风、质朴粗糙的手绘石墙背景、夸张滑稽的红发大胡子卫兵与尖帽侍从、古典讽刺动画与阿斯特里克斯式的幽默神态。 |
 | 247 · OscarAI | Modern Cinematic 2D Character Animation | 现代电影级2D动画角色插画风、灵动深邃的大眼睛与微卷盘发墨镜、细腻柔和的室内环境光影与利落干净的动画清线造型。 |
 | 248 · 歸藏(guizang.ai) | Guochao Fantasy Architectural Illustration | 唯美国风奇幻建筑插画风、粉紫祥云与巨大明月、青瓦朱墙重檐宫殿楼阁与山石古松、扁平清丽的东方意境与梦幻国潮配色。 |
-| 249 · OscarAI | Tactile Papercraft & Fabric 3D Cartoon | 手工纸艺与布纹质感3D卡通风、微型手工收藏品玩偶感、定格动画与潮玩艺术玩具设计、夸张生动五官与趣味身体比例、纯净白底、真实微距立体柔光光影。 |
+| 249 · OscarAI | Tactile Papercraft & Fabric 3D Cartoon | 纸雕+折纸+布纹质感3D卡通风、夸张生动五官与趣味身体比例、真实微距立体柔光光影。 |
 | 250 · Shinyi | Stylized Cinematic Action-Comedy Character | 风格化大块面剪影动画插画风、夸张强壮的胡子大叔与市井风情、干练几何块面平涂与微颗粒光影、充满动势与幽默张力的街头角色原画。 |
 | 251 · 城野ぱすてる | Glossy Mecha Cyber Flower Doll | 高光亮面机甲机娘潮玩风、鲜艳大红与金边机甲涂装、机械巨镰与彼岸花发饰造型、极致精细的机械关节与陶瓷般高光质感。 |
 | 252 · なっくす | Soft Crayon & Sumi-e Cat Storybook | 温润蜡笔与水墨和风绘本风、质朴手绘炭笔蜡笔颗粒肌理、巨型猫咪的翡翠绿眼与细腻毛流、微型人偶与红色印章、充满童趣温暖的日式日常绘本。 |
 | 253 · James Yeung | Minimalist Poetic Sempé Ink Doodle | 极简法式诗意水墨线描风、桑贝式松弛写意小人与萌宠、大面积纯净留白、质朴手绘墨水笔触、治愈松弛的都市童心与生活小哲思。 |
-| 254 · AI Prompt Library - PROMPTSREF | New Chinese Gongbi & Shanghai Vintage Fantasy | 新中式细腻工笔重彩与民国月份牌复古风、精巧流畅的游丝铁线描、温润矿物颜料渐变晕染、典雅华贵的东方神话与旗袍仕女、空灵幽远的东方古典美学。 |
+| 254 · 几米 | Jimmy Liao Whimsical & Poetic Storybook Watercolor | 几米绘本插画风、大面积纯净留白与空灵通透构图、童真童趣与细腻温情、淡雅水彩晕染与柔和手绘线条、治愈诗意的绘本故事感。 |
 | 255 · midlibrary | Modern Minimalist Sumi-e & Red Gouache Illustration | 现代极简水墨与高对比度红黑插画风、粗粝松弛的宣纸焦墨飞白干笔、大块纯色水粉撞色平涂、现代几何构图与东方意境留白。 |
-| 256 · Morph | Chinese Ink Travelogue & Woodblock Collage | 中式水墨旅行手账与复古木刻版画拼贴风、拓印肌理与书法印章排版、温润复古暖橙与灰蓝水墨调和、充满诗意与市井烟火气的东方纪行美学。 |
+| 256 · 丰子恺 | Feng Zikai Literati Brushwork & Whimsical Ink Sketch | 丰子恺文人漫画风格、大面积宣纸意境留白、朴实幽默与生活哲思趣意、简练写意的传统毛笔水墨勾勒、高度概括生动的人形动态、温润清雅的传统国画设色。 |
 | 257 · midlibrary | Romantic Pink Watercolor Sumi-e Wash | 浪漫粉调新东风水墨晕染风、柔和半透明水粉水彩层次、写意书法墨色点缀、轻盈梦幻的落樱花瓣与东方抒情写意。 |
-| 258 · AI Prompt Library - PROMPTSREF | Vivid Watercolor Anime Fantasy World | 鲜艳水彩与日系动画奇幻风、高饱和明快撞色色块、生动表现力墨水勾线、电影感通透光影与梦幻游戏插画质感。 |
+| 258 · yang02010 | Minimalist Atmospheric Storybook & Vast Scale Contrast | 现代极简绘本插画风、大面积同色系连续环境主导画面、背景极度简化并仅保留少量必要景物、人物微缩与宏大环境强烈尺度反差、安静松弛与诗意孤独氛围、非对称大面积负空间留白、主体轮廓简练概括、手绘笔触与纸张颗粒/蜡笔丙烯干刷纹理。 |
 | 259 · 牙仔⇌ | Retro Gouache Narrative Character Illustration | 复古厚涂水粉叙事插画风、颗粒磨砂纸张肌理、朴实质感的人物造型与暖调复古色相、充满时代温度的绘本生活场景。 |
 | 260 · 牙仔⇌ | Chic Stylized Anime Comic Art | 潮流风格化日系动漫插画风、利落流畅的手绘线稿、鲜明平涂色块与网点纸微纹理、极具辨识度的时尚青年角色设计。 |
 | 261 · OscarAI | Charming 2D Animation Feature Character Visdev | 温润细腻的2D动画长片角色概念设计风、大眼与黑框眼镜的生动表情、利落剪影造型与微质感笔触边缘、纯白留白背景、质朴温和的大地与森林色系、极具亲和力与故事感的动画视觉开发(visdev)艺术。 |

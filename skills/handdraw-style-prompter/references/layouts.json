@@ -730,6 +730,22 @@
     ]
   },
   {
+    "id": "IG-031",
+    "category": "infographic",
+    "name": "百科全书式信息卡",
+    "image": "../../../images/layouts/infographics/IG-031.webp",
+    "prompt_file": "layouts/IG-031.md",
+    "keywords": [
+      "百科全书",
+      "标本展示",
+      "多模块信息",
+      "细线网格",
+      "博物馆导览",
+      "图文混排",
+      "理性设计"
+    ]
+  },
+  {
     "id": "SB-001",
     "category": "comic-storyboard",
     "name": "规则网格",
