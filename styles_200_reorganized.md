@@ -503,7 +503,7 @@
 | 245 · OscarAI | Classic 80s-90s Heroic Fantasy Cel Anime | 80-90年代经典剑与魔法奇幻赛璐珞动画风、纯正手绘赛璐珞质感、红发持剑女勇士与古堡阴影下的重甲战士、古典戏剧性冷暖打光。 |
 | 246 · OscarAI | Vintage 70s European Comic Animation Cel | 70年代欧洲传统手绘手作动画风、质朴粗糙的手绘石墙背景、夸张滑稽的红发大胡子卫兵与尖帽侍从、古典讽刺动画与阿斯特里克斯式的幽默神态。 |
 | 247 · OscarAI | Modern Cinematic 2D Character Animation | 现代电影级2D动画角色插画风、灵动深邃的大眼睛与微卷盘发墨镜、细腻柔和的室内环境光影与利落干净的动画清线造型。 |
-| 248 · 歸藏(guizang.ai) | Guochao Fantasy Architectural Illustration | 唯美国风奇幻建筑插画风、粉紫祥云与巨大明月、青瓦朱墙重檐宫殿楼阁与山石古松、扁平清丽的东方意境与梦幻国潮配色。 |
+| 248 · OscarAI | Tactile Soft 3D Claymation & Storybook Character | 手作触感软萌3D黏土定格动画风、圆润柔和造型与趣味夸张身体比例、微颗粒手作黏土肌理、生动鲜明的个性化角色、介于定格动画玩偶与现代儿童插画绘本之间的温暖美学。 |
 | 249 · OscarAI | Tactile Papercraft & Fabric 3D Cartoon | 纸雕+折纸+布纹质感3D卡通风、夸张生动五官与趣味身体比例、真实微距立体柔光光影。 |
 | 250 · Shinyi | Stylized Cinematic Action-Comedy Character | 风格化大块面剪影动画插画风、夸张强壮的胡子大叔与市井风情、干练几何块面平涂与微颗粒光影、充满动势与幽默张力的街头角色原画。 |
 | 251 · 儿童蜡笔手绘绘本 | Charming Children Crayon Storybook | 儿童蜡笔手绘绘本风、粗蜡笔涂抹质感与明显手绘肌理、低幼绘本插画、童真可爱、造型简化与平视视角、画面干净简约、温暖柔和马卡龙配色、明亮轻快、线条自然稚拙、整体温暖治愈。 |
