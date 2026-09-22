@@ -6,7 +6,7 @@
 
 > **Struggling to describe art styles? Trouble structuring visual layouts? Simply pick an index number to generate highly recognizable AI image prompts.**
 
-This repository curates **277 distinct hand-drawn illustration styles** (`001`–`277`), **118 composition layout patterns** (`SC-*` Social Cards, `IG-*` Infographics, `SB-*` Comic Storyboards), and **30 curated classic monochrome colors** (`C-01`–`C-30`).
+This repository curates **277 distinct hand-drawn illustration styles** (`001`–`277`), **119 composition layout patterns** (`SC-*` Social Cards, `IG-*` Infographics, `SB-*` Comic Storyboards), and **30 curated classic monochrome colors** (`C-01`–`C-30`).
 
 Whether you are crafting social media post covers, educational infographics, architectural comparisons, or multi-panel narrative comics, you no longer need to memorize obscure art history terminology or struggle with complex compositions. **Simply choose a style number, layout ID, and theme color, supply your topic, and instantly get verified, high-fidelity bilingual prompts ready to paste into Midjourney, DALL-E 3, Flux, Stable Diffusion, or any other image generator.**
 
@@ -17,7 +17,7 @@ Whether you are crafting social media post covers, educational infographics, arc
 | Creator Pain Point | How This Library Solves It |
 | :--- | :--- |
 | **Vague style descriptions lead to style drift** | **Numbered Indexing**: 277 systematically categorized illustration styles, eliminating guess-and-pray prompting. |
-| **Monotonous composition; hard to format complex graphics** | **118 Layout Compositions**: 19 Social Cards, 31 Infographics, 68 Comic Storyboards ready out-of-the-box. |
+| **Monotonous composition; hard to format complex graphics** | **119 Layout Compositions**: 19 Social Cards, 32 Infographics, 68 Comic Storyboards ready out-of-the-box. |
 | **Chaotic color palettes lack a cohesive tonal mood** | **30 Curated Monochrome Colors**: Klein Blue, Sage Green, Hermes Orange, etc., setting pure and sophisticated tones with one click. |
 | **Text disconnects from art; awkward typography placement** | **Dual-Mode Workflow**: Seamlessly toggle between "Pure-Image Mode" (pure illustration) and "Graphic-Text Mode" (unified visual-textual composition). |
 | **Models ignore style keywords or lack style fidelity** | **Tiered Model Adaptation & Fallback**: Calibrated keyword activation for native models; automatic Reference Image Fallback (4-grid sheets) for all third-party models. |
@@ -109,7 +109,7 @@ Here is a contact sheet preview of featured hand-drawn illustration styles (001�
 
 ## Layout Compositions Showcase
 
-In addition to 277 illustration styles, this library includes **118 composition layout patterns**, covering social cards, data infographics, and multi-panel storyboards. Combine any style with any layout with a single command.
+In addition to 277 illustration styles, this library includes **119 composition layout patterns**, covering social cards, data infographics, and multi-panel storyboards. Combine any style with any layout with a single command.
 
 ### 1. Social Cards (19 Layouts)
 
@@ -121,13 +121,13 @@ Ideal for Xiaohongshu, Instagram, quote cards, and social media carousels. Inclu
 
 ---
 
-### 2. Infographics (31 Layouts)
+### 2. Infographics (32 Layouts)
 
 Ideal for knowledge breakdowns, comparison checklists, step-by-step processes, and structured data visuals. Includes hierarchy pyramids, central icons, matrices, and multi-column comparison tables.
 
 ![Infographics Category Preview](images/layouts/preview-infographics.webp)
 
-👉 **[View All Infographic Layouts (31 Visuals & Prompts)](LAYOUTS_en.md#infographics)**
+👉 **[View All Infographic Layouts (32 Visuals & Prompts)](LAYOUTS_en.md#infographics)**
 
 ---
 
@@ -141,7 +141,7 @@ Ideal for multi-panel narratives, webtoons, emotional storylines, and cinematic 
 
 ---
 
-- 💡 **[👉 Enter Full Layout Visual Sheet to Browse All 118 Layouts & Prompts ↗](LAYOUTS_en.md)**
+- 💡 **[👉 Enter Full Layout Visual Sheet to Browse All 119 Layouts & Prompts ↗](LAYOUTS_en.md)**
 - 💻 *(For offline interactive search and category filtering, open `skills/handdraw-style-prompter/gallery/layouts.html` in your local browser)*
 
 ---
