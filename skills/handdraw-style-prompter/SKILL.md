@@ -11,7 +11,7 @@ Default to creating prompts only. Do not call an image-generation tool unless th
 
 Use the same capability decision for prompt-only and explicit image-generation requests. Resolve the selected/current model (or model family) against `references/model_capabilities.json`; if no model is specified, use the default capability fallback. The decision uses the indexed author name plus the generated style name and is not based on the author's fame or life status.
 
-- `name_activation=strong`: use only the indexed author name, generated style name, and theme.
+- `name_activation=strong`: use only the indexed author name, generated style name, and theme. (Specifically for style #011 David Shrigley, author name activation is strong; when generating images, pass only the author name and do not pass reference images.)
 - Otherwise, include every available positive core trait with the author/style name and theme.
 - If name plus traits is not strongly activated, also require the configured reference asset. For explicit generation, pass it through `referenced_image_paths`. In `pure-image` prompt-only output, write the local asset path and reference-isolation instruction inside both prompts for the user to upload manually. In `graphic-text` prompt-only output, do not place a path, upload instruction, or isolation block inside either copyable prompt; show the resolved reference image to the user outside the prompts instead. Assets live under the installed package root in numbered 200-style buckets: for example, #217 uses `images/individual/201-400/217_grid.webp`.
 - If no positive core trait exists, do not invent one; use the author/style name, theme, and reference image when required.

@@ -60,6 +60,9 @@ def main() -> None:
         fail("unknown model must use reference image")
     if resolve("gpt-image-2", "001")["use_reference_image"] is not False:
         fail("gpt-image-2 style 001 should use name activation")
+    style_011_res = resolve("gpt-image-2", "011")
+    if style_011_res["activation_source"] != "name+style" or style_011_res["use_reference_image"] is not False or style_011_res["prompt_traits"]:
+        fail("style 011 must use author name activation only without reference image or traits")
     manual_name = resolve("gpt-image-2", "262")
     if manual_name["activation_source"] != "name+style" or manual_name["use_reference_image"] or manual_name["prompt_traits"]:
         fail("text-defined name-only style must use name activation without an image or traits")
