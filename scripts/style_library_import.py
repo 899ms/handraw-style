@@ -47,6 +47,7 @@ def create_numbered_tile(source_path: Path, number: str, output_path: Path, badg
     with Image.open(source_path) as source:
         image = source.convert("RGB").resize((512, 512), Image.Resampling.LANCZOS)
     if badge_label:
+        draw = ImageDraw.Draw(image)
         font = None
         for font_name in ("arialbd.ttf", "Arial Bold.ttf", "DejaVuSans-Bold.ttf", "arial.ttf"):
             try:
@@ -111,13 +112,27 @@ def update_readme_and_skill(number: str) -> None:
     readme_path = ROOT / "README.md"
     content = readme_path.read_text(encoding="utf-8")
     content = re.sub(r"001–\d+ 种手绘风格", f"001–{number} 种手绘风格", content)
-    content = re.sub(r"（\d+ 种风格 Markdown 详细表格", f"（{number} 种风格 Markdown 详细表格", content)
+    content = re.sub(r"\b\d+ 种手绘插画风格体系", f"{int(number)} 种手绘插画风格体系", content)
+    content = re.sub(r"001–\d+ 完整风格拼图大表", f"001–{number} 完整风格拼图大表", content)
+    content = re.sub(r"（\d+ 种风格 Markdown 详细表格", f"（{int(number)} 种风格 Markdown 详细表格", content)
     content = re.sub(r"### G · 附件新增 / 中国当代插画补充（201–\d+）", "### G · 附件新增 / 中国当代插画补充（201–216）", content)
     content = re.sub(r"### H · 其他（217–\d+）", f"### H · 其他（217–{number}）", content)
     for prefix, title in (("G", "### G · 附件新增 / 中国当代插画补充"), ("H", "### H · 其他")):
         pattern = re.compile(rf"({re.escape(title)}[^\n]*\n\n)(?:!\[{prefix} [^\]]+\]\(images/{prefix}_[^)]+\.webp\)\n*\s*)+", re.MULTILINE)
         content = pattern.sub(r"\1" + _sheet_lines(prefix) + "\n\n", content)
     readme_path.write_text(content.strip() + "\n", encoding="utf-8")
+
+    readme_en_path = ROOT / "README_en.md"
+    if readme_en_path.exists():
+        en_content = readme_en_path.read_text(encoding="utf-8")
+        en_content = re.sub(r"\b\d+ distinct hand-drawn illustration styles\b", f"{int(number)} distinct hand-drawn illustration styles", en_content)
+        en_content = re.sub(r"`001`–`\d+`", f"`001`–`{number}`", en_content)
+        en_content = re.sub(r"\b\d+ systematically categorized", f"{int(number)} systematically categorized", en_content)
+        en_content = re.sub(r"for all \d+ styles", f"for all {int(number)} styles", en_content)
+        en_content = re.sub(r"\(001–\d+ Full Visual Contact Sheets\)", f"(001–{number} Full Visual Contact Sheets)", en_content)
+        en_content = re.sub(r"\(\d+ Styles Table & Core Traits\)", f"({int(number)} Styles Table & Core Traits)", en_content)
+        en_content = re.sub(r"In addition to \d+ illustration styles", f"In addition to {int(number)} illustration styles", en_content)
+        readme_en_path.write_text(en_content.strip() + "\n", encoding="utf-8")
 
     for path in (ROOT / "SKILL.md", SKILL_DIR / "SKILL.md"):
         content = path.read_text(encoding="utf-8")

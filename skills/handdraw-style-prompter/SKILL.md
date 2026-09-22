@@ -1,6 +1,6 @@
 ---
 name: handdraw-style-prompter
-description: Turn a 001–274 hand-drawn style number and image theme into bilingual prompts, using model capability data to decide when core traits and a numbered reference image are required.
+description: Turn a 001–275 hand-drawn style number and image theme into bilingual prompts, using model capability data to decide when core traits and a numbered reference image are required.
 ---
 
 # Hand-drawn Style Prompter
@@ -45,7 +45,7 @@ This initialization applies only when this Skill is invoked for the first time i
 
 ## Inputs
 
-For style-only work, require a style number (`001`–`274`) and a theme. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; the style number is optional. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If a supplied number or layout ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
+For style-only work, require a style number (`001`–`275`) and a theme. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; the style number is optional. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If a supplied number or layout ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
 
 Users can browse `gallery/index.html` for numbered style contact sheets and `gallery/layouts.html` for layout thumbnails. The authoritative style content is `../../styles_200_reorganized.md`; `references/styles.json` is a generated index and must be refreshed with `python scripts/build_library.py` after Markdown changes. Layout metadata is `references/layouts.json`; each entry's bilingual prompt file under `references/layouts/` is the authoritative layout content and the layout gallery is refreshed with `python scripts/build_layout_gallery.py`.
 

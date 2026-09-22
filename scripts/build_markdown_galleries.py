@@ -11,16 +11,23 @@ SKILL = ROOT / "skills" / "handdraw-style-prompter"
 SOURCE_MD = ROOT / "styles_200_reorganized.md"
 LAYOUTS_JSON = SKILL / "references" / "layouts.json"
 
-SHEET_GROUPS = [
-    ("A", "国际社论漫画与幽默手绘（001–035）", "Editorial & Humorous (001–035)", ["A_001-016.webp", "A_017-032.webp", "A_033-035.webp"]),
-    ("B", "国际绘本与叙事型手绘（036–054）", "Picture Book & Narrative (036–054)", ["B_036-048.webp", "B_049-054.webp"]),
-    ("C", "现代平面与艺术化人物体系（055–082）", "Graphic & Stylized Figure (055–082)", ["C_055-070.webp", "C_071-082.webp"]),
-    ("D", "日本作者与当代插画体系（083–123）", "Japanese Contemporary Illustration (083–123)", ["D_083-098.webp", "D_099-114.webp", "D_115-123.webp"]),
-    ("E", "中国作者与当代插画体系（124–154）", "Chinese Contemporary Illustration (124–154)", ["E_124-139.webp", "E_140-154.webp"]),
-    ("F", "通用网感、媒介与地域手绘（155–200）", "Internet Culture, Medium & Regional (155–200)", ["F_155-170.webp", "F_171-186.webp", "F_187-200.webp"]),
-    ("G", "中国当代插画补充（201–216）", "Contemporary Chinese Illustration Supplement (201–216)", ["G_201-216.webp"]),
-    ("H", "其他精选风格（217–274）", "Other Curated Styles (217–274)", ["H_217-232.webp", "H_233-248.webp", "H_249-264.webp", "H_265-274.webp"]),
-]
+def get_sheet_groups():
+    h_sheets = sorted([p.name for p in (ROOT / "images").glob("H_*.webp")])
+    max_num = 274
+    for sheet_name in h_sheets:
+        m = re.search(r"H_\d{3}-(\d{3})\.webp", sheet_name)
+        if m:
+            max_num = max(max_num, int(m.group(1)))
+    return [
+        ("A", "国际社论漫画与幽默手绘（001–035）", "Editorial & Humorous (001–035)", ["A_001-016.webp", "A_017-032.webp", "A_033-035.webp"]),
+        ("B", "国际绘本与叙事型手绘（036–054）", "Picture Book & Narrative (036–054)", ["B_036-048.webp", "B_049-054.webp"]),
+        ("C", "现代平面与艺术化人物体系（055–082）", "Graphic & Stylized Figure (055–082)", ["C_055-070.webp", "C_071-082.webp"]),
+        ("D", "日本作者与当代插画体系（083–123）", "Japanese Contemporary Illustration (083–123)", ["D_083-098.webp", "D_099-114.webp", "D_115-123.webp"]),
+        ("E", "中国作者与当代插画体系（124–154）", "Chinese Contemporary Illustration (124–154)", ["E_124-139.webp", "E_140-154.webp"]),
+        ("F", "通用网感、媒介与地域手绘（155–200）", "Internet Culture, Medium & Regional (155–200)", ["F_155-170.webp", "F_171-186.webp", "F_187-200.webp"]),
+        ("G", "中国当代插画补充（201–216）", "Contemporary Chinese Illustration Supplement (201–216)", ["G_201-216.webp"]),
+        ("H", f"其他精选风格（217–{max_num:03}）", f"Other Curated Styles (217–{max_num:03})", h_sheets),
+    ], max_num
 
 LAYOUT_CATEGORIES = [
     ("social-card", "1. 社媒卡（19 种）", "1. Social Cards (19 Layouts)",
@@ -36,24 +43,27 @@ LAYOUT_CATEGORIES = [
 
 
 def build_styles_md() -> None:
+    sheet_groups, max_num = get_sheet_groups()
+    total_styles_str = f"{max_num:03}"
+
     # 1. Chinese STYLES.md
     zh_lines = [
         '<p align="center">',
         '  <strong>中文</strong> | <a href="STYLES_en.md">English</a>',
         '</p>',
         '',
-        "# 手绘风格完整图鉴（001–274）",
+        f"# 手绘风格完整图鉴（001–{total_styles_str}）",
         "",
-        "> 这里汇总了本库收录的 **001–274 种手绘风格**的全部拼图大表。每张拼图包含对应风格编号与画面参考，供在 GitHub 上直接图文浏览选款。详细的英文生图名称与提示词特征对照表见 [styles_200_reorganized.md](styles_200_reorganized.md)。",
+        f"> 这里汇总了本库收录的 **001–{total_styles_str} 种手绘风格**的全部拼图大表。每张拼图包含对应风格编号与画面参考，供在 GitHub 上直接图文浏览选款。详细的英文生图名称与提示词特征对照表见 [styles_200_reorganized.md](styles_200_reorganized.md)。",
         "",
         "## 目录导航",
         "",
     ]
-    for letter, title_zh, _, _ in SHEET_GROUPS:
+    for letter, title_zh, _, _ in sheet_groups:
         zh_lines.append(f"- [{letter} · {title_zh}](#group-{letter.lower()})")
     zh_lines.extend(["", "---", ""])
 
-    for letter, title_zh, _, sheets in SHEET_GROUPS:
+    for letter, title_zh, _, sheets in sheet_groups:
         zh_lines.append(f'<a id="group-{letter.lower()}"></a>')
         zh_lines.append(f"## {letter} · {title_zh}")
         zh_lines.append("")
@@ -73,18 +83,18 @@ def build_styles_md() -> None:
         '  <a href="STYLES.md">中文</a> | <strong>English</strong>',
         '</p>',
         '',
-        "# Hand-drawn Style Visual Sheet (001–274)",
+        f"# Hand-drawn Style Visual Sheet (001–{total_styles_str})",
         "",
-        "> Visual contact sheets for all **274 hand-drawn illustration styles** (001–274). Each sheet displays style numbers and visual references for easy browsing and selection directly on GitHub. For detailed generation names and prompt traits, see [styles_200_reorganized.md](styles_200_reorganized.md).",
+        f"> Visual contact sheets for all **{total_styles_str} hand-drawn illustration styles** (001–{total_styles_str}). Each sheet displays style numbers and visual references for easy browsing and selection directly on GitHub. For detailed generation names and prompt traits, see [styles_200_reorganized.md](styles_200_reorganized.md).",
         "",
         "## Table of Contents",
         "",
     ]
-    for letter, _, title_en, _ in SHEET_GROUPS:
+    for letter, _, title_en, _ in sheet_groups:
         en_lines.append(f"- [{letter} · {title_en}](#group-{letter.lower()})")
     en_lines.extend(["", "---", ""])
 
-    for letter, _, title_en, sheets in SHEET_GROUPS:
+    for letter, _, title_en, sheets in sheet_groups:
         en_lines.append(f'<a id="group-{letter.lower()}"></a>')
         en_lines.append(f"## {letter} · {title_en}")
         en_lines.append("")
