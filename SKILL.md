@@ -65,9 +65,9 @@ This initialization applies only when this Skill is invoked for the first time i
 
 ## Inputs
 
-For style-only work, require a style number (`001`–`276`) and a theme. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; the style number is optional. Accept optional aspect ratio, subject constraints, text requirements, and a mode. If a supplied number or layout ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
+For style-only work, require a style number (`001`–`276`) and a theme. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; the style number is optional. Accept optional theme color (`C-01`–`C-30` or color name), aspect ratio, subject constraints, text requirements, and a mode. If a supplied number or layout ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
 
-Users can browse `skills/handdraw-style-prompter/gallery/index.html` for numbered style contact sheets and `skills/handdraw-style-prompter/gallery/layouts.html` for layout thumbnails. The authoritative style content is `styles_200_reorganized.md`; `skills/handdraw-style-prompter/references/styles.json` is a generated index and must be refreshed with `python skills/handdraw-style-prompter/scripts/build_library.py` after Markdown changes. Layout metadata is `skills/handdraw-style-prompter/references/layouts.json`; each entry's bilingual prompt file under `skills/handdraw-style-prompter/references/layouts/` is the authoritative layout content and the layout gallery is refreshed with `python skills/handdraw-style-prompter/scripts/build_layout_gallery.py`.
+Users can browse `skills/handdraw-style-prompter/gallery/index.html` for numbered style contact sheets, `skills/handdraw-style-prompter/gallery/layouts.html` for layout thumbnails, and `skills/handdraw-style-prompter/gallery/colors.html` for classic monochrome theme colors. The authoritative style content is `styles_200_reorganized.md`; `skills/handdraw-style-prompter/references/styles.json` is a generated index and must be refreshed with `python skills/handdraw-style-prompter/scripts/build_library.py` after Markdown changes. Layout metadata is `skills/handdraw-style-prompter/references/layouts.json`; each entry's bilingual prompt file under `skills/handdraw-style-prompter/references/layouts/` is the authoritative layout content and the layout gallery is refreshed with `python skills/handdraw-style-prompter/scripts/build_layout_gallery.py`. Monochrome color metadata is `skills/handdraw-style-prompter/references/colors.json` and refreshed with `python skills/handdraw-style-prompter/scripts/build_color_gallery.py`.
 
 ## Layout workflows
 
@@ -103,10 +103,12 @@ In `pure-image` mode, describe only concrete visible content implied by the them
 
 - From the installed package root, rebuild the derived index and gallery: `python skills/handdraw-style-prompter/scripts/build_library.py`
 - Rebuild the layout gallery: `python skills/handdraw-style-prompter/scripts/build_layout_gallery.py`
+- Rebuild the color gallery: `python skills/handdraw-style-prompter/scripts/build_color_gallery.py`
 - Split contact sheets into numbered single images: `python skills/handdraw-style-prompter/scripts/split_contact_sheets.py`
 - Validate all source/index/gallery invariants: `python skills/handdraw-style-prompter/scripts/validate_library.py`
 - Produce a deterministic CLI prompt draft: `python skills/handdraw-style-prompter/scripts/prompt_style.py --style 18 --theme "秋天的第一杯奶茶"`
 - Produce a layout-combination draft: `python skills/handdraw-style-prompter/scripts/prompt_style.py --layout SC-001 --style 18 --theme "秋天的第一杯奶茶"`
+- Produce a color-combination draft: `python skills/handdraw-style-prompter/scripts/prompt_style.py --style 18 --color C-01 --theme "秋天的第一杯奶茶"`
 - Resolve image-reference policy: `python skills/handdraw-style-prompter/scripts/resolve_reference.py --model <model> --style 18`
 
 The CLI is a convenience check. For normal conversational use, write natural bilingual prompts rather than echoing its template mechanically.

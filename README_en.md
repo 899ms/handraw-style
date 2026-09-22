@@ -6,9 +6,9 @@
 
 > **Struggling to describe art styles? Trouble structuring visual layouts? Simply pick an index number to generate highly recognizable AI image prompts.**
 
-This repository curates **276 distinct hand-drawn illustration styles** (`001`–`276`) and **118 composition layout patterns** (`SC-*` Social Cards, `IG-*` Infographics, `SB-*` Comic Storyboards).
+This repository curates **276 distinct hand-drawn illustration styles** (`001`–`276`), **118 composition layout patterns** (`SC-*` Social Cards, `IG-*` Infographics, `SB-*` Comic Storyboards), and **30 curated classic monochrome colors** (`C-01`–`C-30`).
 
-Whether you are crafting social media post covers, educational infographics, architectural comparisons, or multi-panel narrative comics, you no longer need to memorize obscure art history terminology or struggle with complex compositions. **Simply choose a style number and layout ID, supply your topic, and instantly get verified, high-fidelity bilingual prompts ready to paste into Midjourney, DALL-E 3, Flux, Stable Diffusion, or any other image generator.**
+Whether you are crafting social media post covers, educational infographics, architectural comparisons, or multi-panel narrative comics, you no longer need to memorize obscure art history terminology or struggle with complex compositions. **Simply choose a style number, layout ID, and theme color, supply your topic, and instantly get verified, high-fidelity bilingual prompts ready to paste into Midjourney, DALL-E 3, Flux, Stable Diffusion, or any other image generator.**
 
 ---
 
@@ -18,6 +18,7 @@ Whether you are crafting social media post covers, educational infographics, arc
 | :--- | :--- |
 | **Vague style descriptions lead to style drift** | **Numbered Indexing**: 276 systematically categorized illustration styles, eliminating guess-and-pray prompting. |
 | **Monotonous composition; hard to format complex graphics** | **118 Layout Compositions**: 19 Social Cards, 31 Infographics, 68 Comic Storyboards ready out-of-the-box. |
+| **Chaotic color palettes lack a cohesive tonal mood** | **30 Curated Monochrome Colors**: Klein Blue, Sage Green, Hermes Orange, etc., setting pure and sophisticated tones with one click. |
 | **Text disconnects from art; awkward typography placement** | **Dual-Mode Workflow**: Seamlessly toggle between "Pure-Image Mode" (pure illustration) and "Graphic-Text Mode" (unified visual-textual composition). |
 | **Models ignore style keywords or lack style fidelity** | **Tiered Model Adaptation & Fallback**: Calibrated keyword activation for native models; automatic Reference Image Fallback (4-grid sheets) for all third-party models. |
 
@@ -44,12 +45,13 @@ The assistant will automatically clone the repository and configure all styles, 
 
 ## How to Use This Skill
 
-1. Open the [Style Visual Sheet (STYLES_en.md)](STYLES_en.md) or [Layout Visual Sheet (LAYOUTS_en.md)](LAYOUTS_en.md) to browse visual sheets and pick your desired numbers;
-2. Note your chosen ID, such as style `041`, or layout `SC-001`;
+1. Open the [Style Visual Sheet (STYLES_en.md)](STYLES_en.md), [Layout Visual Sheet (LAYOUTS_en.md)](LAYOUTS_en.md), or [Classic Monochrome Colors Sheet (COLORS_en.md)](COLORS_en.md) to browse visual sheets and pick your desired numbers;
+2. Note your chosen ID, such as style `041`, layout `SC-001`, or theme color `C-01`;
 3. Send your prompt command to the Skill, for example:
    - **Style only**: `Style: 041, Theme: First milk tea of autumn`
    - **Layout + Style**: `Layout: SC-001, Style: 041, Theme: First milk tea of autumn`
-4. Receive clean, copyable bilingual prompts with precise style definitions and layout geometry;
+   - **With Theme Color**: `Layout: SC-001, Style: 041, Color: C-01, Theme: First milk tea of autumn`
+4. Receive clean, copyable bilingual prompts with precise style definitions, layout geometry, and unified color palette;
 5. Copy and paste into Midjourney, DALL-E 3, Stable Diffusion, Flux, or any image generator to create your artwork.
 
 ---
@@ -141,6 +143,18 @@ Ideal for multi-panel narratives, webtoons, emotional storylines, and cinematic 
 
 - 💡 **[👉 Enter Full Layout Visual Sheet to Browse All 118 Layouts & Prompts ↗](LAYOUTS_en.md)**
 - 💻 *(For offline interactive search and category filtering, open `skills/handdraw-style-prompter/gallery/layouts.html` in your local browser)*
+
+---
+
+## Classic Monochrome Colors Showcase (30 Colors)
+
+This library curates **30 classic monochrome theme colors** (numbered `C-01` ~ `C-30`, covering Classic Blue, Fresh Green, Vintage Red & Classical, Romantic Pink & Purple, and Warm Sun & Earth).
+No matter what illustration style or layout composition you choose, specifying a theme color instantly establishes a cohesive visual tone. You can also copy individual color prompts with one click in the offline gallery.
+
+![Classic Monochrome Library Preview](images/colors/sheet_01.webp)
+
+- 🎨 **[👉 Enter Classic Monochrome Colors Visual Sheet to Browse All 30 Colors & Prompts ↗](COLORS_en.md)**
+- 💻 *(For offline interactive search and one-click copy, open `skills/handdraw-style-prompter/gallery/colors.html` in your local browser)*
 
 ---
 

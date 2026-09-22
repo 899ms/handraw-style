@@ -25,6 +25,7 @@ def main() -> None:
     python = [sys.executable, "-X", "utf8"]
     subprocess.run(python + [str(SKILL / "scripts" / "build_library.py")], check=True)
     subprocess.run(python + [str(SKILL / "scripts" / "build_layout_gallery.py")], check=True)
+    subprocess.run(python + [str(SKILL / "scripts" / "build_color_gallery.py")], check=True)
     styles = json.loads((SKILL / "references" / "styles.json").read_text(encoding="utf-8"))
     attribution = json.loads((SKILL / "references" / "attribution.json").read_text(encoding="utf-8"))
     model_capabilities = json.loads((SKILL / "references" / "model_capabilities.json").read_text(encoding="utf-8"))
@@ -347,6 +348,76 @@ def main() -> None:
     if missing_selection.returncode == 0 or "Provide --style, --layout, or both" not in (missing_selection.stderr + missing_selection.stdout):
         fail("missing style/layout selection does not fail clearly")
 
+    colors_file = SKILL / "references" / "colors.json"
+    if not colors_file.exists():
+        fail("colors.json is missing")
+    colors = json.loads(colors_file.read_text(encoding="utf-8"))
+    if len(colors) != 30:
+        fail(f"colors.json must contain exactly 30 colors, got {len(colors)}")
+    expected_color_ids = [f"C-{i:02d}" for i in range(1, 31)]
+    if [c["id"] for c in colors] != expected_color_ids:
+        fail("color IDs must be continuous C-01 to C-30")
+    for c in colors:
+        c_img = ROOT / str(c["image"]).replace("../../../", "")
+        if not c_img.is_file():
+            fail(f"color image is missing for {c['id']}: {c_img}")
+        sheet_img = ROOT / str(c["sheet_image"]).replace("../../../", "")
+        if not sheet_img.is_file():
+            fail(f"color sheet image is missing for {c['id']}: {sheet_img}")
+        for field in ("name_zh", "name_en", "quote_zh", "quote_en", "prompt_zh", "prompt_en"):
+            if not c.get(field):
+                fail(f"color {c['id']} missing field {field}")
+
+    color_gallery = (SKILL / "gallery" / "colors.html").read_text(encoding="utf-8")
+    for c in colors:
+        if f'data-id="{c["id"]}"' not in color_gallery:
+            fail(f"color gallery must contain card for {c['id']}")
+    for token in ['href="index.html"', 'href="layouts.html"', 'href="colors.html" aria-current="page"', "copyText", "navigator.clipboard.writeText"]:
+        if token not in color_gallery:
+            fail(f"color gallery is missing {token}")
+
+    colors_md = (ROOT / "COLORS.md").read_text(encoding="utf-8")
+    colors_en_md = (ROOT / "COLORS_en.md").read_text(encoding="utf-8")
+    for c in colors:
+        if f"**{c['id']}**" not in colors_md:
+            fail(f"COLORS.md is missing color {c['id']}")
+        if f"**{c['id']}**" not in colors_en_md:
+            fail(f"COLORS_en.md is missing color {c['id']}")
+    if "COLORS.md" not in readme or "images/colors/sheet_01.webp" not in readme:
+        fail("README.md must reference COLORS.md and images/colors/sheet_01.webp")
+    readme_en = (ROOT / "README_en.md").read_text(encoding="utf-8")
+    if "COLORS_en.md" not in readme_en or "images/colors/sheet_01.webp" not in readme_en:
+        fail("README_en.md must reference COLORS_en.md and images/colors/sheet_01.webp")
+
+    color_style_res = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--style", "18", "--color", "C-01", "--theme", "秋天的第一杯奶茶"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    if "主题色：克莱因蓝（Klein Blue）。" not in color_style_res.stdout or "Theme color: Klein Blue." not in color_style_res.stdout:
+        fail("style-and-color prompt is missing expected theme color tokens")
+
+    color_only_res = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--color", "C-01", "--theme", "秋天的第一杯奶茶"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    if "主题色：克莱因蓝（Klein Blue）。" not in color_only_res.stdout:
+        fail("color-only prompt is missing expected theme color token")
+
+    color_by_name = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--color", "克莱因蓝", "--theme", "秋天的第一杯奶茶"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    if "主题色：克莱因蓝（Klein Blue）。" not in color_by_name.stdout:
+        fail("color by name prompt is missing expected theme color token")
+
+    invalid_color = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--color", "C-999", "--theme", "x"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    if invalid_color.returncode == 0 or "Unknown color ID" not in (invalid_color.stderr + invalid_color.stdout):
+        fail("unknown color ID does not fail clearly")
+
+
     import yaml
     for sf in [ROOT / "SKILL.md", SKILL / "SKILL.md", ROOT / "skills" / "article-illustration-planner" / "SKILL.md"]:
         if sf.exists():
@@ -374,7 +445,7 @@ def main() -> None:
                 if drive_leak_pattern.search(line):
                     fail(f"Local drive path leaked in tracked file {rel_path}:{line_no}: {line.strip()[:100]}")
 
-    print(f"PASS: {total_styles} styles, {len(layouts)} layouts, gallery coverage, prompt contract, YAML frontmatter, path leak guard, and invalid-ID guards.")
+    print(f"PASS: {total_styles} styles, {len(layouts)} layouts, {len(colors)} colors, gallery coverage, prompt contract, YAML frontmatter, path leak guard, and invalid-ID guards.")
 
 
 if __name__ == "__main__":
