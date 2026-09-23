@@ -331,18 +331,20 @@
   {
     "id": "IG-003",
     "category": "infographic",
-    "name": "多行左右对比信息图",
+    "name": "多行左文右图信息图",
     "image": "../../../images/layouts/infographics/IG-003.webp",
     "prompt_file": "layouts/IG-003.md",
     "keywords": [
-      "多行对比",
+      "多行图文",
+      "左文右图",
       "主标题",
-      "左侧文字",
-      "右侧图片",
-      "逐行比较",
+      "行程路线",
+      "图鉴速览",
+      "分类清单",
+      "多行对比",
       "信息图"
     ],
-    "name_en": "Multi-Row Side-by-Side Comparison"
+    "name_en": "Multi-Row Left-Text Right-Image Infographic"
   },
   {
     "id": "IG-004",
