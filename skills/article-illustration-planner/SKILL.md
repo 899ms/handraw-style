@@ -11,7 +11,7 @@ Turn an article into a coherent visual-illustration plan.
 The user provides:
 
 * an article or substantial article draft;
-* a hand-drawn style number from the installed style library.
+* (optional) a hand-drawn style number (`001`–`277`) and/or theme color (`C-01`–`C-30`). If omitted, the Skill automatically analyzes the article's mood, domain, and audience to recommend an optimal cohesive style and theme color combination.
 
 The Skill decides:
 
@@ -20,7 +20,7 @@ The Skill decides:
 * how many illustrations are appropriate;
 * what each image should communicate;
 * whether an image should supplement, explain, replace, or reorganize part of the text;
-* how to express each illustration in the selected visual style.
+* how to express each illustration in the selected or recommended visual style and theme color.
 
 Do not mechanically illustrate every paragraph.
 

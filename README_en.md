@@ -45,6 +45,13 @@ The assistant will automatically clone the repository and configure all styles, 
 
 ## How to Use This Skill
 
+### 1. Smart Recommendation Mode (Zero Friction: No IDs Required)
+If you don't want to browse through indexes, **simply describe what you want to illustrate**! The Skill analyzes your theme's mood, domain, and context, then **automatically pairs the best-matching hand-drawn style with an optimal classic monochrome theme color** (including an aesthetic rationale):
+- *Zero-parameter prompt*: `Generate a healing illustration of a cat sunbathing by the window`
+  > 💡 *Recommended Pairing*: Style `#018 · Minimal Deadpan Dialogue Cartoon` + Color `C-26 · Persimmon Orange` (Rationale: warm, comforting, and relaxed atmosphere), outputting production-ready bilingual prompts immediately.
+- *Completion*: If you specify only a style (e.g., `Style 276, Theme: Future of AI`), the Skill auto-recommends a harmonious color (e.g., `C-01 Klein Blue`). If you specify only a color, it auto-recommends a fitting style.
+
+### 2. Precise Manual Selection Mode (Choose Specific IDs)
 1. Open the [Style Visual Sheet (STYLES_en.md)](STYLES_en.md), [Layout Visual Sheet (LAYOUTS_en.md)](LAYOUTS_en.md), or [Classic Monochrome Colors Sheet (COLORS_en.md)](COLORS_en.md) to browse visual sheets and pick your desired numbers;
 2. Note your chosen ID, such as style `041`, layout `SC-001`, or theme color `C-01`;
 3. Send your prompt command to the Skill, for example:

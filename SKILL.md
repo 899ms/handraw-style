@@ -23,15 +23,26 @@ before handling the request. Use the hand-drawn style rules in
 [handdraw-style-prompter](skills/handdraw-style-prompter/SKILL.md) for style-number
 resolution and prompt construction.
 
+When the user asks to design a poster, generate poster prompts, or create structured poster prompts, read and invoke
+[poster-prompt-generator](skills/poster-prompt-generator/SKILL.md), actively recommending cohesive style and theme color pairings from the hand-drawn style library (#001–#277) and theme color library (C-01–C-30).
+
 ## Default mode
 
 Default to creating prompts only. Do not call an image-generation tool unless the user explicitly asks to generate, render, or preview an image.
+
+### Automatic Style and Theme Color Recommendation Policy (默认智能推荐风格与主题色)
+
+不管生成什么图片或提示词，**默认情况下如果用户没有指定风格和主题色，必须自动推荐最优的风格与主题色组合**，严禁因用户缺少编号而中断或拒绝生成：
+1. **风格与主题色均未指定**：根据用户输入的主题语义、情感基调、受众与使用场景，主动从 277 种手绘风格与 30 种经典单色库中推荐 1 组契合度最高的【风格编号 (#001–#277) + 主题色编号 (C-01–C-30)】组合。主题色数量不设死限，依据画面层次灵活决定单色统领、双色搭配（主色+点缀色）或三色调和，简述 1 句美学推荐理由，并直接输出完整生图提示词（或执行出图）。
+2. **仅指定风格，未指定主题色**：严格保留用户指定的风格，根据该风格与画面主题，自动推荐最协调的【主题色 (C-01–C-30)】搭配（可为单色或多色组合）。
+3. **仅指定主题色，未指定风格**：严格保留用户指定的主题色，根据色彩调性与画面主题，自动推荐 1 款最契合的【手绘风格 (#001–#277)】搭配。
+4. **两者皆指定**：完全遵照用户指定的内容输出。
 
 ## Style activation policy
 
 Use the same capability decision for prompt-only and explicit image-generation requests. Resolve the selected/current model (or model family) against `skills/handdraw-style-prompter/references/model_capabilities.json`; if no model is specified, use the default capability fallback. The decision uses the indexed author name plus the generated style name and is not based on the author's fame or life status.
 
-- `name_activation=strong`: use only the indexed author name, generated style name, and theme. (Specifically for style #011 David Shrigley, author name activation is strong; when generating images, pass only the author name and do not pass reference images.)
+- `name_activation=strong`: use only the indexed author name, generated style name, and theme. (Specifically for styles like #042 Beatrix Potter and #011 David Shrigley, author name activation is strong; output only the reference author and style name, and do not output core traits or reference images.)
 - Otherwise, include every available positive core trait with the author/style name and theme.
 - If name plus traits is not strongly activated, also require the configured reference asset. For explicit generation, pass it through `referenced_image_paths`. In `pure-image` prompt-only output, write the local asset path and reference-isolation instruction inside both prompts for the user to upload manually. In `graphic-text` prompt-only output, do not place a path, upload instruction, or isolation block inside either copyable prompt; show the resolved reference image to the user outside the prompts instead. Assets live under the installed package root in numbered 200-style buckets: for example, #217 uses `images/individual/201-400/217_grid.webp`.
 - If no positive core trait exists, do not invent one; use the author/style name, theme, and reference image when required.
@@ -65,7 +76,7 @@ This initialization applies only when this Skill is invoked for the first time i
 
 ## Inputs
 
-For style-only work, require a style number (`001`–`277`) and a theme. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; the style number is optional. Accept optional theme color (`C-01`–`C-30` or color name), aspect ratio, subject constraints, text requirements, and a mode. If a supplied number or layout ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
+For style-only work, require a theme; if the style number (`001`–`277`) is omitted, automatically recommend an optimal style and theme color combination based on theme semantics. For layout work, require a layout ID (`SC-001` or `IG-001`) and a theme; if style and/or theme color are omitted, automatically recommend harmonious ones. Accept optional theme color (`C-01`–`C-30` or color name), aspect ratio, subject constraints, text requirements, and a mode. If a supplied number, layout ID, or color ID is invalid, ask the user to choose a valid indexed value; do not invent one. Do not add an aspect ratio when none was supplied.
 
 Users can browse `skills/handdraw-style-prompter/gallery/index.html` for numbered style contact sheets, `skills/handdraw-style-prompter/gallery/layouts.html` for layout thumbnails, and `skills/handdraw-style-prompter/gallery/colors.html` for classic monochrome theme colors. The authoritative style content is `styles_200_reorganized.md`; `skills/handdraw-style-prompter/references/styles.json` is a generated index and must be refreshed with `python skills/handdraw-style-prompter/scripts/build_library.py` after Markdown changes. Layout metadata is `skills/handdraw-style-prompter/references/layouts.json`; each entry's bilingual prompt file under `skills/handdraw-style-prompter/references/layouts/` is the authoritative layout content and the layout gallery is refreshed with `python skills/handdraw-style-prompter/scripts/build_layout_gallery.py`. Monochrome color metadata is `skills/handdraw-style-prompter/references/colors.json` and refreshed with `python skills/handdraw-style-prompter/scripts/build_color_gallery.py`.
 
@@ -88,11 +99,15 @@ Default to `pure-image`. Accept `纯图模式` / `图文模式` in conversation 
 
 ## Output
 
-For a valid request, return these four parts:
+For a valid request, return these parts:
 
+0. (若触发智能推荐) 推荐组合说明：
+   - 标注推荐的风格与主题色（例如：`💡 智能推荐组合：风格 #{编号} · {generation_name} + 主题色 {id} · {name_zh} ({name_en})`）；
+   - 给出 1 句简明美学推荐理由；
+   - 提示用户若有偏好的其他编号可随时说明替换。
 1. Selected style: number and generated style name. Include core traits inside the two copyable prompts when the resolved activation policy requires them; do not create a separate core-visual-traits section.
-2. Chinese prompt: begin the copyable prompt itself with `风格名称：#{编号} · {generation_name}。`; describe only the user's theme and constraints explicitly provided by the user, and always include the indexed author/style name as a short `参考作者/风格名称` label. When required, append filtered positive traits as `核心风格特征：...`. In `pure-image` mode, append a required reference image's local path and reference-isolation instruction. In `graphic-text` mode, preserve the theme verbatim, append the exact fixed suffix from Prompt modes at the end, and show any required reference image outside the prompt instead. Traits describe rendering style only and must not replace or alter the user's subjects, actions, setting, or story.
-3. English prompt: begin the copyable prompt itself with `Style name: #{number} · {generation_name}.`; describe only the same theme and user-provided constraints, and always include the indexed author/style name as `Reference author/style name`. When required, append the same traits as `Core style traits: ...`. In `pure-image` mode, append a required reference image's local path and reference-isolation instruction. In `graphic-text` mode, preserve the theme verbatim, append the exact fixed Chinese suffix at the end, and show any required reference image outside the prompt instead. Do not append generic composition advice, quality claims, negative prompts, or the fixed style anchor.
+2. Chinese prompt: begin the copyable prompt itself with `风格名称：#{编号} · {generation_name}。`; when a theme color is applied, include `主题色：{name_zh}（{name_en}）。`; describe only the user's theme and constraints explicitly provided by the user, and always include the indexed author/style name as a short `参考作者/风格名称` label. When required, append filtered positive traits as `核心风格特征：...`. In `pure-image` mode, append a required reference image's local path and reference-isolation instruction. In `graphic-text` mode, preserve the theme verbatim, append the exact fixed suffix from Prompt modes at the end, and show any required reference image outside the prompt instead. Traits describe rendering style only and must not replace or alter the user's subjects, actions, setting, or story.
+3. English prompt: begin the copyable prompt itself with `Style name: #{number} · {generation_name}.`; when a theme color is applied, include `Theme color: {name_en}.`; describe only the same theme and user-provided constraints, and always include the indexed author/style name as `Reference author/style name`. When required, append the same traits as `Core style traits: ...`. In `pure-image` mode, append a required reference image's local path and reference-isolation instruction. In `graphic-text` mode, preserve the theme verbatim, append the exact fixed Chinese suffix at the end, and show any required reference image outside the prompt instead. Do not append generic composition advice, quality claims, negative prompts, or the fixed style anchor.
 4. A brief note: the prompt can be pasted into any image AI; generation is controlled by that AI.
 
 Do not invent visual traits, extra style descriptions, generic quality/composition language, or default avoid-list wording. Include each entry's original reference author/style name from the index in both prompts as requested; this is an index label, not a claim about the person or an instruction to imitate them. Never use fame or life status as a proxy for model capability.

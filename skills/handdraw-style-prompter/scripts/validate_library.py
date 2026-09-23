@@ -420,9 +420,21 @@ def main() -> None:
     if invalid_color.returncode == 0 or "Unknown color ID" not in (invalid_color.stderr + invalid_color.stdout):
         fail("unknown color ID does not fail clearly")
 
+    auto_res = subprocess.run(
+        python + [str(SKILL / "scripts" / "prompt_style.py"), "--theme", "秋天的第一杯奶茶", "--auto"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    if "💡 推荐理由" not in auto_res.stdout or "Selected style:" not in auto_res.stdout or "Selected color:" not in auto_res.stdout:
+        fail("auto recommendation output is missing expected banner, style, or color")
+
 
     import yaml
-    for sf in [ROOT / "SKILL.md", SKILL / "SKILL.md", ROOT / "skills" / "article-illustration-planner" / "SKILL.md"]:
+    for sf in [
+        ROOT / "SKILL.md",
+        SKILL / "SKILL.md",
+        ROOT / "skills" / "article-illustration-planner" / "SKILL.md",
+        ROOT / "skills" / "poster-prompt-generator" / "SKILL.md",
+    ]:
         if sf.exists():
             content = sf.read_text(encoding="utf-8")
             if not content.startswith("---"):
