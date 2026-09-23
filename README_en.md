@@ -61,6 +61,33 @@ If you don't want to browse through indexes, **simply describe what you want to 
 4. Receive clean, copyable bilingual prompts with precise style definitions, layout geometry, and unified color palette;
 5. Copy and paste into Midjourney, DALL-E 3, Stable Diffusion, Flux, or any image generator to create your artwork.
 
+### 3. AI Poster Design Mode (Structured Prompts, Native Integrated Layout)
+Need to design festival campaign visuals, key art, or editorial social media posters? Simply tell the Skill your poster theme!
+- **Prompt Command**: `请帮我出海报提示词， 主题：秋分` (or `Generate a poster prompt for me, Theme: Autumn Equinox`)
+- **Intelligent Synergy**: The Skill analyzes the concept and pairs the best-matching hand-drawn style (e.g., `#268 · Contemporary Literati Ink Cartoon`) with classic theme colors (e.g., `Dominant: C-26 Persimmon Orange + Accent: C-03 Prussian Blue`). It outputs clean, structured prompts across **8 core design dimensions** (Theme, Scene, Audience, Density, Mood, Palette, Editorial Style, Hand-Drawn Style) with typography-composition integration guidelines.
+- **Real Generation Showcase**: Passing the prompt directly to an image generation model (e.g., GPT Image 2/2.5) yields seamless native typographic layout and artistic metaphor fusion—large-character calligraphy title, poetic couplet inscriptions, seal stamps, balanced day-and-night imagery, and relaxed literati ink brushwork:
+
+<p align="center">
+  <img src="images/poster-demo-autumn-equinox.webp" width="360" alt="Autumn Equinox Poster Generation Showcase">
+  <br>
+  <em>Real Generation Case: Style #268 Contemporary Literati Ink Cartoon + C-26 Persimmon Orange (Dominant) / C-03 Prussian Blue (Accent)</em>
+</p>
+
+<details>
+<summary>👉 Click to view the full poster design prompt</summary>
+
+```text
+主题：秋分·昼夜均而寒暑平
+业务场景：二十四节气传统文化海报、文创书店/茶饮节日宣发主视觉、社媒节气签
+受众：传统文化爱好者、文艺青年、生活美学追求者、大众社媒读者
+内容密度：低
+情感基调：松弛闲适、温润拙朴、平衡从容、金秋诗意
+主题色：主色为柿子橙（Persimmon Orange），点缀色为普鲁士蓝（Prussian Blue）
+editorial风格：Contemporary Literati Ink Cartoon Editorial 风格
+画风：风格名称：#268 · Contemporary Literati Ink Cartoon。参考作者/风格名称：当代人文水墨漫画。核心风格特征：现代生活人物、动物和日常小场景；白色或微暖纸面、大面积留白；毛笔和墨线快速画人物；线条松弛、粗细不一、枯湿自然、允许断笔和不闭合轮廓；人物高度概括、比例略笨拙，以姿态和动作表达情绪；人物是画面的主要视觉主体；场景保留少量必要元素；墨色为主，少量朱红、赭石、石绿、湖蓝局部点染；书法题字和朱红印章自然嵌入留白；整体拙朴、松弛、幽默、闲适；现代生活速写与中国写意笔墨结合。【如果主题直白包含画面元素那就按主题出图，文案由你来升华，但是不要直接描述画面。 如果主题比较概念化，那么文案和主题尽量保持一致，如果文案较长由你提炼，由你先设计画面隐喻（人类和非人类都行）再出图   。    文字参与构图，图文一体】
+```
+</details>
+
 ---
 
 ## Two Prompt Modes, Instant Switching
