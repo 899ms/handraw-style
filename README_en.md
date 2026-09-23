@@ -6,7 +6,7 @@
 
 > **Struggling to describe art styles? Trouble structuring visual layouts? Simply pick an index number to generate highly recognizable AI image prompts.**
 
-This repository curates **277 distinct hand-drawn illustration styles** (`001`–`277`), **119 composition layout patterns** (`SC-*` Social Cards, `IG-*` Infographics, `SB-*` Comic Storyboards), and **30 curated classic monochrome colors** (`C-01`–`C-30`).
+This repository curates **278 distinct hand-drawn illustration styles** (`001`–`278`), **119 composition layout patterns** (`SC-*` Social Cards, `IG-*` Infographics, `SB-*` Comic Storyboards), and **30 curated classic monochrome colors** (`C-01`–`C-30`).
 
 Whether you are crafting social media post covers, educational infographics, architectural comparisons, or multi-panel narrative comics, you no longer need to memorize obscure art history terminology or struggle with complex compositions. **Simply choose a style number, layout ID, and theme color, supply your topic, and instantly get verified, high-fidelity bilingual prompts ready to paste into Midjourney, DALL-E 3, Flux, Stable Diffusion, or any other image generator.**
 
@@ -16,7 +16,7 @@ Whether you are crafting social media post covers, educational infographics, arc
 
 | Creator Pain Point | How This Library Solves It |
 | :--- | :--- |
-| **Vague style descriptions lead to style drift** | **Numbered Indexing**: 277 systematically categorized illustration styles, eliminating guess-and-pray prompting. |
+| **Vague style descriptions lead to style drift** | **Numbered Indexing**: 278 systematically categorized illustration styles, eliminating guess-and-pray prompting. |
 | **Monotonous composition; hard to format complex graphics** | **119 Layout Compositions**: 19 Social Cards, 32 Infographics, 68 Comic Storyboards ready out-of-the-box. |
 | **Chaotic color palettes lack a cohesive tonal mood** | **30 Curated Monochrome Colors**: Klein Blue, Sage Green, Hermes Orange, etc., setting pure and sophisticated tones with one click. |
 | **Text disconnects from art; awkward typography placement** | **Dual-Mode Workflow**: Seamlessly toggle between "Pure-Image Mode" (pure illustration) and "Graphic-Text Mode" (unified visual-textual composition). |
@@ -113,7 +113,7 @@ The illustration below shows text integrated harmoniously with the visual compos
 
 By default, the Skill crafts copyable prompts. When you explicitly request image generation, it optimizes the output based on verified model capabilities:
 
-- **Explicitly Calibrated Models (e.g., `gpt-image-2`)**: Full activation hierarchy for all 277 styles: Style/Author Name → Positive Core Traits → Reference Image only when traits alone cannot reliably trigger the style, avoiding unnecessary image passing that might over-constrain the composition.
+- **Explicitly Calibrated Models (e.g., `gpt-image-2`)**: Full activation hierarchy for all 278 styles: Style/Author Name → Positive Core Traits → Reference Image only when traits alone cannot reliably trigger the style, avoiding unnecessary image passing that might over-constrain the composition.
 - **Third-Party & General Models (Midjourney, Flux, Stable Diffusion, Imagen, Gemini, etc.)**: Employs the rock-solid **Reference Image Fallback** strategy. The Skill provides a 1024x1024 4-grid standard reference image or file path, ensuring 100% faithful reproduction of linework, texture, and color palette without prompt drift.
 - **Open for Community Benchmarks**: Capability definitions reside in `skills/handdraw-style-prompter/references/model_capabilities.json`. Pull requests for other model evaluations are warmly welcomed!
 
@@ -135,15 +135,15 @@ Here is a contact sheet preview of featured hand-drawn illustration styles (001�
 
 ![Featured Styles Preview (001–016)](images/A_001-016.webp)
 
-- 🖼️ **[👉 Browse All Style Sheets (001–277 Full Visual Contact Sheets)](STYLES_en.md)**
-- 📄 **[View Detailed Style Metadata (277 Styles Table & Core Traits)](styles_200_reorganized.md)**
+- 🖼️ **[👉 Browse All Style Sheets (001–278 Full Visual Contact Sheets)](STYLES_en.md)**
+- 📄 **[View Detailed Style Metadata (278 Styles Table & Core Traits)](styles_200_reorganized.md)**
 - 💻 *(For offline interactive search and enlargement, open `skills/handdraw-style-prompter/gallery/index.html` in your local browser)*
 
 ---
 
 ## Layout Compositions Showcase
 
-In addition to 277 illustration styles, this library includes **119 composition layout patterns**, covering social cards, data infographics, and multi-panel storyboards. Combine any style with any layout with a single command.
+In addition to 278 illustration styles, this library includes **119 composition layout patterns**, covering social cards, data infographics, and multi-panel storyboards. Combine any style with any layout with a single command.
 
 ### 1. Social Cards (19 Layouts)
 
