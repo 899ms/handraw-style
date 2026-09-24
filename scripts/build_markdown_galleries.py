@@ -118,6 +118,22 @@ def build_layouts_md() -> None:
         "comic-storyboard": "comic-storyboards",
     }
     cols = 3
+    counts = {
+        "social-card": sum(l["category"] == "social-card" for l in layouts),
+        "infographic": sum(l["category"] == "infographic" for l in layouts),
+        "comic-storyboard": sum(l["category"] == "comic-storyboard" for l in layouts),
+    }
+    categories = [
+        ("social-card", f"1. 社媒卡（{counts['social-card']} 种）", f"1. Social Cards ({counts['social-card']} Layouts)",
+         "适合小红书、朋友圈、公众号配图及观点金句卡片。结构包含上下图文、文案主导、双格对照等。",
+         "Ideal for Xiaohongshu, Instagram, newsletter hero images, and quote cards. Includes top-bottom split, text-driven cards, two-column contrasts, and sticky notes."),
+        ("infographic", f"2. 信息图（{counts['infographic']} 种）", f"2. Infographics ({counts['infographic']} Layouts)",
+         "适合知识科普、对比清单、流程步骤及数据架构展示。结构包含金字塔层级、中心主图标注、多行多列对比等。",
+         "Ideal for knowledge sharing, comparison charts, process workflows, and structured data visuals. Includes hierarchy pyramids, central icons, matrices, and multi-column comparison tables."),
+        ("comic-storyboard", f"3. 漫画分镜（{counts['comic-storyboard']} 种）", f"3. Comic Storyboards ({counts['comic-storyboard']} Layouts)",
+         "适合多格叙事、剧情转折、条漫分镜及动态视觉表现。结构包含规则四格、起承转合、大格冲击、对角切割等专业分镜。",
+         "Ideal for multi-panel narratives, webtoons, emotional storylines, and cinematic pacing. Includes standard 4-panel grids, dramatic wide-angle focus, diagonal cuts, and manga storyboards."),
+    ]
 
     # 1. Chinese LAYOUTS.md
     zh_lines = [
@@ -131,15 +147,15 @@ def build_layouts_md() -> None:
         "",
         "## 目录导航",
         "",
-        "- [1. 社媒卡（19 种）](#social-cards)",
-        "- [2. 信息图（31 种）](#infographics)",
-        "- [3. 漫画分镜（68 种）](#comic-storyboards)",
+        f"- [1. 社媒卡（{counts['social-card']} 种）](#social-cards)",
+        f"- [2. 信息图（{counts['infographic']} 种）](#infographics)",
+        f"- [3. 漫画分镜（{counts['comic-storyboard']} 种）](#comic-storyboards)",
         "",
         "---",
         "",
     ]
 
-    for cat_id, cat_title_zh, _, cat_desc_zh, _ in LAYOUT_CATEGORIES:
+    for cat_id, cat_title_zh, _, cat_desc_zh, _ in categories:
         cat_layouts = [l for l in layouts if l["category"] == cat_id]
         anchor = anchor_map.get(cat_id, cat_id)
         zh_lines.append(f'<a id="{anchor}"></a>')
@@ -190,15 +206,15 @@ def build_layouts_md() -> None:
         "",
         "## Table of Contents",
         "",
-        "- [1. Social Cards (19 Layouts)](#social-cards)",
-        "- [2. Infographics (31 Layouts)](#infographics)",
-        "- [3. Comic Storyboards (68 Layouts)](#comic-storyboards)",
+        f"- [1. Social Cards ({counts['social-card']} Layouts)](#social-cards)",
+        f"- [2. Infographics ({counts['infographic']} Layouts)](#infographics)",
+        f"- [3. Comic Storyboards ({counts['comic-storyboard']} Layouts)](#comic-storyboards)",
         "",
         "---",
         "",
     ]
 
-    for cat_id, _, cat_title_en, _, cat_desc_en in LAYOUT_CATEGORIES:
+    for cat_id, _, cat_title_en, _, cat_desc_en in categories:
         cat_layouts = [l for l in layouts if l["category"] == cat_id]
         anchor = anchor_map.get(cat_id, cat_id)
         en_lines.append(f'<a id="{anchor}"></a>')
