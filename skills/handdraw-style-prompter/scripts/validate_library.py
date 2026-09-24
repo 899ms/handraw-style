@@ -189,8 +189,10 @@ def main() -> None:
         'class="prompt-examples"',
         "1 · 出图",
         "2 · 切换图文模式",
+        "3 · 海报提示词",
         "风格：001，主题：吃冰淇淋的小姑娘",
         "切换为图文模式",
+        "请帮我出海报提示词， 主题：秋分",
         "ui-monospace",
     ]
     if any(token not in gallery for token in prompt_example_tokens):
