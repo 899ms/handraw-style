@@ -203,9 +203,9 @@ No matter what illustration style or layout composition you choose, specifying a
 
 ## Author & Community
 
-- **WeChat Community / Author WeChat**: Add WeChat with note **handdraw** to join the creators community:
+- **Creator Monetization Community / Author WeChat**: Please prioritize joining the group; if full, try adding personal WeChat. Note: **handdraw**:
 
-  <img src="images/wechat_community.jpg" alt="WeChat Community QR Code" width="240">
+  <img src="images/wechat.png" alt="WeChat Community QR Code" width="360">
 
 - **X (Twitter)**: [@yang02010](https://x.com/yang02010)
 - **GitHub**: [yang0/handraw-style](https://github.com/yang0/handraw-style)

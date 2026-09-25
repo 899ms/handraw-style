@@ -184,8 +184,8 @@ Skill 默认只负责把想法变成提示词；你明确要求“生图”时�
 
 ## 作者与社群交流
 
-- **微信交流群 / 作者微信**：添加请备注 **手绘**，拉你进创作者交流群
+- **创作变现交流群 / 作者微信**：请优先加群，满了的话也可以尝试加我个人微信。请备注：**手绘**
 
-  <img src="images/wechat_community.jpg" alt="微信二维码" width="240">
+  <img src="images/wechat.png" alt="微信二维码" width="360">
 
 - X：[@yang02010](https://x.com/yang02010)
