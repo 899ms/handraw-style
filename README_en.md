@@ -10,6 +10,14 @@ This repository curates **279 distinct hand-drawn illustration styles** (`001`�
 
 Whether you are crafting social media post covers, educational infographics, architectural comparisons, or multi-panel narrative comics, you no longer need to memorize obscure art history terminology or struggle with complex compositions. **Simply choose a style number, layout ID, and theme color, supply your topic, and instantly get verified, high-fidelity bilingual prompts ready to paste into Midjourney, DALL-E 3, Flux, Stable Diffusion, or any other image generator.**
 
+> [!TIP]
+> ### 📚 Official Feishu Knowledge Base is Live
+> 🔗 **[👉 Click to Access Feishu Knowledge Base ↗](https://ecmn3m3i17.feishu.cn/wiki/space/7689222460876524523?ccm_open_type=lark_wiki_spaceLink&open_tab_from=wiki_home)**
+> 
+> 1. 🖼️ **Quick Visual Gallery**: Instant mobile & desktop browsing of all 279 illustration styles and 120 layouts
+> 2. ❓ **Skill FAQ & Prompt Cheat Sheet**: Setup walkthroughs, troubleshooting tips, and ready-to-use prompt patterns
+> 3. 💡 **Entrepreneurship & Monetization**: Continuously updated real-world case studies and revenue strategies shared by the community
+
 ---
 
 ## 🌟 Core Pain Points & Solutions
@@ -203,6 +211,7 @@ No matter what illustration style or layout composition you choose, specifying a
 
 ## Author & Community
 
+- 📚 **Feishu Knowledge Base**: [Access Knowledge Base (Visual Gallery / FAQ / Monetization Case Studies) ↗](https://ecmn3m3i17.feishu.cn/wiki/space/7689222460876524523?ccm_open_type=lark_wiki_spaceLink&open_tab_from=wiki_home)
 - **Creator Monetization Community / Author WeChat**: Please prioritize joining the group; if full, try adding personal WeChat. Note: **handdraw**:
 
 | ① Join Group Chat (Priority) | ② Personal WeChat (Fallback) |
