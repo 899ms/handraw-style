@@ -205,7 +205,9 @@ No matter what illustration style or layout composition you choose, specifying a
 
 - **Creator Monetization Community / Author WeChat**: Please prioritize joining the group; if full, try adding personal WeChat. Note: **handdraw**:
 
-  <img src="images/wechat.png" alt="WeChat Community QR Code" width="360">
+| ① Join Group Chat (Priority) | ② Personal WeChat (Fallback) |
+| :---: | :---: |
+| <img src="images/wechat_group.png" alt="WeChat Group QR Code" width="240"> | <img src="images/wechat_personal.png" alt="Personal WeChat QR Code" width="240"> |
 
 - **X (Twitter)**: [@yang02010](https://x.com/yang02010)
 - **GitHub**: [yang0/handraw-style](https://github.com/yang0/handraw-style)
