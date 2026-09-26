@@ -146,15 +146,13 @@ def main() -> None:
             or last_path != sheet_path(last_start, last_end)):
         fail("Tweet contact-sheet state does not match the active sheet")
     gallery = (SKILL / "gallery" / "index.html").read_text(encoding="utf-8")
-    for _, _, path in tweet_sheets:
-        if path.name not in gallery:
-            fail(f"gallery is missing contact sheet {path.name}")
     if 'data-number="217" data-group="H"' not in gallery or 'data-number="262" data-group="H"' not in gallery:
         fail("gallery does not classify 217+ style cards as H")
-    if 'data-label="H · #217–#232"' not in gallery:
-        fail("gallery does not classify the first H contact sheet as H")
-    if "A_001-016.webp" not in gallery or "F_187-200.webp" not in gallery or "#018" not in gallery:
-        fail("gallery does not cover the expected sheets and style 018")
+    if '#018' not in gallery or 'data-number="001"' not in gallery or f'data-number="{max_num}"' not in gallery:
+        fail("gallery style cards do not cover 001 to latest")
+    for token in [".gallery{--columns:14;--gap:8px", "masonry-column", "heights.indexOf(Math.min(...heights))", "ResizeObserver", 'class="style-card"', 'id="gallery"']:
+        if token not in gallery:
+            fail(f"gallery waterfall layout is missing {token}")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     if "images/A_001-016.webp" not in readme:
         fail("README does not reference representative style preview image")
@@ -233,7 +231,7 @@ def main() -> None:
             fail(f"session initialization contract in nested SKILL.md is missing {token}")
         if token not in root_skill_text:
             fail(f"session initialization contract in root SKILL.md is missing {token}")
-    for token in ['id="preview"', 'class="sheet"', 'dialog.showModal()', 'event.target===dialog']:
+    for token in ['id="preview"', 'class="style-card"', 'dialog.showModal()', 'event.target===dialog']:
         if token not in gallery:
             fail(f"gallery preview interaction is missing {token}")
     result = subprocess.run(python + [str(SKILL / "scripts" / "prompt_style.py"), "--style", "18", "--theme", "秋天的第一杯奶茶"], capture_output=True, text=True, encoding="utf-8", check=True)
