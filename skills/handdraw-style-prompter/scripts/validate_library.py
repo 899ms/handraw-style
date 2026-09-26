@@ -315,7 +315,7 @@ def main() -> None:
     for layout in layouts:
         if layout_gallery.count(f'data-id="{layout["id"]}"') != 1:
             fail(f"layout gallery must contain exactly one card for {layout['id']}")
-    for token in ["图型编号画廊", 'href="index.html"', 'href="layouts.html" aria-current="page"', "SC-001", "SC-002", "SC-004", "SC-005", "SC-006", "SC-007", "SC-008", "SC-009", "SC-010", "SC-011", "SC-012", "SC-014", "SC-015", "SC-016", "SC-017", "SC-018", "SC-019", "SC-020", "IG-001", "IG-002", "IG-003", "IG-004", "IG-005", "IG-006", "IG-007", "IG-008", "IG-009", f"信息图 <span>{sum(item['category'] == 'infographic' for item in layouts)}</span>", "复制排版提示词", "navigator.clipboard.writeText", "setCategory('social-card')", ".site-nav a{border:1px solid", "main{max-width:1440px;margin:auto;padding:18px 30px 30px}", ".gallery{--columns:4;--gap:18px", "@media(max-width:1100px){.gallery{--columns:3}}", ".masonry-column{display:flex;flex-direction:column", "ResizeObserver", "requestAnimationFrame", "heights.indexOf(Math.min(...heights))", ".layout-card img{display:block;width:100%;height:auto}", 'class="layout-info"', ".layout-id{color:#b74227", ".layout-name{overflow:hidden", "@media(max-width:720px){main{padding:16px 20px 20px}", ".gallery{--columns:2;--gap:12px}", "@media(max-width:420px){.gallery{--columns:1}}"]:
+    for token in ["图型编号画廊", 'href="index.html"', 'href="layouts.html" aria-current="page"', "SC-001", "SC-002", "SC-004", "SC-005", "SC-006", "SC-007", "SC-008", "SC-009", "SC-010", "SC-011", "SC-012", "SC-014", "SC-015", "SC-016", "SC-017", "SC-018", "SC-019", "SC-020", "IG-001", "IG-002", "IG-003", "IG-004", "IG-005", "IG-006", "IG-007", "IG-008", "IG-009", f"信息图 <span>{sum(item['category'] == 'infographic' for item in layouts)}</span>", "复制排版提示词", "navigator.clipboard.writeText", "setCategory('social-card')", ".site-nav a{border:1px solid", "main{max-width:1440px;margin:auto;padding:18px 30px 30px}", ".gallery{--columns:4;--gap:18px", '[data-size="1x"] .gallery{--columns:8;--gap:10px}', "@media(max-width:1100px){.gallery{--columns:3}}", ".masonry-column{display:flex;flex-direction:column", "ResizeObserver", "requestAnimationFrame", "heights.indexOf(Math.min(...heights))", ".layout-card img{display:block;width:100%;height:auto}", 'class="layout-info"', ".layout-id{color:#b74227", ".layout-name{overflow:hidden", "@media(max-width:720px){main{padding:16px 20px 20px}", ".gallery{--columns:2;--gap:12px}", "@media(max-width:420px){.gallery{--columns:1}}"]:
         if token not in layout_gallery:
             fail(f"layout gallery is missing {token}")
     if "信息图 <span>0</span>" in layout_gallery or "id=\"empty\"" in layout_gallery:
@@ -358,11 +358,11 @@ def main() -> None:
     if not colors_file.exists():
         fail("colors.json is missing")
     colors = json.loads(colors_file.read_text(encoding="utf-8"))
-    if len(colors) != 30:
-        fail(f"colors.json must contain exactly 30 colors, got {len(colors)}")
-    expected_color_ids = [f"C-{i:02d}" for i in range(1, 31)]
+    if len(colors) != 36:
+        fail(f"colors.json must contain exactly 36 colors, got {len(colors)}")
+    expected_color_ids = [f"C-{i:02d}" for i in range(1, 37)]
     if [c["id"] for c in colors] != expected_color_ids:
-        fail("color IDs must be continuous C-01 to C-30")
+        fail("color IDs must be continuous C-01 to C-36")
     for c in colors:
         c_img = ROOT / str(c["image"]).replace("../../../", "")
         if not c_img.is_file():
